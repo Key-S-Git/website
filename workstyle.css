@@ -44,7 +44,7 @@ body{
   font-size: clamp(2.5rem, calc(2.3rem + 0.625vw), 3.0rem);
 }
 header h1, section h1 {
-  font-size: clamp(9.0rem, calc(8.8rem + 0.625vw), 9.5rem);
+  font-size: clamp(8.0rem, calc(7.8rem + 0.625vw), 8.5rem);
 }
 header h2, section h2 {
   font-size: clamp(5.5rem, calc(5.3rem + 0.625vw), 6rem);
@@ -57,7 +57,6 @@ section {
   padding: 0%;
   text-align: left;
 }
-
 
 
 ul, ol {
