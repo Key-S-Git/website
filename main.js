@@ -150,8 +150,6 @@ TxtRotate.prototype.tick = function() {
 };
 
 window.onload = function() {
-  const spinner = document.getElementById("loading");
-  spinner.classList.add("loaded");
   var elements = document.getElementsByClassName('txt-rotate');
   for (var i=0; i<elements.length; i++) {
     var period = elements[i].getAttribute('data-period');
