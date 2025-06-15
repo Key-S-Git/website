@@ -224,27 +224,11 @@ nav{
 
 .contact_flex{
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   padding-bottom: clamp(5.5rem, calc(5.3rem + 0.625vw), 6rem);
 }
 
-.contact_item>img{
-  width: clamp(10.5rem, calc(10.3rem + 0.625vw), 11rem);
-  height: auto;
-  margin-right: clamp(9.5rem, calc(9.3rem + 0.625vw), 10rem);
-}
-.contact_item{
-  width: 50%;
-
-}
-.contact_imgpos{
-  text-align: end;
-}
-.contact_text{
-  font-size: clamp(3.0rem, calc(2.8rem + 0.625vw), 3.5rem);
-  font-weight: bold;
-}
 
 
 .wrap{
@@ -272,17 +256,35 @@ nav{
 }
 
 
-.wave-svg-inline{
-  background-color: #404040;
-  width: 100%;
-  height: clamp(27.5rem, calc(27.3rem + 0.625vw), 28rem);
-  position: relative;
+.image-button {
+    border: none; /* デフォルトのボーダーをなくす */
+    background: none; /* デフォルトの背景をなくす */
+    cursor: pointer;
+    padding: 0; /* img要素にpaddingが影響しないように0にする */
+    position: relative; /* 沈み込み時に位置を調整するため */
 }
-svg{
-  width: 100%;
-  height: clamp(39.5rem, calc(39.3rem + 0.625vw), 40rem);
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  fill: #fff; /* 色を変更 */
+
+.image-button img {
+    display: block; /* img要素がinline要素のため、余分なスペースをなくす */
+    width: clamp(20.5rem, calc(20.3rem + 0.625vw), 21rem); /* 画像の幅を調整 */
+    height: auto; /* 高さは自動調整 */
+    border-radius: 20%; /* 角丸にする */
+    /* 立体感を出すためのシャドウ */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), /* 下方向への影 */
+                0 2px 5px rgba(0, 0, 0, 0.2);  /* 軽い影で立体感を強調 */
+    transition: all 0.1s ease-out; /* ホバー時、クリック時のアニメーションをスムーズに */
+}
+
+/* ホバー時のスタイル（少し浮き上がるような効果） */
+.image-button:hover img {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4),
+                0 3px 8px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px); /* 少し上に移動させる */
+}
+
+/* クリック時のスタイル（沈み込み） */
+.image-button:active img {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), /* 影を小さくして沈んだように見せる */
+                0 1px 2px rgba(0, 0, 0, 0.1);
+    transform: translateY(3px); /* 下に移動させて沈み込みを表現 */
 }
