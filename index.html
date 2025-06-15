@@ -14,6 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="main.js"></script>
     <script src="sketch.js"></script>
+    <script src="loading.js"></script>
     <script src="p5.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
@@ -26,7 +27,14 @@
     <meta property="og:image" content="OGP.jpg">
 </head>
 <body>
-  <div class="wrapper">
+
+<!-- ローディング画面 -->
+<div id="loading">
+  <div class="spinner"></div>
+</div>
+
+<!-- コンテンツ画面 -->
+<div class="wrapper">
   <header class="header">
     <h1>
       <span class="txt-rotate" data-period="1000"></span>
