@@ -103,12 +103,22 @@ header h2, section h2 {
   top: clamp(0rem, calc(-0.2rem + 0.625vw), 0.5rem); /* 下に 10px 下げる */
 }
 
-footer {
-  max-width: clamp(44.5rem, calc(44.3rem + 0.625vw), 45rem);
-  margin: auto;
-  color: #fff;
-  text-align: center;
-  background-color: #404040;
+footer{
+    width: 100%;
+    background-color: #505050;
+    color: #fff;
+    text-align: center;
+    padding: 30px 0;
+
+    position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+}
+
+.wrapper{
+    min-height: 100vh;
+    position: relative;/*←相対位置*/
+    padding-bottom: 120px;/*←footerの高さ*/
+    box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
 }
 
 .is-hidden {
@@ -209,7 +219,8 @@ nav{
 
 .works_item>img{
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover; /* 画像をボックスに合わせて切り抜く */
 }
 
 .works_item{
@@ -221,6 +232,15 @@ nav{
   opacity:0.5;
 	transition:0.3s;
 }
+
+.box {
+  width: 35%;
+  aspect-ratio: 1 / 1;
+  margin: 10px; /* 画像間の余白 */
+  overflow: hidden; /* 画像がボックスからはみ出さないようにする */
+}
+
+
 
 .contact_flex{
   display: flex;
