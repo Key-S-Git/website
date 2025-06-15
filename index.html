@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | Key-S</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="icon" href="media/favicon.ico">
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+    <script src="sketch.js"></script>
+    <script src="p5.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+
+    <meta property="og:url" content="https://key-s-git.github.io/portfolio/">
+    <meta property="og:type" content="product">
+    <meta property="og:title" content="Portfolio - Suzuki Keisuke">
+    <meta property="og:description" content="ポートフォリオ">
+    <meta property="og:site_name" content="Portfolio - Suzuki Keisuke">
+    <meta property="og:image" content="media/logo.png">
+</head>
+<body>
+  <header class="header">
+
+    <h1>
+      <span class="txt-rotate" data-period="1000"></span>
+    </h1>
+
+  </header>
+
+
+  <main>
+    <nav id="page-nav" class="page-nav">
+      <ul class="page-nav__list">
+        <li id="nav_name"><img src="media/Key-S.png">  Key-S</li>
+        <li class="page-nav__item">
+          <a class="page-nav__link is-current" href="#about">
+            <span class="page-nav__text">ABOUT</span>
+          </a>
+        </li>
+        <li class="page-nav__item">
+          <a class="page-nav__link" href="#skills">
+            <span class="page-nav__text">SKILLS</span>
+          </a>
+        </li>
+        <li class="page-nav__item">
+          <a class="page-nav__link" href="#works">
+            <span class="page-nav__text">WORKS</span>
+          </a>
+        </li>
+        <li class="page-nav__item">
+          <a class="page-nav__link" href="#contact">
+            <span class="page-nav__text">CONTACT</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+
+    <section class="about" id="about">
+      <h2>ABOUT</h2>
+      <div class="about_flex">
+        <p class="about_item about_imgpos"><img src="media/icon.jpg"></p>
+        <p class="about_item">
+
+          <span class="name_text"><ruby>鈴木<rt>Suzuki</rt></ruby>&nbsp;<ruby>佳祐<rt>Keisuke</rt></ruby></span><br><br>
+          2003年6月4日生まれ。<br>
+          宮城大学 事業構想学群 価値創造デザイン学類に所属。<br>
+          プログラミング技術を学びながら、音を表現する作品を作成した。
+        </p>
+      </div>
+    </section>
+
+
+
+    <section class="skills" id="skills">
+      <h2>SKILLS</h2>
+      <div class="skills container">
+        <div class="item" id="skill1"><p class="word-break">Unity</p></div>
+        <div class="item" id="skill2"><p class="word-break">Figma</p></div>
+        <div class="item" id="skill3"><p class="word-break">HTML/CSS</p></div>
+        <div class="item" id="skill4"><p class="word-break">Illustrator</p></div>
+        <div class="item" id="skill5"><p class="word-break">Photoshop</p></div>
+        <div class="item" id="skill6"><p class="word-break">Premiere</p><p class="word-break">Pro</p></div>
+      </div>
+    </section>
+
+    
+
+    <section class="works" id="works">
+      <h2>WORKS</h2>
+      <div class="works_flex">
+        <a href="work1.html" class="works_item"><img src="media/work_1.png" alt="音を使った造形"></a>
+        <a href="work2.html" class="works_item"><img src="media/work_2.png" alt="3Dビジュアライザー"></a>
+        <a href="work3.html" class="works_item"><img src="media/work_3.png" alt="2Dビジュアライザー"></a>
+        <a href="work4.html" class="works_item"><img src="media/work_4.png" alt="犬ピアノ"></a>
+      </div>
+    </section>
+
+
+
+    <section class="contact" id="contact">
+      <h2>CONTACT</h2>
+      <div class="contact_flex">
+        <p class="contact_item contact_imgpos"><img src="media/TEL_icon.png"></p>
+        <p class="contact_item contact_text"><span>080-5840-3448</span></p>
+      </div>
+      <div class="contact_flex">
+        <p class="contact_item contact_imgpos"><img src="media/email_icon.png"></p>
+        <p class="contact_item contact_text">p2220124@myu.ac.jp</p>
+      </div>
+    </section>
+
+
+
+    <footer id="footer">
+      &copy; 2025 Key-S
+    </footer>
+  </main>
+</body>
+</html>

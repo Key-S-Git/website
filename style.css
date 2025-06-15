@@ -1,0 +1,288 @@
+html {
+  scroll-behavior: smooth;
+  font-size: calc(100vw / 144);
+  font-family: "Noto Sans JP", sans-serif;
+  overflow-x: hidden; /* 横方向のスクロールバーを非表示にする */
+  width: 100%; /* 幅をビューポートに合わせる */
+  height: 100%; /* 高さをビューポートに合わせる */
+  margin: 0; /* デフォルトのマージンをなくす */
+  padding: 0; /* デフォルトのパディングをなくす */
+}
+body{
+  margin: 0%;
+  padding:0%;
+  font-size: clamp(2.5rem, calc(1.4rem + 0.625vw), 2.5rem);
+}
+
+header {
+  margin: 0;
+  padding: 0px;
+  /* padding-bottom: clamp(1.5rem, calc(1.3rem + 0.625vw), 2rem); ← これは不要になるかも */
+  width: 100%;
+  
+  /* headerの高さをビューポートの高さに設定 */
+  height: 100vh; 
+  
+  position: relative; /* 必要であれば（背景のCanvasをheader内に配置する場合など） */
+  /* headerの背景にsketch.jsのCanvasが配置される想定 */
+  /* background-color: #333; /* デバッグ用に背景色を設定するとCanvasが見えやすい */
+  overflow: hidden; /* Canvasがheaderからはみ出さないように */
+}
+
+section {
+  margin: clamp(9.5rem, calc(9.3rem + 0.625vw), 10rem);
+  padding-top: clamp(23.5rem, calc(23.3rem + 0.625vw), 24rem);
+  padding-bottom: clamp(9.5rem, calc(9.3rem + 0.625vw), 10rem);
+}
+header h1, section h1 {
+  font-size: clamp(14.5rem, calc(14.3rem + 0.625vw), 15rem);
+  color: #fff;
+  position: absolute; /* 親要素（または初期コンテナブロック）を基準に配置する */
+  top: 50%;           /* h1の上端をビューポートの垂直方向の中央に移動 */
+  left: 50%;          /* h1の左端をビューポートの水平方向の中央に移動 */
+  transform: translate(-50%, -50%); /* 要素自身の幅と高さの半分だけ位置を調整して真に中央揃えにする */
+  text-align: left; /* h1内のテキストを中央揃えにする */
+  width: fit-content; /* または特定の幅を設定 */
+
+    /* h1自身のマージン・パディングをリセット（重要！） */
+  margin: 0; 
+  padding: 0; /* h1に余計な余白がないか確認 */
+  line-height: 1.2; /* テキストの見た目に合わせて調整 */
+
+}
+header h2, section h2 {
+  font-size: clamp(5.5rem, calc(5.3rem + 0.625vw), 6rem);
+  color: #000;
+  text-align: center;
+}
+.page-nav__text {
+  font-size: clamp(1.2rem, calc(1.0rem + 0.625vw), 1.7rem);
+}
+.page-nav {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 100%;
+  z-index: 100;
+  margin-inline: auto;
+  transition-duration: 0.3s;
+}
+.page-nav__list {
+  padding: clamp(1.0rem, calc(0.8rem + 0.625vw), 1.5rem) clamp(4.0rem, calc(3.8rem + 0.625vw), 4.5rem);
+  margin-inline: auto;
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: clamp(2.5rem, calc(2.3rem + 0.625vw), 3rem);;
+}
+.page-nav__link {
+  color: #fff;
+  text-decoration: none;
+}
+.page-nav__link:hover{
+  color:#aaa;
+}
+.is-current:hover{
+  color: #46e678;
+}
+
+#nav_name{
+  margin-right: auto;
+  color:#fff;
+  font-size: clamp(2.0rem, calc(1.8rem + 0.625vw), 2.5rem);
+  font-weight:bold;
+}
+#nav_name>img{
+  width: clamp(2.5rem, calc(2.3rem + 0.625vw), 3.0rem);
+  height: auto;
+  display: inline-block;/* 文章の流れの中に置いている画像なので inline でも良いが今回は inline-block が適当 */
+  position: relative; /* 通常の文章の流れにある要素なので relative が適切 */
+  top: clamp(0rem, calc(-0.2rem + 0.625vw), 0.5rem); /* 下に 10px 下げる */
+}
+
+footer {
+  max-width: clamp(44.5rem, calc(44.3rem + 0.625vw), 45rem);
+  margin: auto;
+  color: #fff;
+  text-align: center;
+  background-color: #404040;
+}
+
+.is-hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-50%);
+  transition-duration: 0.3s;
+}
+
+.is-current {
+  color: #46e678;
+  position: relative;
+}
+
+nav{
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: #000;
+}
+
+.about_flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about_item>img{
+  width: 40%;
+  height: auto;
+  margin-right: clamp(2.5rem, calc(2.3rem + 0.625vw), 3rem);
+  border-radius: clamp(99.5rem, calc(99.3rem + 0.625vw), 100rem);
+}
+.about_item{
+  width: 50%;
+
+}
+.about_imgpos{
+  text-align: end;
+}
+
+.name_text{
+  font-size: clamp(3.5rem, calc(3.3rem + 0.625vw), 4rem);
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.item {
+  color: #000000;
+  width: 25%;
+  max-width: 25%;
+  aspect-ratio: 1/1;
+  text-align: center;
+  border-radius: 100%;
+  line-height: clamp(28.5rem, calc(28.3rem + 0.625vw), 29rem);
+  font-size: clamp(3.5rem, calc(3.3rem + 0.625vw), 4rem);
+  font-weight: bold;
+  margin:1%;
+  padding:1%;
+}
+#skill1{
+  background-color: #f88;
+}
+#skill2{
+  background-color: #ff8;
+}
+#skill3{
+  background-color: #8f8;
+}
+#skill4{
+  background-color: #8ff;
+}
+#skill5{
+  background-color: #88f;
+}
+#skill6{
+  background-color: #f8f;
+  line-height: clamp(25.5rem, calc(25.3rem + 0.625vw), 26rem);
+}
+.word-break{
+  padding:0;
+  margin:0;
+  height: clamp(4.5rem, calc(4.3rem + 0.625vw), 5rem);;
+}
+
+
+.works_flex{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.works_item>img{
+  width: 100%;
+  height: auto;
+}
+
+.works_item{
+  text-align: center;
+  width: 35%;
+  padding-bottom: clamp(9.5rem, calc(9.3rem + 0.625vw), 10rem);
+}
+.works_item:hover{
+  opacity:0.5;
+	transition:0.3s;
+}
+
+.contact_flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: clamp(5.5rem, calc(5.3rem + 0.625vw), 6rem);
+}
+
+.contact_item>img{
+  width: clamp(10.5rem, calc(10.3rem + 0.625vw), 11rem);
+  height: auto;
+  margin-right: clamp(9.5rem, calc(9.3rem + 0.625vw), 10rem);
+}
+.contact_item{
+  width: 50%;
+
+}
+.contact_imgpos{
+  text-align: end;
+}
+.contact_text{
+  font-size: clamp(3.0rem, calc(2.8rem + 0.625vw), 3.5rem);
+  font-weight: bold;
+}
+
+
+.wrap{
+  border-right: 0.04em solid rgba(255,255,255,1);
+}
+
+#blink{
+  animation-name: flashing;
+  animation-duration: 1.0s;
+  animation-timing-function: step-end;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+}
+
+@keyframes flashing {
+  0% {
+    border-right: 0.04em solid rgba(255,255,255,1);
+  }
+  50%{
+    border-right: 0.04em solid rgba(255,255,255,0);
+  }
+  100% {
+    border-right: 0.04em solid rgba(255,255,255,1);
+  }
+}
+
+
+.wave-svg-inline{
+  background-color: #404040;
+  width: 100%;
+  height: clamp(27.5rem, calc(27.3rem + 0.625vw), 28rem);
+  position: relative;
+}
+svg{
+  width: 100%;
+  height: clamp(39.5rem, calc(39.3rem + 0.625vw), 40rem);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  fill: #fff; /* 色を変更 */
+}

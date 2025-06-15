@@ -1,0 +1,38 @@
+html {
+  scroll-behavior: smooth;
+  font-size: calc(100vw / 144);
+  font-family: "Noto Sans JP", sans-serif;
+}
+body{
+  margin: 0%;
+  padding: 0%;
+  font-size: clamp(2.5rem, calc(2.3rem + 0.625vw), 3.0rem);
+}
+header h1, section h1 {
+  font-size: clamp(9.5rem, calc(9.3rem + 0.625vw), 10rem);
+}
+header h2, section h2 {
+  font-size: clamp(5.5rem, calc(5.3rem + 0.625vw), 6rem);
+}
+section {
+  margin: clamp(9.5rem, calc(9.3rem + 0.625vw), 10rem);
+  padding-top: clamp(23.5rem, calc(23.3rem + 0.625vw), 24rem);
+  padding-bottom: clamp(9.5rem, calc(9.3rem + 0.625vw), 10rem);
+}
+.header{
+  margin: 0%;
+  padding: 0%;
+  text-align: center;
+}
+img{
+  width: 100vw;
+  height: auto;
+}
+
+footer {
+  max-width: clamp(44.5rem, calc(44.3rem + 0.625vw), 45rem);
+  margin: auto;
+  color: #fff;
+  text-align: center;
+  background-color: #404040;
+}
