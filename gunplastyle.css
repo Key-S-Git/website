@@ -1,0 +1,155 @@
+/* ローディング画面 */
+#loading {
+  width: 100vw;
+  height: 100vh;
+  transition: all 1s;
+  background-color: #0bd;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+.spinner {
+  width: 100px;
+  height: 100px;
+  margin: 200px auto;
+  background-color: #fff;
+  border-radius: 100%;
+  animation: sk-scaleout 1s infinite ease-in-out;
+}
+/* ローディングアニメーション */
+@keyframes sk-scaleout {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* コンテンツ画面 */
+html {
+  scroll-behavior: smooth;
+  font-size: calc(100vw / 144);
+  font-family: "Noto Sans JP", sans-serif;
+}
+body{
+  margin: 0%;
+  padding: 0%;
+  font-size: clamp(2.5rem, calc(2.3rem + 0.625vw), 3.0rem);
+}
+header h1, section h1 {
+  font-size: clamp(8.0rem, calc(7.8rem + 0.625vw), 8.5rem);
+}
+header h2, section h2 {
+  font-size: clamp(5.5rem, calc(5.3rem + 0.625vw), 6rem);
+}
+section {
+  margin: clamp(9.5rem, calc(9.3rem + 0.625vw), 10rem);
+}
+.header{
+  margin: clamp(9.5rem, calc(9.3rem + 0.625vw), 10rem);
+  padding: 0%;
+  text-align: left;
+}
+
+.header_container{
+  display: flex;
+  justify-content: center;
+}
+
+.header_item>img{
+  width: 60%;
+  height: auto;
+  margin-right: clamp(6.5rem, calc(6.3rem + 0.625vw), 7rem);
+  border-radius: 10%;
+}
+.header_item{
+  width: 50%;
+
+}
+.header_imgpos{
+  text-align: end;
+}
+.name{
+  font-size: clamp(3.5rem, calc(3.3rem + 0.625vw), 4rem);
+  font-weight: bold;
+  line-height: clamp(8.5rem, calc(8.3rem + 0.625vw), 9em);
+}
+
+
+ul, ol {
+  padding: 0;
+}
+
+ul li {
+  position: relative;
+  list-style-type: none!important;/*ポチ消す*/
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  margin-bottom: 5px;
+  line-height: 1.5;
+  background: rgba(0,250,206,0.5);
+  vertical-align: middle;
+  color: #505050;
+  border-radius: 15px 0px 0px 15px;/*左側の角丸く*/
+}
+
+ul li:before{ 
+  display:inline-block; 
+  vertical-align: middle;
+  /*以下白丸つくる*/
+  content:'';
+  width:1em;
+  height: 1em;
+  background: #fff;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.album_flex {
+  display: flex;
+  flex-wrap: wrap; /* 画面幅に合わせて折り返す */
+  justify-content: flex-start; /* 左寄せで配置 */
+}
+
+.box {
+  width: 16%;
+  aspect-ratio: 1 / 1;
+  margin: 10px; /* 画像間の余白 */
+  overflow: hidden; /* 画像がボックスからはみ出さないようにする */
+}
+
+.album_item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 画像をボックスに合わせて切り抜く */
+}
+
+.album_item:hover{
+  opacity:0.5;
+	transition:0.3s;
+}
+
+
+footer{
+    width: 100%;
+    background-color: #505050;
+    color: #fff;
+    text-align: center;
+    padding: 30px 0;
+
+    position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+}
+
+.wrapper{
+    min-height: 100vh;
+    position: relative;/*←相対位置*/
+    padding-bottom: 120px;/*←footerの高さ*/
+    box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+}
