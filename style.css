@@ -68,6 +68,10 @@ section {
   margin: clamp(9.5rem, calc(9.3rem + 0.625vw), 10rem);
   padding-top: clamp(23.5rem, calc(23.3rem + 0.625vw), 24rem);
   padding-bottom: clamp(9.5rem, calc(9.3rem + 0.625vw), 10rem);
+  padding-left: 0%;
+  padding-right: 0%;
+  margin-left: 0;
+  margin-right: 0%;
 }
 header h1, section h1 {
   font-size: clamp(14.5rem, calc(14.3rem + 0.625vw), 15rem);
@@ -190,10 +194,12 @@ nav{
 }
 .about_item{
   width: 50%;
-
 }
 .about_imgpos{
   text-align: end;
+}
+.about_text{
+  padding-right:60px;
 }
 
 .name_text{
@@ -220,62 +226,13 @@ nav{
   margin:1%;
   padding:1%;
 }
-#skill1{
-  background-color: #f88;
-}
-#skill2{
-  background-color: #ff8;
-}
-#skill3{
-  background-color: #8f8;
-}
-#skill4{
-  background-color: #8ff;
-}
-#skill5{
-  background-color: #88f;
-}
-#skill6{
-  background-color: #f8f;
-  line-height: clamp(25.5rem, calc(25.3rem + 0.625vw), 26rem);
-}
+
+
 .word-break{
   padding:0;
   margin:0;
   height: clamp(4.5rem, calc(4.3rem + 0.625vw), 5rem);;
 }
-
-
-.works_flex{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.works_item>img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* 画像をボックスに合わせて切り抜く */
-}
-
-.works_item{
-  text-align: center;
-  width: 35%;
-  padding-bottom: clamp(9.5rem, calc(9.3rem + 0.625vw), 10rem);
-}
-.works_item:hover{
-  opacity:0.5;
-	transition:0.3s;
-}
-
-.box {
-  width: 35%;
-  aspect-ratio: 1 / 1;
-  margin: 10px; /* 画像間の余白 */
-  overflow: hidden; /* 画像がボックスからはみ出さないようにする */
-}
-
 
 
 .contact_flex{
@@ -343,4 +300,28 @@ nav{
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), /* 影を小さくして沈んだように見せる */
                 0 1px 2px rgba(0, 0, 0, 0.1);
     transform: translateY(3px); /* 下に移動させて沈み込みを表現 */
+}
+
+
+
+
+.swiper{
+  padding-top: clamp(0.2rem, calc(0rem + 0.625vw), 0.7rem);
+  margin-top: clamp(0.2rem, calc(0rem + 0.625vw), 0.7rem);
+  text-align: left;
+}
+
+.swiper-wrapper {
+  /* wrapperのサイズを調整 */
+  width: 100%;
+}
+
+.swiper-slide {
+  /* スライドのサイズを調整、中身のテキスト配置調整、背景色 */
+  color: #000000;
+  width: 100%;
+}
+
+.card{
+  width: clamp(39.5rem, calc(49.3rem + 0.625vw), 40rem);
 }
