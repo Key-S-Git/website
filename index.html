@@ -12,11 +12,16 @@
   <link rel="icon" href="media/favicon.ico">
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <script src="main.js"></script>
+
     <script src="sketch.js"></script>
     <script src="p5.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+    <script src="main.js"></script>
 
     <meta property="og:url" content="https://key-s-git.github.io/website/">
     <meta property="og:type" content="blog">
@@ -46,11 +51,6 @@
           </a>
         </li>
         <li class="page-nav__item">
-          <a class="page-nav__link" href="#skills">
-            <span class="page-nav__text">SKILLS</span>
-          </a>
-        </li>
-        <li class="page-nav__item">
           <a class="page-nav__link" href="#gunpla">
             <span class="page-nav__text">GUNPLA</span>
           </a>
@@ -73,8 +73,7 @@
       <h2>ABOUT</h2>
       <div class="about_flex">
         <p class="about_item about_imgpos"><img src="media/icon.jpg"></p>
-        <p class="about_item">
-
+        <p class="about_item about_text">
           <span class="name_text"><ruby>Key-S</ruby></span><br><br>
           味ぽん依存症。いろんなことに手を付けるが、ひとつだってやり遂げられない。
         </p>
@@ -82,35 +81,64 @@
     </section>
 
 
-
-    <section class="skills" id="skills">
-      <h2>SKILLS</h2>
-      <div class="skills container">
-        <div class="item" id="skill1"><p class="word-break">Unity</p></div>
-        <div class="item" id="skill2"><p class="word-break">Figma</p></div>
-        <div class="item" id="skill3"><p class="word-break">HTML/CSS</p></div>
-        <div class="item" id="skill4"><p class="word-break">Illustrator</p></div>
-        <div class="item" id="skill5"><p class="word-break">Photoshop</p></div>
-        <div class="item" id="skill6"><p class="word-break">Premiere</p><p class="word-break">Pro</p></div>
-      </div>
-    </section>
-
-    
-
     <section class="gunpla" id="gunpla">
       <h2>My GUNPLA</h2>
-      <div class="works_flex">
-        <div class="box"><a href="gunpla1.html" class="works_item"><img src="media/album/gunpla1/1.jpg" alt="ケルディムガンダム ソルダート"></a></div>
-        <div class="box"><a href="gunpla2.html" class="works_item"><img src="media/album/gunpla2/1.jpg" alt="ケルディムガンダム バーゼル"></a></div>
-      </div>
+      <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide card">
+            <a href="gunpla1.html">
+              <img src="media/gunpla_thumbnail1.png" class="card">
+            </a>
+          </div>
+          <div class="swiper-slide card">
+            <a href="gunpla2.html">
+              <img src="media/gunpla_thumbnail2.png" class="card">
+            </a>
+          </div>
+                    <div class="swiper-slide card">
+            <a href="gunpla2.html">
+              <img src="media/gunpla_thumbnail2.png" class="card">
+            </a>
+          </div>
+        </div>
+        <!-- 必要に応じてページネーション -->
+        <div class="swiper-pagination"></div>
+        <!-- 必要に応じてナビボタン -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+       </div>
     </section>
 
     <section class="travelogues" id="travelogues">
       <h2>My TRAVELOGUES</h2>
-      <div class="works_flex">
-        <div class="box"><a href="travelogue1.html" class="works_item"><img src="media/album/travelogue1/25.jpg" alt="東京旅行"></a></div>
-        <div class="box"><a href="travelogue2.html" class="works_item"><img src="media/album/travelogue2/2.jpg" alt="新潟旅行"></a></div>
-      </div>
+      <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide card">
+            <a href="travelogue1.html">
+              <img src="media/travelogue_thumbnail1.png" class="card">
+            </a>
+          </div>
+          <div class="swiper-slide card">
+            <a href="travelogue2.html">
+              <img src="media/travelogue_thumbnail2.png" class="card">
+            </a>
+          </div>
+                    <div class="swiper-slide card">
+            <a href="travelogue2.html">
+              <img src="media/travelogue_thumbnail2.png" class="card">
+            </a>
+          </div>
+        </div>
+        <!-- 必要に応じてページネーション -->
+        <div class="swiper-pagination"></div>
+        <!-- 必要に応じてナビボタン -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+       </div>
     </section>
 
 
