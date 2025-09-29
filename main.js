@@ -161,3 +161,74 @@ window.onload = function() {
 
   document.body.appendChild(css);
 };
+
+
+
+
+// swiper-wrapperの設定
+
+document.addEventListener('DOMContentLoaded', function() {
+    // ページ内のすべての.swiperコンテナを取得
+    const swiperContainers = document.querySelectorAll('.swiper');
+
+    swiperContainers.forEach(container => {
+        // Swiperインスタンスを保持するための変数
+        let swiperInstance;
+
+        // Swiperの初期化関数
+        const initSwiper = () => {
+             // 既存のインスタンスがあれば破棄（二重初期化を防ぐ）
+            if (swiperInstance) {
+                swiperInstance.destroy(true, true);
+            }
+            
+            // 新しいSwiperを初期化
+            swiperInstance = new Swiper(container, {
+                // スライド設定 (ここはお客様の既存設定を維持)
+                slidesPerView: 1.2, 
+                spaceBetween: 10,
+                slidesOffsetBefore: 40, 
+                slidesOffsetAfter: 40,
+
+                navigation: {
+                    nextEl: container.querySelector(".swiper-button-next"),
+                    prevEl: container.querySelector(".swiper-button-prev")
+                },
+
+                breakpoints: {
+                    0: {
+                        slidesPerView: 2.5, 
+                        spaceBetween: 50,
+                        slidesOffsetBefore: 30,
+                        slidesOffsetAfter: 30
+                    },
+                    600: {
+                        slidesPerView: 2.5, 
+                        spaceBetween: 70, 
+                        slidesOffsetBefore: 50,
+                        slidesOffsetAfter: 50
+                    }
+                }
+            });
+        };
+
+        // ページ読み込み時に初期化
+        initSwiper();
+
+        /* 画面サイズ変更時の対応ロジックを追加 */
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            // リサイズが止まってから処理を実行
+            resizeTimer = setTimeout(function() {
+                // Swiperの update() を呼び出し、現在のサイズに合わせて位置を再計算させる
+                if (swiperInstance) {
+                    swiperInstance.update();
+                    // 必要に応じて、最初のスライドに移動させる
+                    // swiperInstance.slideTo(0); 
+                }
+            }, 300); // 300ms後に実行
+        });
+        /* 画面サイズ変更時の対応ロジック END */
+    });
+});
