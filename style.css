@@ -325,8 +325,8 @@ nav{
 /* 矢印画像の高さと幅 */
 .swiper-button-prev,
 .swiper-button-next {
-  height: 60px;
-  width: 60px;
+  height: clamp(5.5rem, calc(5.3rem + 0.625vw), 6rem);
+  width: clamp(5.5rem, calc(5.3rem + 0.625vw), 6rem);
 
 }
 /* 矢印を消して画像に変更する */
@@ -336,8 +336,8 @@ nav{
   position: absolute;
   background-repeat: no-repeat;
   background-size: contain;
-  height: 60px;
-  width: 60px;
+  height: clamp(5.5rem, calc(5.3rem + 0.625vw), 6rem);
+  width: clamp(5.5rem, calc(5.3rem + 0.625vw), 6rem);
   margin: auto;
     border-radius: 100%; /* 角丸にする */
 }
