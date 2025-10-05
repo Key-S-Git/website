@@ -322,6 +322,45 @@ nav{
   width: 100%;
 }
 
+/* 矢印画像の高さと幅 */
+.swiper-button-prev,
+.swiper-button-next {
+  height: 60px;
+  width: 60px;
+
+}
+/* 矢印を消して画像に変更する */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  content: "";
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 60px;
+  width: 60px;
+  margin: auto;
+    border-radius: 100%; /* 角丸にする */
+}
+
+/* 前に戻る矢印の画像パスと表示位置 */
+.swiper-button-prev::after {
+  background-image: url('media/button_prev.jpg');
+  left: 0px;
+  transform: translateX(5px);
+}
+/* 次に進む矢印の画像パスと表示位置 */
+.swiper-button-next::after {
+  background-image: url('media/button_next.jpg');
+  right: 0px;
+  transform: translateX(-0.2rem);
+}
+
+/* Swiperボタン内の全ての子要素（通常はSVGアイコン）を非表示にする */
+.swiper-button-prev > *,
+.swiper-button-next > * {
+    display: none !important; 
+}
+
 .card{
   width: clamp(39.5rem, calc(49.3rem + 0.625vw), 40rem);
 }
