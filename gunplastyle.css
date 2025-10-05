@@ -77,9 +77,9 @@ section {
   text-align: end;
 }
 .name{
-  font-size: clamp(3.5rem, calc(3.3rem + 0.625vw), 4rem);
+  font-size: clamp(3.0rem, calc(2.8rem + 0.625vw), 4rem);
   font-weight: bold;
-  line-height: clamp(8.5rem, calc(8.3rem + 0.625vw), 9em);
+  line-height: clamp(8.5rem, calc(8.3rem + 0.625vw), 9rem);
 }
 
 .hashtag{
