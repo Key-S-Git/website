@@ -149,19 +149,23 @@ TxtRotate.prototype.tick = function() {
 
 };
 
-window.onload = function() {
+window.addEventListener('load', function() {
   var elements = document.getElementsByClassName('txt-rotate');
-  for (var i=0; i<elements.length; i++) {
-    var period = elements[i].getAttribute('data-period');
-    new TxtRotate(elements[i], period);
-  }
-  elements.id = 'blink';
-  // INJECT CSS
-  var css = document.createElement("style");
 
-  document.body.appendChild(css);
-};
+  // 10秒後にテキスト回転を開始する
+  setTimeout(function() {
+    for (var i=0; i<elements.length; i++) {
+      var period = elements[i].getAttribute('data-period');
+      new TxtRotate(elements[i], period);
+    }
+    // elements.id = 'blink'; // この行はコメントアウトまたは削除を推奨します
+    
+    // INJECT CSS
+    var css = document.createElement("style");
+    document.body.appendChild(css);
+  }, 1000); // 10000ミリ秒 = 10秒の遅延
 
+});
 
 
 
