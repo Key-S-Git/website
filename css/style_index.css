@@ -306,7 +306,7 @@ nav{
 }
 /* 次に進む矢印の画像パスと表示位置 */
 .swiper-button-next::after {
-  background-image: url(../media/button_next.jpg);
+  background-image: url(/media/button_next.jpg);
   right: 0px;
   transform: translateX(-0.2rem);
 }
