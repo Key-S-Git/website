@@ -22,21 +22,18 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
   <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
-  <script src="js/loading.js"></script>
+  <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.min.js"></script>
+
 </head>
 <body>
 
 <!-- ローディング画面 -->
-<div id="loading">
-  <div class="sk-chase">
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
+  <div id="loading">
+    <div class="bar-container">
+        <img src="media/Key-S.png" class="loading-image">
+        <div class="bar-wrapper"></div>
+    </div>
   </div>
-</div>
 
 <!-- コンテンツ画面 -->
   <div class="wrapper">
@@ -111,5 +108,8 @@
       </footer>
     </main>
   </div>
+
+  <script src="js/loading.js"></script>
+
 </body>
 </html>
