@@ -300,7 +300,7 @@ nav{
 
 /* 前に戻る矢印の画像パスと表示位置 */
 .swiper-button-prev::after {
-  background-image: url(../media/button_prev.jpg);
+  background-image: url(/media/button_prev.jpg);
   left: 0px;
   transform: translateX(5px);
 }
