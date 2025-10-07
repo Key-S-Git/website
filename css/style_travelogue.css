@@ -79,19 +79,6 @@ ul li:before{
 	transition:0.3s;
 }
 
-
-footer{
-    width: 100%;
-    background-color: #505050;
-    color: #fff;
-    text-align: center;
-    padding: clamp(2.5rem, calc(2.3rem + 0.625vw), 3rem) 0;
-    font-size: clamp(2.5rem, calc(2.3rem + 0.625vw), 3rem);
-
-    position: absolute;/*←絶対位置*/
-    bottom: 0; /*下に固定*/
-}
-
 .wrapper{
     min-height: 100vh;
     position: relative;/*←相対位置*/
