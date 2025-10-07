@@ -93,7 +93,7 @@ header h2, section h2 {
   color:#aaa;
 }
 .is-current:hover{
-  color: #46e678;
+  color: #00face;
 }
 
 #nav_name{
@@ -110,18 +110,6 @@ header h2, section h2 {
   top: clamp(0rem, calc(-0.2rem + 0.625vw), 0.5rem); /* 下に 10px 下げる */
 }
 
-footer{
-    width: 100%;
-    background-color: #505050;
-    color: #fff;
-    text-align: center;
-    padding: clamp(2.5rem, calc(2.3rem + 0.625vw), 3rem) 0;
-    font-size: clamp(2.5rem, calc(2.3rem + 0.625vw), 3rem);
-
-    position: absolute;/*←絶対位置*/
-    bottom: 0; /*下に固定*/
-}
-
 .wrapper{
     min-height: 100vh;
     position: relative;/*←相対位置*/
@@ -136,7 +124,7 @@ footer{
 }
 
 .is-current {
-  color: #46e678;
+  color: #00face;
   position: relative;
 }
 
@@ -145,7 +133,7 @@ nav{
   margin-right: 0;
   padding-left: 0;
   padding-right: 0;
-  background-color: #000;
+  background-color: rgb(29,29,31);
 }
 
 .about_flex{
