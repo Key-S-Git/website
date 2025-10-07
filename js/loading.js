@@ -26,8 +26,8 @@ var bar = new ProgressBar.Line('.bar-wrapper', {
   }
 });
 
-// 1. まずアニメーションで90%まで進める (ロード完了を待たずに即時実行)
-bar.animate(0.9, { duration: 3000 }); // 3秒かけて90%まで
+// 1. まずアニメーションで99%まで進める (ロード完了を待たずに即時実行)
+bar.animate(0.99, { duration: 3000 }); // 3秒かけて99%まで
 
 // 2. 実際のロード完了を待つ
 window.addEventListener('load', function () {
