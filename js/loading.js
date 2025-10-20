@@ -1,5 +1,5 @@
 var bar = new ProgressBar.Line('.bar-wrapper', {
-  strokeWidth: 4,
+  strokeWidth: 5,
   easing: 'easeInOut',
   duration: 1400,
   color: '#00face',
@@ -15,7 +15,8 @@ var bar = new ProgressBar.Line('.bar-wrapper', {
 
       padding: 0,
       margin: 0,
-      transform: 'translateX(-50%)' // 中央配置の修正
+      transform: 'translateX(-50%)', // 中央配置の修正
+      fontSize: '4rem'
     },
     autoStyleContainer: false
   },
