@@ -18,7 +18,7 @@
     transform: translate(-50%, -50%); 
     
     width: 80%;
-    max-width: 500px;
+    max-width: 900px;
 
     /* 👇 Flexboxを追加して子要素を縦に並べる */
     display: flex;
@@ -36,10 +36,17 @@
 
 /* プログレスバーのラッパー要素 */
 .bar-wrapper {
-    padding: 10px; 
+    padding: 0px; 
     border: 2px solid #00face;
     box-sizing: border-box; 
     width: 100%; /* 親要素の幅いっぱいに広げる */
+    height: 24px;
+}
+/* 💡 bar-wrapper内のSVG要素（バー本体）にスタイルを適用 */
+.bar-wrapper svg {
+    /* SVGをブロック要素として扱い、インライン要素特有の余白を解消 */
+    display: block;
+
 }
 
 /* プログレスバーのテキストコンテナのデフォルトスタイル */
