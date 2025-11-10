@@ -62,9 +62,9 @@ ul li:before{
 }
 
 .box {
-  width: 16%;
+  width: 18%;
   aspect-ratio: 1 / 1;
-  margin: 10px; /* 画像間の余白 */
+  margin: 1%; /* 画像間の余白 */
   overflow: hidden; /* 画像がボックスからはみ出さないようにする */
 }
 
