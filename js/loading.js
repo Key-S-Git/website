@@ -22,10 +22,35 @@ var bar = new ProgressBar.Line('.bar-wrapper', {
   },
   from: {color: '#FFEA82'},
   to: {color: '#ED6A5A'},
-  step: (state, bar) => {
-    bar.setText(Math.round(bar.value() * 100) + ' %');
-  }
 });
+
+
+
+const loadingTexts = [
+    'Loading',
+    'Loading.',
+    'Loading..',
+    'Loading...'
+];
+let textIndex = 0;
+
+bar.setText(loadingTexts[textIndex]);
+textIndex++; // 次のループのためにインデックスをインクリメント
+
+// テキスト更新用のタイマーを設定し、変数に保持
+const loadingTextInterval = setInterval(function() {
+    // 配列からテキストを取得
+    const currentText = loadingTexts[textIndex % loadingTexts.length];
+    
+    // progressbar.js の setText メソッドでテキストを更新
+    bar.setText(currentText);
+    
+    // インデックスを進める
+    textIndex++;
+
+}, 300); // 300ミリ秒ごとに更新 (ループの速度)
+
+
 
 // 1. まずアニメーションで99%まで進める (ロード完了を待たずに即時実行)
 bar.animate(0.99, { duration: 3000 }); // 3秒かけて99%まで
