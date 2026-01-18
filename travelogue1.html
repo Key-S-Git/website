@@ -5,9 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog | Key-S</title>
-  <link rel="stylesheet" href="css/style_travelogue.css">
-  <link rel="stylesheet" href="css/loading.css">
-  <link rel="stylesheet" href="css/footer.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,14 +13,26 @@
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
+    <script src="js/sketch.js"></script>
+    <script src="js/p5.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
-  <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.min.js"></script>
+    <script src="js/progressbar.min.js"></script>
 
+    <link rel="stylesheet" href="css/style_index.css">
+    <link rel="stylesheet" href="css/loading.css">
+    <link rel="stylesheet" href="css/footer.css">
+
+    <meta property="og:url" content="https://key-s-git.github.io/website/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Blog | Key-S">
+    <meta property="og:description" content="Key-Sの部屋">
+    <meta property="og:site_name" content="Blog | Key-S">
+    <meta property="og:image" content="OGP.jpg">
 </head>
 <body>
 
@@ -36,68 +45,140 @@
   </div>
 
 <!-- コンテンツ画面 -->
-  <div class="wrapper">
-    <header class="header">
-      <h1>東京旅行</h1>
-    </header>
+<div class="wrapper">
+  <header class="header">
+    <h1>
+      <span class="txt-rotate" data-period="1000"></span>
+    </h1>
+  </header>
 
-    <main>
 
-      <section class="date" id="date">
-        <h2>DATE</h2>
-        <p>2024年2月19日～2024年2月20日</p>
-      </section>
+  <main>
+    <nav id="page-nav" class="page-nav">
+      <ul class="page-nav__list">
+        <li id="nav_name"><img src="media/Key-S.png">  Key-S</li>
+        <li class="page-nav__item">
+          <a class="page-nav__link is-current" href="#about">
+            <span class="page-nav__text">ABOUT</span>
+          </a>
+        </li>
+        <li class="page-nav__item">
+          <a class="page-nav__link" href="#gunpla">
+            <span class="page-nav__text">GUNPLA</span>
+          </a>
+        </li>
+        <li class="page-nav__item">
+          <a class="page-nav__link" href="#travelogues">
+            <span class="page-nav__text">TRAVELOGUES</span>
+          </a>
+        </li>
+        <li class="page-nav__item">
+          <a class="page-nav__link" href="#account">
+            <span class="page-nav__text">ACCOUNT</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-      <section class="mainevent" id="mainevent">
-        <h2>MAIN EVENT</h2>
-        <ul>
-          <li>横浜ガンダム</li>
-          <li>下北沢 聖地巡礼</li>
-        </ul>
-      </section>
 
-      <section class="album" id="album">
-        <h2>ALBUM</h2>
-        <div class="album_flex">
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/1.JPG" class="album_item"><img src="media/album/travelogue1/1.JPG"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/2.jpg" class="album_item"><img src="media/album/travelogue1/2.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/3.JPG" class="album_item"><img src="media/album/travelogue1/3.JPG"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/4.jpg" class="album_item"><img src="media/album/travelogue1/4.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/5.JPG" class="album_item"><img src="media/album/travelogue1/5.JPG"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/6.JPG" class="album_item"><img src="media/album/travelogue1/6.JPG"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/7.jpg" class="album_item"><img src="media/album/travelogue1/7.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/8.jpg" class="album_item"><img src="media/album/travelogue1/8.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/9.JPG" class="album_item"><img src="media/album/travelogue1/9.JPG"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/10.JPG" class="album_item"><img src="media/album/travelogue1/10.JPG"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/11.JPG" class="album_item"><img src="media/album/travelogue1/11.JPG"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/12.JPG" class="album_item"><img src="media/album/travelogue1/12.JPG"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/13.jpg" class="album_item"><img src="media/album/travelogue1/13.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/14.jpg" class="album_item"><img src="media/album/travelogue1/14.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/15.jpg" class="album_item"><img src="media/album/travelogue1/15.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/16.jpg" class="album_item"><img src="media/album/travelogue1/16.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/17.jpg" class="album_item"><img src="media/album/travelogue1/17.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/18.jpg" class="album_item"><img src="media/album/travelogue1/18.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/19.jpg" class="album_item"><img src="media/album/travelogue1/19.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/20.jpg" class="album_item"><img src="media/album/travelogue1/20.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/21.jpg" class="album_item"><img src="media/album/travelogue1/21.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/22.jpg" class="album_item"><img src="media/album/travelogue1/22.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/23.jpg" class="album_item"><img src="media/album/travelogue1/23.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/24.jpg" class="album_item"><img src="media/album/travelogue1/24.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/25.jpg" class="album_item"><img src="media/album/travelogue1/25.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/26.jpg" class="album_item"><img src="media/album/travelogue1/26.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/27.jpg" class="album_item"><img src="media/album/travelogue1/27.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/28.jpg" class="album_item"><img src="media/album/travelogue1/28.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/29.jpg" class="album_item"><img src="media/album/travelogue1/29.jpg"></a></div>
-          <div class="box"><a data-fancybox="gallery" href="media/album/travelogue1/30.JPG" class="album_item"><img src="media/album/travelogue1/30.JPG"></a></div>
+    <section class="about" id="about">
+      <h2>ABOUT</h2>
+      <div class="about_flex">
+        <p class="about_item about_imgpos"><img src="media/icon.jpg"></p>
+        <p class="about_item about_text">
+          <span class="name_text"><ruby>Key-S</ruby></span><br><br>
+          味ぽん依存症。MBTIはINTJ-T(建築家-慎重型)。
+        </p>
+      </div>
+    </section>
+
+
+    <section class="gunpla" id="gunpla">
+      <h2>My GUNPLA</h2>
+      <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide card">
+            <a href="gunpla1.html">
+              <img src="media/gunpla_thumbnail1.png" class="card">
+            </a>
+          </div>
+          <div class="swiper-slide card">
+            <a href="gunpla2.html">
+              <img src="media/gunpla_thumbnail2.png" class="card">
+            </a>
+          </div>
+                    <div class="swiper-slide card">
+            <a href="gunpla2.html">
+              <img src="media/gunpla_thumbnail2.png" class="card">
+            </a>
+          </div>
         </div>
-      </section>
+        <!-- 必要に応じてページネーション -->
+        <div class="swiper-pagination"></div>
+        <!-- 必要に応じてナビボタン -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+       </div>
+    </section>
 
-      <footer id="footer">
-        &copy; 2025 Key-S
-      </footer>
-    </main>
+    <section class="travelogues" id="travelogues">
+      <h2>My TRAVELOGUES</h2>
+      <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide card">
+            <a href="travelogue1.html">
+              <img src="media/travelogue_thumbnail1.png" class="card">
+            </a>
+          </div>
+          <div class="swiper-slide card">
+            <a href="travelogue2.html">
+              <img src="media/travelogue_thumbnail2.png" class="card">
+            </a>
+          </div>
+          <div class="swiper-slide card">
+            <a href="travelogue3.html">
+              <img src="media/travelogue_thumbnail3.png" class="card">
+            </a>
+          </div>
+          <div class="swiper-slide card">
+            <a href="travelogue4.html">
+              <img src="media/travelogue_thumbnail4.png" class="card">
+            </a>
+          </div>
+        </div>
+        <!-- 必要に応じてページネーション -->
+        <div class="swiper-pagination"></div>
+        <!-- 必要に応じてナビボタン -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+       </div>
+    </section>
+
+
+
+    <section class="account" id="account">
+      <h2>My ACCOUNT</h2>
+      <div class="contact_flex">
+        <a href="https://x.com/GN_006_Soldat" target="_blank" rel="noopener noreferrer" class="image-button contact_item">
+          <img src="media/Twitter_icon.jpg" alt="Twitterボタン">
+        </a>
+        <a href="https://www.instagram.com/gn_006_soldat/" target="_blank" rel="noopener noreferrer" class="image-button contact_item">
+          <img src="media/Instagram_icon.jpg" alt="Instagramボタン">
+        </a>
+      </div>
+    </section>
+
+    <footer id="footer">
+      &copy; 2025 Key-S
+    </footer>
+  </main>
   </div>
 
+  <script src="js/main.js"></script>
   <script src="js/loading.js"></script>
 
 </body>
