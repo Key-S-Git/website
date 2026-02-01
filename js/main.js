@@ -1,111 +1,73 @@
-const windowwidth = $(window).width()
+window.onload = () => {
+    const menuList = document.getElementById("header-ul");
+    const menuCheckbox = document.getElementById("menu-check");
 
-if (window.matchMedia('(min-width: 1440px)').matches) {
-  document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("click", (event) => {
+        if (event.target !== menuList && event.target !== menuCheckbox) {
+            menuCheckbox.checked = false;
+        }
+    });
+};
+
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
+// ナビゲーションの連動処理
+document.addEventListener("DOMContentLoaded", () => {
     const pageNav = document.getElementById('page-nav');
-    const footer = document.getElementById('footer');
     const firstSection = document.getElementById('about');
     const navLinks = document.querySelectorAll(".page-nav__link");
-  
-    if (!pageNav || !footer || !firstSection || navLinks.length === 0) return;
-  
-    let lastScrollY = window.scrollY;
-    let isTicking = false;
-  
-    const updateNavVisibility = () => {
-  
-      const firstSectionTop = firstSection.getBoundingClientRect().top;
-      const isInview = firstSectionTop > 240;
-      pageNav.classList.toggle('is-hidden', isInview);
-    }
-  
-    const updateCurrentSection = () => {
-      navLinks.forEach(link => {
-        link.classList.remove("is-current");
-        const sectionId = link.getAttribute("href");
-        const section = document.querySelector(sectionId);
-        if (section) {
-          const sectionTop = section.offsetTop - 240;
-          const sectionBottom = sectionTop + section.offsetHeight;
-          if (lastScrollY >= sectionTop && lastScrollY <= sectionBottom) {
-            link.classList.add("is-current");
-          }
-        }
-      });
-    }
-  
-    const onScroll = () => {
-      if (isTicking) return;
-      lastScrollY = window.scrollY;
-      isTicking = true;
-  
-      requestAnimationFrame(() => {
-        updateNavVisibility();
-        updateCurrentSection();
-        isTicking = false;
-      });
-    }
-  
-    window.addEventListener('scroll', onScroll);
-  
-    // 初期状態を設定
-    updateNavVisibility();
-    updateCurrentSection();
-  });
-} else{
+    
+    // リンク先のセクション要素を配列化しておく
+    const sections = Array.from(navLinks).map(link => {
+        return document.querySelector(link.getAttribute("href"));
+    });
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const pageNav = document.getElementById('page-nav');
-    const footer = document.getElementById('footer');
-    const firstSection = document.getElementById('about');
-    const navLinks = document.querySelectorAll(".page-nav__link");
-  
-    if (!pageNav || !footer || !firstSection || navLinks.length === 0) return;
-  
-    let lastScrollY = window.scrollY;
-    let isTicking = false;
-  
-    const updateNavVisibility = () => {
-  
-      const firstSectionTop = firstSection.getBoundingClientRect().top;
-      const isInview = true;
-      pageNav.classList.toggle('is-hidden', isInview);
-    }
-  
+    if (!pageNav || !firstSection || navLinks.length === 0) return;
+
+    // 現在のセクションを判定してクラスを付与する関数
     const updateCurrentSection = () => {
-      navLinks.forEach(link => {
-        link.classList.remove("is-current");
-        const sectionId = link.getAttribute("href");
-        const section = document.querySelector(sectionId);
-        if (section) {
-          const sectionTop = section.offsetTop - 240;
-          const sectionBottom = sectionTop + section.offsetHeight;
-          if (lastScrollY >= sectionTop && lastScrollY <= sectionBottom) {
-            link.classList.add("is-current");
-          }
+        const scrollY = window.scrollY;
+        const offset = 240; // 判定のしきい値
+
+        sections.forEach((section, index) => {
+            if (!section) return;
+            const sectionTop = section.offsetTop - offset;
+            const sectionBottom = sectionTop + section.offsetHeight;
+
+            if (scrollY >= sectionTop && scrollY < sectionBottom) {
+                navLinks[index].classList.add("is-current");
+            } else {
+                navLinks[index].classList.remove("is-current");
+            }
+        });
+
+        // Aboutセクションより上ならナビを隠す（既存のロジック）
+        const firstSectionTop = firstSection.getBoundingClientRect().top;
+        pageNav.classList.toggle('is-hidden', firstSectionTop > 240);
+    };
+
+    // スクロール時に実行（リクエストアニメーションで最適化）
+    let isTicking = false;
+    window.addEventListener('scroll', () => {
+        if (!isTicking) {
+            window.requestAnimationFrame(() => {
+                updateCurrentSection();
+                isTicking = false;
+            });
+            isTicking = true;
         }
-      });
-    }
-  
-    const onScroll = () => {
-      if (isTicking) return;
-      lastScrollY = window.scrollY;
-      isTicking = true;
-  
-      requestAnimationFrame(() => {
-        updateNavVisibility();
-        updateCurrentSection();
-        isTicking = false;
-      });
-    }
-  
-    window.addEventListener('scroll', onScroll);
-  
-    // 初期状態を設定
-    updateNavVisibility();
+    });
+
+    // 初回実行
     updateCurrentSection();
-  });
-}
+});
 
 
 
@@ -165,74 +127,4 @@ window.addEventListener('load', function() {
     document.body.appendChild(css);
   }, 1000); // 10000ミリ秒 = 10秒の遅延
 
-});
-
-
-
-// swiper-wrapperの設定
-
-document.addEventListener('DOMContentLoaded', function() {
-    // ページ内のすべての.swiperコンテナを取得
-    const swiperContainers = document.querySelectorAll('.swiper');
-
-    swiperContainers.forEach(container => {
-        // Swiperインスタンスを保持するための変数
-        let swiperInstance;
-
-        // Swiperの初期化関数
-        const initSwiper = () => {
-             // 既存のインスタンスがあれば破棄（二重初期化を防ぐ）
-            if (swiperInstance) {
-                swiperInstance.destroy(true, true);
-            }
-            
-            // 新しいSwiperを初期化
-            swiperInstance = new Swiper(container, {
-                // スライド設定 (ここはお客様の既存設定を維持)
-                slidesPerView: 1.2, 
-                spaceBetween: 10,
-                slidesOffsetBefore: 40, 
-                slidesOffsetAfter: 40,
-
-                navigation: {
-                    nextEl: container.querySelector(".swiper-button-next"),
-                    prevEl: container.querySelector(".swiper-button-prev")
-                },
-
-                breakpoints: {
-                    0: {
-                        slidesPerView: 2.5, 
-                        spaceBetween: 50,
-                        slidesOffsetBefore: 30,
-                        slidesOffsetAfter: 30
-                    },
-                    600: {
-                        slidesPerView: 2.5, 
-                        spaceBetween: 70, 
-                        slidesOffsetBefore: 50,
-                        slidesOffsetAfter: 50
-                    }
-                }
-            });
-        };
-
-        // ページ読み込み時に初期化
-        initSwiper();
-
-        /* 画面サイズ変更時の対応ロジックを追加 */
-        let resizeTimer;
-        window.addEventListener('resize', function() {
-            clearTimeout(resizeTimer);
-            // リサイズが止まってから処理を実行
-            resizeTimer = setTimeout(function() {
-                // Swiperの update() を呼び出し、現在のサイズに合わせて位置を再計算させる
-                if (swiperInstance) {
-                    swiperInstance.update();
-                    // 必要に応じて、最初のスライドに移動させる
-                    // swiperInstance.slideTo(0); 
-                }
-            }, 300); // 300ms後に実行
-        });
-        /* 画面サイズ変更時の対応ロジック END */
-    });
 });
