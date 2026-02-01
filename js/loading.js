@@ -16,7 +16,7 @@ var bar = new ProgressBar.Line('.bar-wrapper', {
       padding: 0,
       margin: 0,
       transform: 'translateX(-50%)', // 中央配置の修正
-      fontSize: '4rem'
+      fontSize: '30px'
     },
     autoStyleContainer: false
   },
