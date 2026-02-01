@@ -1,204 +1,183 @@
-/* コンテンツ画面 */
 html {
-  scroll-behavior: smooth;
-  font-size: calc(100vw / 144);
-  font-family: "Noto Sans JP", sans-serif;
-  overflow-x: hidden; /* 横方向のスクロールバーを非表示にする */
-  width: 100%; /* 幅をビューポートに合わせる */
-  height: 100%; /* 高さをビューポートに合わせる */
-  margin: 0; /* デフォルトのマージンをなくす */
-  padding: 0; /* デフォルトのパディングをなくす */
-}
-body{
-  background-color: #fff;
-  background-image: url(../media/pattern_background.png);
-  margin: 0%;
-  padding:0%;
-  font-size: clamp(2.5rem, calc(1.4rem + 0.625vw), 2.5rem);
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Noto Sans JP", sans-serif;
 }
 
-header {
-  margin: 0;
-  padding: 0px;
-  /* padding-bottom: clamp(1.5rem, calc(1.3rem + 0.625vw), 2rem); ← これは不要になるかも */
-  width: 100%;
-  
-  /* headerの高さをビューポートの高さに設定 */
-  height: 100vh; 
-  
-  position: relative; /* 必要であれば（背景のCanvasをheader内に配置する場合など） */
-  /* headerの背景にsketch.jsのCanvasが配置される想定 */
-  /* background-color: #333; /* デバッグ用に背景色を設定するとCanvasが見えやすい */
-  overflow: hidden; /* Canvasがheaderからはみ出さないように */
+body {
+    background-color: #fff;
+    color: rgb(0,0,0);
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 1.4%;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;  /* 3. 画面外へのはみ出しを一切禁止にする */
 }
+
+canvas {
+  display: block; /* キャンバス下の謎の隙間を消す */
+  
+}
+
+/* headerの基本設定 */
+header {
+    height: 80px;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    background-color: transparent; /* 本体は常に透明 */
+}
+
+/* 背景画像専用のレイヤー（常にここに画像を持たせる） */
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(29,29,31);
+    background-size: cover;
+    background-position: center;
+    
+    /* 出現・消失の両方に効くアニメーション設定 */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: -1; 
+}
+
+/* スクロール時に JS で付与されるクラス */
+header.scrolled::before {
+    opacity: 0.8; /* ここでふわっと出現させる */
+}
+
+main {
+    display: flow-root;
+    background-color: #ffffff;
+    background-image: url("https://www.transparenttextures.com/patterns/diamond-upholstery.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+
+}
+
+
 
 section {
-  margin: clamp(9.5rem, calc(9.3rem + 0.625vw), 10rem);
-  padding-top: clamp(23.5rem, calc(23.3rem + 0.625vw), 24rem);
-  padding-bottom: clamp(9.5rem, calc(9.3rem + 0.625vw), 10rem);
-  padding-left: 0%;
-  padding-right: 0%;
-  margin-left: 0;
-  margin-right: 0%;
+    margin: 192px 0
 }
-header h1, section h1 {
-  font-size: clamp(14.5rem, calc(14.3rem + 0.625vw), 15rem);
-  color: #fff;
-  position: absolute; /* 親要素（または初期コンテナブロック）を基準に配置する */
-  top: 50%;           /* h1の上端をビューポートの垂直方向の中央に移動 */
-  left: 50%;          /* h1の左端をビューポートの水平方向の中央に移動 */
-  transform: translate(-50%, -50%); /* 要素自身の幅と高さの半分だけ位置を調整して真に中央揃えにする */
-  text-align: left; /* h1内のテキストを中央揃えにする */
-  width: fit-content; /* または特定の幅を設定 */
 
-    /* h1自身のマージン・パディングをリセット（重要！） */
-  margin: 0; 
-  padding: 0; /* h1に余計な余白がないか確認 */
-  line-height: 1.2; /* テキストの見た目に合わせて調整 */
+h1{
+    text-align: center;
+    font-size: 38px;
+}
 
+h2 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
 }
-header h2, section h2 {
-  font-size: clamp(5.5rem, calc(5.3rem + 0.625vw), 6rem);
-  color: #000;
-  text-align: center;
-}
-.page-nav__text {
-  font-size: clamp(1.2rem, calc(1.0rem + 0.625vw), 1.7rem);
-}
-.page-nav {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 100%;
-  z-index: 100;
-  margin-inline: auto;
-  transition-duration: 0.3s;
-}
-.page-nav__list {
-  padding: clamp(1.0rem, calc(0.8rem + 0.625vw), 1.5rem) clamp(4.0rem, calc(3.8rem + 0.625vw), 4.5rem);
+
+
+
+
+
+ul {
   margin-inline: auto;
   list-style-type: none;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: clamp(2.5rem, calc(2.3rem + 0.625vw), 3rem);;
-}
-.page-nav__link {
-  color: #fff;
-  text-decoration: none;
-}
-.page-nav__link:hover{
-  color:#aaa;
-}
-.is-current:hover{
-  color: #00face;
-}
-
-#nav_name{
+  gap: 60px;
   margin-right: auto;
-  color:#fff;
-  font-size: clamp(2.0rem, calc(1.8rem + 0.625vw), 2.5rem);
-  font-weight:bold;
-}
-#nav_name>img{
-  width: clamp(2.5rem, calc(2.3rem + 0.625vw), 3.0rem);
-  height: auto;
-  display: inline-block;/* 文章の流れの中に置いている画像なので inline でも良いが今回は inline-block が適当 */
-  position: relative; /* 通常の文章の流れにある要素なので relative が適切 */
-  top: clamp(0rem, calc(-0.2rem + 0.625vw), 0.5rem); /* 下に 10px 下げる */
-}
-
-.wrapper{
-    min-height: 100vh;
-    position: relative;/*←相対位置*/
-    padding-bottom: 120px;/*←footerの高さ*/
-    box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
-}
-
-.is-hidden {
-  opacity: 0;
-  transform: translateX(-50%) translateY(-50%);
-  transition-duration: 0.3s;
-}
-
-.is-current {
-  color: #00face;
-  position: relative;
-}
-
-nav{
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0;
-  padding-right: 0;
-  background-color: rgb(29,29,31);
-}
-
-.about_flex{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.about_item>img{
-  width: 40%;
-  height: auto;
-  margin-right: clamp(2.5rem, calc(2.3rem + 0.625vw), 3rem);
-  border-radius: clamp(99.5rem, calc(99.3rem + 0.625vw), 100rem);
-}
-.about_item{
-  width: 50%;
-}
-.about_imgpos{
-  text-align: end;
-}
-.about_text{
-  padding-right:60px;
-}
-
-.name_text{
-  font-size: clamp(3.5rem, calc(3.3rem + 0.625vw), 4rem);
-  font-weight: bold;
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.item {
-  color: #000000;
-  width: 25%;
-  max-width: 25%;
-  aspect-ratio: 1/1;
-  text-align: center;
-  border-radius: 100%;
-  line-height: clamp(28.5rem, calc(28.3rem + 0.625vw), 29rem);
-  font-size: clamp(3.5rem, calc(3.3rem + 0.625vw), 4rem);
-  font-weight: bold;
-  margin:1%;
-  padding:1%;
 }
 
 
-.word-break{
-  padding:0;
-  margin:0;
-  height: clamp(4.5rem, calc(4.3rem + 0.625vw), 5rem);;
+
+@media screen and (max-width:750px) {
+    html {
+        scroll-padding-top: 58px
+    }
+    
+    header {
+        height: 52px
+    }
+
+    body{
+        font-size: 10px;
+    }
+    h1{
+        font-size: 27px;
+    }
+    h2{
+        font-size: 20px;
+        font-weight: bold;
+    }
+    h3{
+        font-size: 12px;
+        font-weight: bold;
+    }
+    section {
+        margin: 48px 0
+    }
+
+    nav {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        background-color: rgba(29, 29, 31, .8); /* 背景を少し濃くすると文字が見やすいです */
+        opacity: 0;
+        
+        /* 1. 位置とサイズを画面全体に固定 */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh; /* 画面いっぱいの高さ */
+        
+        /* 2. 中身(ul)を上下左右中央に配置 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        transform: translateY(-100%);
+        transition: all .5s ease;
+        z-index: 3; /* ヘッダーボタンより下、コンテンツより上 */
+    }
+
+    ul {
+        /* 既存の direction: column 等は維持しつつ余計な margin を消す */
+        margin: 0; 
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 30px; /* メニュー項目間の隙間 */
+        width: 100%;
+        text-align: center;
+    }
+
+
 }
 
-
-.contact_flex{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding-bottom: clamp(5.5rem, calc(5.3rem + 0.625vw), 6rem);
+.header-container{
+    color: #fff;
+    position: absolute; /* 親要素（または初期コンテナブロック）を基準に配置する */
+     top: 50%;           /* h1の上端をビューポートの垂直方向の中央に移動 */
+    left: 50%;          /* h1の左端をビューポートの水平方向の中央に移動 */
+    transform: translate(-50%, -50%); /* 要素自身の幅と高さの半分だけ位置を調整して真に中央揃えにする */
+    text-align: center; /* h1内のテキストを中央揃えにする */
+    /* h1自身のマージン・パディングをリセット（重要！） */
+    margin: 0; 
+    padding: 0; /* h1に余計な余白がないか確認 */
+    line-height: 1.2; /* テキストの見た目に合わせて調整 */
 }
-
-
+.header-text{
+    font-size: 10vw;
+    text-align: left;
+}
 
 .wrap{
   border-right: 0.04em solid rgba(255,255,255,1);
@@ -225,17 +204,177 @@ nav{
 }
 
 
+
+#header-ul {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    margin: auto;
+}
+
+.header-nav-img {
+    padding: 32px
+}
+
+#menu-button,
+#menu-check {
+    display: none
+}
+
+.page-nav__ul{
+    padding-right: 40px;
+}
+
+.page-nav__link {
+  color: #fff;
+  text-decoration: none;
+}
+.page-nav__link:hover{
+  color:#aaa;
+}
+.is-current:hover{
+  color: #00face;
+}
+
+/* ナビゲーションの現在のセクションを強調 */
+.page-nav__link.is-current h2 {
+    color: #00face !important; /* 目立つ色に変更 */
+    transition: color 0.3s ease;
+}
+
+.top-image{
+
+    height: 100%;
+}
+
+.maincontents{
+    margin: 0 auto;
+    padding: 0 40px;
+    max-width: 800px;
+}
+
+.about_flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about_item>img{
+  width: 40%;
+  height: auto;
+  margin-right: 30px;
+  border-radius: 100%;
+}
+.about_item{
+  width: 50%;
+}
+.about_imgpos{
+  text-align: end;
+}
+
+.name_text{
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 2;
+}
+
+
+
+
+
+.album_flex {
+  display: flex;
+  flex-wrap: wrap; /* 画面幅に合わせて折り返す */
+  justify-content: flex-start; /* 左寄せで配置 */
+}
+
+.box {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden; /* 画像がボックスからはみ出さないようにする */
+}
+
+.album_item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 画像をボックスに合わせて切り抜く */
+}
+
+.wrapper{
+    min-height: 100vh;
+    position: relative;/*←相対位置*/
+    padding-bottom: 120px;/*←footerの高さ*/
+    box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+}
+
+.container {
+  position: relative;
+  width: 23%; /* 画像のサイズに合わせて調整 */
+  margin: 1%; /* 画像間の余白 */
+}
+
+.container img {
+  width: 100%;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* 背景を少し暗くする */
+  color: white;
+  
+  /* 最初は隠しておく */
+  opacity: 0;
+  transition: opacity 0.3s ease; /* 0.3秒かけて変化 */
+  display: block;
+}
+
+.title{
+position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 真ん中にずらす */
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  line-height: 1.5;
+}
+.sub{
+position: absolute;
+  bottom: 10px; /* 下からの余白 */
+  right: 10px;  /* 右からの余白 */
+  font-size: 0.8em; /* 少し小さくするとそれっぽくなります */
+}
+
+/* マウスが乗った（hover）時の設定 */
+.container:hover .overlay {
+  opacity: 1;
+}
+
+.contact_flex{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  column-gap: 60px;
+
+}
+
 .image-button {
     border: none; /* デフォルトのボーダーをなくす */
     background: none; /* デフォルトの背景をなくす */
     cursor: pointer;
     padding: 0; /* img要素にpaddingが影響しないように0にする */
     position: relative; /* 沈み込み時に位置を調整するため */
+    width:20%;
 }
 
-.image-button img {
+.image-button>img {
     display: block; /* img要素がinline要素のため、余分なスペースをなくす */
-    width: clamp(20.5rem, calc(20.3rem + 0.625vw), 21rem); /* 画像の幅を調整 */
+    width: 100%; /* 画像の幅を調整 */
     height: auto; /* 高さは自動調整 */
     border-radius: 20%; /* 角丸にする */
     /* 立体感を出すためのシャドウ */
@@ -261,62 +400,57 @@ nav{
 
 
 
-.swiper{
-  padding-top: clamp(0.2rem, calc(0rem + 0.625vw), 0.7rem);
-  margin-top: clamp(0.2rem, calc(0rem + 0.625vw), 0.7rem);
-  text-align: left;
-}
 
-.swiper-wrapper {
-  /* wrapperのサイズを調整 */
-  width: 100%;
-}
 
-.swiper-slide {
-  /* スライドのサイズを調整、中身のテキスト配置調整、背景色 */
-  color: #000000;
-  width: 100%;
-}
+@media screen and (max-width:750px) {
+    #header-ul {
+        flex-direction: column;
+        height: auto;
+        text-align: center;
+    }
 
-/* 矢印画像の高さと幅 */
-.swiper-button-prev,
-.swiper-button-next {
-  height: clamp(5.5rem, calc(5.3rem + 0.625vw), 6rem);
-  width: clamp(5.5rem, calc(5.3rem + 0.625vw), 6rem);
+    .header-nav-img {
+        padding: 12px
+    }
 
-}
-/* 矢印を消して画像に変更する */
-.swiper-button-prev::after,
-.swiper-button-next::after {
-  content: "";
-  position: absolute;
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: clamp(5.5rem, calc(5.3rem + 0.625vw), 6rem);
-  width: clamp(5.5rem, calc(5.3rem + 0.625vw), 6rem);
-  margin: auto;
-    border-radius: 100%; /* 角丸にする */
-}
+    #menu-check:checked+nav {
+        opacity: 1;
+        transform: translateY(0)
+    }
 
-/* 前に戻る矢印の画像パスと表示位置 */
-.swiper-button-prev::after {
-  background-image: url(../media/button_prev.jpg); /* ★ 修正を反映 */
-  left: 0px;
-  transform: translateX(5px);
-}
-/* 次に進む矢印の画像パスと表示位置 */
-.swiper-button-next::after {
-  background-image: url(../media/button_next.jpg); /* ★ 修正を反映 */
-  right: 0px;
-  transform: translateX(-0.2rem);
-}
+    #menu-button {
+        display: block;
+        float: right;
+        padding: 14px;
+        z-index: 4;
+        width: 30px;
+    }
+    .page-nav__ul{
+        padding-right: 0px;
+    }
+    #header-space {
+        height: 52px
+    }
 
-/* Swiperボタン内の全ての子要素（通常はSVGアイコン）を非表示にする */
-.swiper-button-prev > *,
-.swiper-button-next > * {
-    display: none !important; 
-}
 
-.card{
-  width: clamp(39.5rem, calc(49.3rem + 0.625vw), 40rem);
+    .maincontents{
+        padding: 0 20px;
+    }
+    .about_item>img{
+        width: 40%;
+        height: auto;
+        margin-right: 15px;
+        border-radius: 100%;
+    }
+    .name_text{
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .container {
+        position: relative;
+        width: 31%; /* 画像のサイズに合わせて調整 */
+        margin: 1%; /* 画像間の余白 */
+    }
+
 }
