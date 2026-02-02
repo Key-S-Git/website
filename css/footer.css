@@ -8,6 +8,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url(../media/pattern_footer.png);
 }
 
 .footer_sns{
@@ -23,7 +24,7 @@ footer {
 }
 
 .footer_item:hover{
-    opacity: 0.5;
+    filter: brightness(50%)
 }
 
 @media screen and (max-width:750px) {
