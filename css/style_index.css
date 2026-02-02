@@ -336,6 +336,7 @@ ul {
 }
 
 .title{
+    font-size:15px;
 position: absolute;
   top: 50%;
   left: 50%;
@@ -346,10 +347,10 @@ position: absolute;
   line-height: 1.5;
 }
 .sub{
-position: absolute;
+    position: absolute;
   bottom: 10px; /* 下からの余白 */
   right: 10px;  /* 右からの余白 */
-  font-size: 0.8em; /* 少し小さくするとそれっぽくなります */
+  font-size: 12px; /* 少し小さくするとそれっぽくなります */
 }
 
 /* マウスが乗った（hover）時の設定 */
@@ -453,6 +454,13 @@ position: absolute;
         position: relative;
         width: 31%; /* 画像のサイズに合わせて調整 */
         margin: 1%; /* 画像間の余白 */
+    }
+
+    .title{
+        font-size: 10px;
+    }
+    .sub{
+        font-size: 8px; /* 少し小さくするとそれっぽくなります */
     }
 
 }
