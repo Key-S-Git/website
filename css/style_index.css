@@ -10,7 +10,7 @@ html {
 body {
     background-color: #fff;
     color: rgb(0,0,0);
-    font-size: 18px;
+    font-size: 26px;
     font-weight: 300;
     letter-spacing: 1.4%;
     line-height: 1.5;
@@ -106,7 +106,7 @@ ul {
     }
 
     body{
-        font-size: 10px;
+        font-size: 11px;
     }
     h1{
         font-size: 27px;
@@ -221,6 +221,10 @@ ul {
 
 .page-nav__ul{
     padding-right: 40px;
+}
+
+.nav__text{
+    font-size: 20px;
 }
 
 .page-nav__link {
