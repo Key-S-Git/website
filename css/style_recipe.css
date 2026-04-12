@@ -1,0 +1,112 @@
+/* コンテンツ画面 */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Noto Sans JP", sans-serif;
+}
+body{
+  background-color: #ffffff;
+  background-image: url(../media/pattern_background.png);
+  margin: 0%;
+  padding: 0%;
+  font-size: 15px;
+}
+header h1, section h1 {
+  font-size: 50px;
+}
+header h2, section h2 {
+  font-size: 38px;
+}
+
+section {
+  margin: 192px 0
+}
+
+.header{
+  margin: 0;
+  padding: 0 40px;
+  text-align: left;
+}
+
+main{
+  margin: 0 40px;
+}
+
+ul, ol {
+  padding: 0;
+}
+
+ul li {
+  position: relative;
+  list-style-type: none!important;/*ポチ消す*/
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  margin-bottom: 5px;
+  line-height: 1.5;
+  background: #00face;
+  vertical-align: middle;
+  color: #000;
+  border-radius: 15px 0px 0px 15px;/*左側の角丸く*/
+}
+
+ul li:before{ 
+  display:inline-block; 
+  vertical-align: middle;
+  /*以下白丸つくる*/
+  content:'';
+  width:1em;
+  height: 1em;
+  background: #fff;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.instruct{
+  font-size:20px;
+  font-weight: bold;
+}
+.explain{
+  padding-top:20px;
+  font-size:15px;
+}
+.instruct-wrapper{
+  padding-bottom:30px;
+}
+
+
+.album_flex {
+  display: flex;
+  flex-wrap: wrap; /* 画面幅に合わせて折り返す */
+  justify-content: flex-start; /* 左寄せで配置 */
+}
+
+.box {
+  width: 18%;
+  aspect-ratio: 1 / 1;
+  margin: 1%; /* 画像間の余白 */
+  overflow: hidden; /* 画像がボックスからはみ出さないようにする */
+}
+
+.album_item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 画像をボックスに合わせて切り抜く */
+}
+
+.album_item:hover{
+  opacity:0.5;
+	transition:0.3s;
+}
+
+@media screen and (max-width:750px) {
+    .box {
+        position: relative;
+        width: 31%; /* 画像のサイズに合わせて調整 */
+        margin: 1%; /* 画像間の余白 */
+    }
+
+}
