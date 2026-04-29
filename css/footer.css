@@ -9,6 +9,7 @@ footer {
     align-items: center;
     justify-content: center;
     background-image: url(../media/pattern_footer.png);
+    font-size:26px;
 }
 
 .footer_sns{
@@ -29,6 +30,7 @@ footer {
 
 @media screen and (max-width:750px) {
     footer{
+        font-size:16px;
         height: 200px;
     }
     .footer_item>img{
