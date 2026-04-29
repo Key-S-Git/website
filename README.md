@@ -1,2 +1,2 @@
 # website
-<img src="madia/Key-S.png">
+<img src="https://key-s-git.github.io/website/media/Key-S.png">
