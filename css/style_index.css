@@ -32,7 +32,11 @@ header {
     width: 100%;
     z-index: 2;
     background-color: transparent; /* 本体は常に透明 */
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
 
 /* 背景画像専用のレイヤー（常にここに画像を持たせる） */
 header::before {
@@ -201,7 +205,24 @@ ul {
   }
 }
 
+.header-icon-wrapper{
+    height:100%;
+    width:25%;
+    display:flex;
+    align-items: center;
+}
 
+.header-icon-wrapper img{
+    height:80%;
+    margin-left:5px;
+}
+
+.header-title{
+    margin-left:5px;
+    font-size: 26px;
+    color:white;
+    font-weight:bold;
+}
 
 #header-ul {
     align-items: center;
@@ -245,7 +266,6 @@ ul {
 }
 
 .top-image{
-
     height: 100%;
 }
 
@@ -336,8 +356,8 @@ ul {
 }
 
 .title{
-    font-size:15px;
-position: absolute;
+  font-size:15px;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); /* 真ん中にずらす */
@@ -406,6 +426,11 @@ position: absolute;
 
 
 @media screen and (max-width:750px) {
+
+
+    .header-title{
+        font-size: 16px;
+    }
     #header-ul {
         flex-direction: column;
         height: auto;
