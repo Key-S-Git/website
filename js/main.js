@@ -22,7 +22,7 @@ window.addEventListener('scroll', function() {
 document.addEventListener("DOMContentLoaded", () => {
     const pageNav = document.getElementById('page-nav');
     const firstSection = document.getElementById('about');
-    const navLinks = document.querySelectorAll(".page-nav__link");
+    const navLinks = document.querySelectorAll(".page-nav-link");
     
     // リンク先のセクション要素を配列化しておく
     const sections = Array.from(navLinks).map(link => {
@@ -120,9 +120,7 @@ window.addEventListener('load', function() {
       var period = elements[i].getAttribute('data-period');
       new TxtRotate(elements[i], period);
     }
-    // elements.id = 'blink'; // この行はコメントアウトまたは削除を推奨します
-    
-    // INJECT CSS
+
     var css = document.createElement("style");
     document.body.appendChild(css);
   }, 1000); // 10000ミリ秒 = 10秒の遅延
