@@ -12,7 +12,7 @@ footer {
     font-size:26px;
 }
 
-.footer_sns{
+.footer-sns{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,11 +20,11 @@ footer {
     padding-bottom: 20px;
 }
 
-.footer_item>img{
+.footer-item>img{
     width: 70px;
 }
 
-.footer_item:hover{
+.footer-item:hover{
     filter: brightness(50%)
 }
 
@@ -33,7 +33,7 @@ footer {
         font-size:16px;
         height: 200px;
     }
-    .footer_item>img{
+    .footer-item>img{
         width: 40px;
     }
 }
