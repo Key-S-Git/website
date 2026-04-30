@@ -240,19 +240,19 @@ ul {
     display: none
 }
 
-.page-nav__ul{
+.page-nav-ul{
     padding-right: 40px;
 }
 
-.nav__text{
+.nav--text{
     font-size: 20px;
 }
 
-.page-nav__link {
+.page-nav-link {
   color: #fff;
   text-decoration: none;
 }
-.page-nav__link:hover{
+.page-nav-link:hover{
   color:#aaa;
 }
 .is-current:hover{
@@ -260,7 +260,7 @@ ul {
 }
 
 /* ナビゲーションの現在のセクションを強調 */
-.page-nav__link.is-current h2 {
+.page-nav-link.is-current h2 {
     color: #00face !important; /* 目立つ色に変更 */
     transition: color 0.3s ease;
 }
@@ -275,26 +275,26 @@ ul {
     max-width: 800px;
 }
 
-.about_flex{
+.about-flex{
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.about_item>img{
+.about-item>img{
   width: 40%;
   height: auto;
   margin-right: 30px;
   border-radius: 100%;
 }
-.about_item{
+.about-item{
   width: 50%;
 }
-.about_imgpos{
+.about-imgpos{
   text-align: end;
 }
 
-.name_text{
+.name-text{
   font-size: 30px;
   font-weight: bold;
   line-height: 2;
@@ -304,7 +304,7 @@ ul {
 
 
 
-.album_flex {
+.album-flex {
   display: flex;
   flex-wrap: wrap; /* 画面幅に合わせて折り返す */
   justify-content: flex-start; /* 左寄せで配置 */
@@ -316,7 +316,7 @@ ul {
   overflow: hidden; /* 画像がボックスからはみ出さないようにする */
 }
 
-.album_item img {
+.album-item img {
   width: 100%;
   height: 100%;
   object-fit: cover; /* 画像をボックスに合わせて切り抜く */
@@ -378,7 +378,7 @@ ul {
   opacity: 1;
 }
 
-.contact_flex{
+.contact-flex{
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -453,7 +453,7 @@ ul {
         z-index: 4;
         width: 30px;
     }
-    .page-nav__ul{
+    .page-nav-ul{
         padding-right: 0px;
     }
     #header-space {
@@ -464,13 +464,13 @@ ul {
     .maincontents{
         padding: 0 20px;
     }
-    .about_item>img{
+    .about-item>img{
         width: 40%;
         height: auto;
         margin-right: 15px;
         border-radius: 100%;
     }
-    .name_text{
+    .name-text{
         font-size: 15px;
         font-weight: bold;
     }
