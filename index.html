@@ -44,6 +44,7 @@
 
 
         <header>
+            <!-- ヘッダー左側、アイコン＆名前 -->
             <div class="header-icon-wrapper">
                 <img src="media/Key-S.png">
                 <div class="header-title">Key-S</div>
@@ -53,31 +54,32 @@
                 <img id="menu-button" src="./media/menu_icon.png" alt="menu-button" />
             </label>
             <input type="checkbox" id="menu-check">
+
+            <!-- ヘッダー右側、ナビゲーションリンク集 -->
             <nav id="page-nav">
-                <ul id="header-ul" class="page-nav__ul">
+                <ul id="header-ul" class="page-nav-ul">
                     <li class="header-li">
-                        <a href="#about" class="page-nav__link">
+                        <a href="#about" class="page-nav-link">
                             <h2>About</h2>
                         </a>
-
                     </li>
                     <li class="header-li">
-                        <a href="#gunpla" class="page-nav__link">
-                            <h2 class="nav__text">Gunpla</h2>
+                        <a href="#gunpla" class="page-nav-link">
+                            <h2>Gunpla</h2>
                         </a>
                     </li>
                     <li class="header-li">
-                        <a href="#travelogues" class="page-nav__link">
+                        <a href="#travelogues" class="page-nav-link">
                             <h2>Travelogues</h2>
                         </a>
                     </li>
                     <li class="header-li">
-                        <a href="#recipes" class="page-nav__link">
+                        <a href="#recipes" class="page-nav-link">
                             <h2>Recipes</h2>
                         </a>
                     </li>
                     <li class="header-li">
-                        <a href="#account" class="page-nav__link">
+                        <a href="#account" class="page-nav-link">
                             <h2>Account</h2>
                         </a>
                     </li>
@@ -93,17 +95,14 @@
             </div>
         </div>
 
-
-
-
         <main>
             <div class="maincontents">
                 <section id="about">
                     <h1>About</h1>
-                    <div class="about_flex">
-                        <p class="about_item about_imgpos"><img src="media/icon.jpg"></p>
-                        <p class="about_item about_text">
-                        <span class="name_text"><ruby>Key-S</ruby></span><br>
+                    <div class="about-flex">
+                        <p class="about-item about-imgpos"><img src="media/icon.jpg"></p>
+                        <p class="about-item about-text">
+                        <span class="name-text"><ruby>Key-S</ruby></span><br>
                         味ぽん依存症。<br>MBTIはINTJ-T(建築家-慎重型)。
                         </p>
                     </div>
@@ -111,9 +110,9 @@
 
                 <section id="gunpla">
                     <h1>My Gunpla</h1>
-                    <div class="album_flex">
+                    <div class="album-flex">
                         <div class="container">
-                            <a href="gunpla1.html" class="album_item">
+                            <a href="gunpla1.html" class="album-item">
                                 <div class="box"><img src="media/album/gunpla1/1.jpg"></div>
                                 <div class="overlay">
                                     <div class="title">ケルディムガンダム<br>ソルダート</div>
@@ -122,7 +121,7 @@
                             </a>
                         </div>
                         <div class="container">
-                            <a href="gunpla2.html" class="album_item">
+                            <a href="gunpla2.html" class="album-item">
                                 <div class="box"><img src="media/album/gunpla2/1.jpg"></div>
                                 <div class="overlay">
                                     <div class="title">ケルディムガンダム<br>バーゼル</div>
@@ -131,7 +130,7 @@
                             </a>
                         </div>
                         <div class="container">
-                            <a href="gunpla2.html" class="album_item">
+                            <a href="gunpla2.html" class="album-item">
                                 <div class="box"><img src="media/album/gunpla2/1.jpg"></div>
                                 <div class="overlay">
                                     <div class="title">ケルディムガンダム<br>バーゼル</div>
@@ -144,9 +143,9 @@
 
                 <section id="travelogues">
                     <h1>My Travelogues</h1>
-                    <div class="album_flex">
+                    <div class="album-flex">
                         <div class="container">
-                            <a href="travelogue1.html" class="album_item">
+                            <a href="travelogue1.html" class="album-item">
                                 <div class="box"><img src="media/album/travelogue1/25.jpg"></div>
                                 <div class="overlay">
                                     <div class="title">東京旅行</div>
@@ -155,7 +154,7 @@
                             </a>
                         </div>
                         <div class="container">
-                            <a href="travelogue2.html" class="album_item">
+                            <a href="travelogue2.html" class="album-item">
                                 <div class="box"><img src="media/album/travelogue2/2.jpg"></div>
                                 <div class="overlay">
                                     <div class="title">新潟旅行</div>
@@ -164,7 +163,7 @@
                             </a>
                         </div>
                         <div class="container">
-                            <a href="travelogue3.html" class="album_item">
+                            <a href="travelogue3.html" class="album-item">
                                 <div class="box"><img src="media/album/travelogue3/35.jpg"></div>
                                 <div class="overlay">
                                     <div class="title">江ノ島旅行</div>
@@ -173,7 +172,7 @@
                             </a>
                         </div>
                         <div class="container">
-                            <a href="travelogue4.html" class="album_item">
+                            <a href="travelogue4.html" class="album-item">
                                 <div class="box"><img src="media/album/travelogue4/32.png"></div>
                                 <div class="overlay">
                                     <div class="title">東京旅行</div>
@@ -186,9 +185,9 @@
 
                 <section id="recipes">
                     <h1>My Recipes</h1>
-                    <div class="album_flex">
+                    <div class="album-flex">
                         <div class="container">
-                            <a href="recipe1.html" class="album_item">
+                            <a href="recipe1.html" class="album-item">
                                 <div class="box"><img src="media/album/recipe1/1.jpg"></div>
                                 <div class="overlay">
                                     <div class="title">牛モモ肉ステーキ</div>
@@ -200,38 +199,25 @@
 
                 <section id="account">
                     <h1>My Account</h1>
-                    <div class="contact_flex">
-                        <a href="https://x.com/GN_006_Soldat" target="_blank" rel="noopener noreferrer" class="image-button contact_item">
+                    <div class="contact-flex">
+                        <a href="https://x.com/GN_006_Soldat" target="_blank" rel="noopener noreferrer" class="image-button contact-item">
                             <img src="media/Twitter_icon.jpg" alt="Twitterボタン">
                         </a>
-                        <a href="https://www.instagram.com/gn_006_soldat/" target="_blank" rel="noopener noreferrer" class="image-button contact_item">
+                        <a href="https://www.instagram.com/gn_006_soldat/" target="_blank" rel="noopener noreferrer" class="image-button contact-item">
                             <img src="media/Instagram_icon.jpg" alt="Instagramボタン">
                         </a>
-                        <a href="https://youtube.com/@user_key-s?si=Ot1kdMDNPbePLxkD" target="_blank" rel="noopener noreferrer" class="image-button contact_item">
+                        <a href="https://youtube.com/@user_key-s?si=Ot1kdMDNPbePLxkD" target="_blank" rel="noopener noreferrer" class="image-button contact-item">
                             <img src="media/YouTube_icon.jpg" alt="YouTubeボタン">
                         </a>
                     </div>
                 </section>
-
-            </div>
+            </div> <!-- <div class="maincontents">の閉じタグ -->
         </main>
-        <footer id="footer">
-            <div id="footer-contact-div">
-                <div class="footer_sns">
-                    <a href="https://x.com/GN_006_Soldat" target="_blank" rel="noopener noreferrer" class="footer_item">
-                        <img src="media/footer_twitter.png" alt="Twitterボタン">
-                    </a>
-                    <a href="https://www.instagram.com/gn_006_soldat/" target="_blank" rel="noopener noreferrer" class="footer_item">
-                        <img src="media/footer_instagram.png" alt="Instagramボタン">
-                    </a>
-                    <a href="https://youtube.com/@user_key-s?si=Ot1kdMDNPbePLxkD" target="_blank" rel="noopener noreferrer" class="footer_item">
-                        <img src="media/footer_youtube.png" alt="YouTubeボタン">
-                    </a>
-                </div>
-                <div>Key-S &copy; 2026</div>
-            </div>
-        </footer>
+
+        <footer></footer>
+
         <script src="js/main.js"></script>
         <script src="js/loading.js"></script>
+        <script src="js/footer.js"></script>
     </body>
 </html>
