@@ -2,7 +2,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const travelId = urlParams.get('id');
 
-fetch('../json/travelogue.json')
+fetch('json/travelogue.json')
   .then(res => res.json())
   .then(allData => {
     const data = allData[travelId]; // travelogue.jsonより、指定されたIDのデータだけ取り出す
