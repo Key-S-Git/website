@@ -1,0 +1,39 @@
+{
+  "1": {
+    "name": "ケルディムガンダム ソルダート",
+    "number": "GN-006/Soldat",
+    "mainImage": "media/album/gunpla1/1.jpg",
+    "hashtags": [
+      { "text": "#ケルディムガンダム", "link": "https://dic.pixiv.net/a/%E3%82%B1%E3%83%AB%E3%83%87%E3%82%A3%E3%83%A0%E3%82%AC%E3%83%B3%E3%83%80%E3%83%A0" },
+      { "text": "#ケルディムガンダムサーガ", "link": "https://dic.pixiv.net/a/%E3%82%B1%E3%83%AB%E3%83%87%E3%82%A3%E3%83%A0%E3%82%AC%E3%83%B3%E3%83%80%E3%83%A0%E3%82%B5%E3%83%BC%E3%82%AC" },
+      { "text": "#ガンダムEZ-SR", "link": "https://dic.pixiv.net/a/%E3%82%AC%E3%83%B3%E3%83%80%E3%83%A0EZ-SR" }
+    ],
+    "weapons": [
+      "GNマークスマンライフル", "GNソード アドバンス", "GNビームサーベル", 
+      "シールドビット", "スタンビット", "センサービット", 
+      "腰部レールガン", "GNミサイル", "榴弾砲", "大型ガトリング"
+    ],
+    "album": [
+      "media/album/gunpla1/1.jpg"
+    ]
+  },
+  "2": {
+    "name": "ケルディムガンダム バーゼル",
+    "number": "GN-006/Buerzel",
+    "mainImage": "media/album/gunpla2/1.jpg",
+    "hashtags": [
+      { "text": "#ケルディムガンダム", "link": "https://dic.pixiv.net/a/%E3%82%B1%E3%83%AB%E3%83%87%E3%82%A3%E3%83%A0%E3%82%AC%E3%83%B3%E3%83%80%E3%83%A0" },
+      { "text": "#ライジングフリーダムガンダム", "link": "https://dic.pixiv.net/a/%E3%83%A9%E3%82%A4%E3%82%B8%E3%83%B3%E3%82%B0%E3%83%95%E3%83%AA%E3%83%BC%E3%83%80%E3%83%A0%E3%82%AC%E3%83%B3%E3%83%80%E3%83%A0" },
+      { "text": "#ジュピターヴガンダム", "link": "https://dic.pixiv.net/a/%E3%82%B8%E3%83%A5%E3%83%94%E3%82%BF%E3%83%BC%E3%83%B4%E3%82%AC%E3%83%B3%E3%83%80%E3%83%A0" }
+    ],
+    "weapons": [
+      "GNビームライフル", "GNビームサーベル", "シールドビット",
+      "マニファービット", "GNキャノン", "腰部レールガン", "GNミサイル"
+    ],
+    "album": [
+      "media/album/gunpla2/1.jpg",
+      "media/album/gunpla2/2.jpg",
+      "media/album/gunpla2/3.jpg"
+    ]
+  }
+}
