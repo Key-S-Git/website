@@ -1,198 +1,67 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head prefix="og:http://ogp.me/ns#">
-        <meta charset="utf-8">
-        <meta name="description" content="Key-Sの部屋">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="icon" href="https://key-s-git.github.io/website/media/favicon.ico" sizes="256x256">
-        <title>Blog | Key-S</title>
+  <head prefix="og: http://ogp.me/ns#">
 
-        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Key-S</title>
+    <link rel="stylesheet" href="css/style_travelogue.css">
+    <link rel="stylesheet" href="css/loading.css">
+    <link rel="stylesheet" href="css/footer.css">
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="media/favicon.ico">
 
-        <script src="js/sketch.js"></script>
-        <script src="js/p5.js"></script>
-        <script src="js/progressbar.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
-        <link rel="stylesheet" href="css/style_index.css">
-        <link rel="stylesheet" href="css/loading.css">
-        <link rel="stylesheet" href="css/hamburger.css">
-        <link rel="stylesheet" href="css/footer.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
-        <meta property="og:url" content="https://key-s-git.github.io/website/">
-        <meta property="og:type" content="website">
-        <meta property="og:image" content="https://key-s-git.github.io/website/OGP.jpg">
-        <meta property="og:title" content="Blog | Key-S">
-        <meta property="og:description" content="Key-Sの部屋">
-        <meta name="twitter:card" content="summary">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
-        <meta name="google-site-verification" content="sb-aTfXt_-YUYfOs33GV9nmWm9vmt4q4xDmnGjK-lYw" />
-    </head>
+    <script src="js/progressbar.min.js"></script>
 
-    <body>
-        <!-- ローディング画面 -->
-        <div id="loading">
-            <div class="bar-container">
-                <img src="media/Key-S.png" class="loading-image">
-                <div class="bar-wrapper"></div>
-            </div>
-        </div>
+  </head>
+  <body>
 
-        <header id="header">
-            <a href="#" class="header-icon-wrapper">
-                <img src="media/Key-S.png">
-                <div class="header-title">Key-S</div>
-            </a>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="#about"><h2>About</h2></a></li>
-                    <li><a href="#gunpla"><h2>Gunpla</h2></a></li>
-                    <li><a href="#travelogues"><h2>Travelogues</h2></a></li>
-                    <li><a href="#recipes"><h2>Recipes</h2></a></li>
-                    <li><a href="#account"><h2>Account</h2></a></li>
-                </ul>
-            </nav>
-        </header>
+    <!-- ローディング画面 -->
+    <div id="loading">
+      <div class="bar-container">
+          <img src="media/Key-S.png" class="loading-image">
+          <div class="bar-wrapper"></div>
+      </div>
+    </div>
 
-        <div class="top-image">
-            <div class="header-container">
-                <h1 class="header-text">
-                    <span class="txt-rotate" data-period="1000"></span>
-                </h1>
-            </div>
-        </div>
+    <!-- コンテンツ画面 -->
+    <header class="header">
+      <h1 id="title"></h1>
+    </header>
 
-        <main>
-            <div class="maincontents">
-                <section id="about">
-                    <h1>About</h1>
-                    <div class="about-flex">
-                        <p class="about-item about-imgpos"><img src="media/icon.jpg"></p>
-                        <p class="about-item about-text">
-                        <span class="name-text"><ruby>Key-S</ruby></span><br>
-                        味ぽん依存症。<br>MBTIはINTJ-T(建築家-慎重型)。
-                        </p>
-                    </div>
-                </section>
+    <main>
+      <section class="date" id="date">
+        <h2>DATE</h2>
+        <p id="date"></p>
+      </section>
 
-                <section id="gunpla">
-                    <h1>My Gunpla</h1>
-                    <div class="album-flex">
-                        <div class="container">
-                            <a href="gunpla.html?id=1" class="album-item">
-                                <div class="box"><img src="media/album/gunpla1/1.jpg"></div>
-                                <div class="overlay">
-                                    <div class="title">ケルディムガンダム<br>ソルダート</div>
-                                    <div class="sub">GN-006/Soldat</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="container">
-                            <a href="gunpla.html?id=2" class="album-item">
-                                <div class="box"><img src="media/album/gunpla2/1.jpg"></div>
-                                <div class="overlay">
-                                    <div class="title">ケルディムガンダム<br>バーゼル</div>
-                                    <div class="sub">GN-006/Burzel</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="container">
-                            <a href="gunpla.html?id=2" class="album-item">
-                                <div class="box"><img src="media/album/gunpla2/1.jpg"></div>
-                                <div class="overlay">
-                                    <div class="title">ケルディムガンダム<br>バーゼル</div>
-                                    <div class="sub">GN-006/Burzel</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </section>
+      <section class="mainevent" id="mainevent">
+        <h2>MAIN EVENT</h2>
+        <ul id="event-list"></ul>
+      </section>
 
-                <section id="travelogues">
-                    <h1>My Travelogues</h1>
-                    <div class="album-flex">
-                        <div class="container">
-                            <a href="travelogue.html?id=1" class="album-item">
-                                <div class="box"><img src="media/album/travelogue1/25.jpg"></div>
-                                <div class="overlay">
-                                    <div class="title">東京旅行</div>
-                                    <div class="sub">2024/02/19 ~ 02/20</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="container">
-                            <a href="travelogue.html?id=2" class="album-item">
-                                <div class="box"><img src="media/album/travelogue2/2.jpg"></div>
-                                <div class="overlay">
-                                    <div class="title">新潟旅行</div>
-                                    <div class="sub">2025/01/17</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="container">
-                            <a href="travelogue.html?id=3" class="album-item">
-                                <div class="box"><img src="media/album/travelogue3/35.jpg"></div>
-                                <div class="overlay">
-                                    <div class="title">江ノ島旅行</div>
-                                    <div class="sub">2025/07/21</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="container">
-                            <a href="travelogue.html?id=4" class="album-item">
-                                <div class="box"><img src="media/album/travelogue4/32.png"></div>
-                                <div class="overlay">
-                                    <div class="title">東京旅行</div>
-                                    <div class="sub">2025/11/04, 11/07</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </section>
+      <section class="album" id="album">
+        <h2>ALBUM</h2>
+        <div class="album-flex" id="album-container"></div>
+      </section>
+    </main>
 
-                <section id="recipes">
-                    <h1>My Recipes</h1>
-                    <div class="album-flex">
-                        <div class="container">
-                            <a href="recipe1.html" class="album-item">
-                                <div class="box"><img src="media/album/recipe1/1.jpg"></div>
-                                <div class="overlay">
-                                    <div class="title">牛モモ肉ステーキ</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </section>
+    <footer></footer>
 
-                <section id="account">
-                    <h1>My Account</h1>
-                    <div class="contact-flex">
-                        <a href="https://x.com/GN_006_Soldat" target="_blank" rel="noopener noreferrer" class="image-button contact-item">
-                            <img src="media/Twitter_icon.jpg" alt="Twitterボタン">
-                        </a>
-                        <a href="https://www.instagram.com/gn_006_soldat/" target="_blank" rel="noopener noreferrer" class="image-button contact-item">
-                            <img src="media/Instagram_icon.jpg" alt="Instagramボタン">
-                        </a>
-                        <a href="https://youtube.com/@user_key-s?si=Ot1kdMDNPbePLxkD" target="_blank" rel="noopener noreferrer" class="image-button contact-item">
-                            <img src="media/YouTube_icon.jpg" alt="YouTubeボタン">
-                        </a>
-                    </div>
-                </section>
-            </div> <!-- <div class="maincontents">の閉じタグ -->
-        </main>
+    <script src="js/loading.js"></script>
+    <script src="js/createTravelogue.js"></script>
+    <script src="js/footer.js"></script>
 
-        <footer></footer>
-
-        <script src="js/main.js"></script>
-        <script src="js/loading.js"></script>
-        <script src="js/footer.js"></script>
-    </body>
+  </body>
 </html>
