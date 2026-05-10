@@ -1,36 +1,37 @@
 <html lang="ja">
 
-<head prefix="og:http://ogp.me/ns#">
+    <head prefix="og:http://ogp.me/ns#">
 
-    <meta charset="utf-8">
-    <meta name="description" content="Key-Sの部屋">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="icon" href="https://key-s-git.github.io/website/media/favicon.ico" sizes="256x256">
-    <title>Blog | Key-S</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Key-Sの部屋">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="icon" href="https://key-s-git.github.io/website/media/favicon.ico" sizes="256x256">
+        <title>Blog | Key-S</title>
 
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
 
-    <script src="js/sketch.js"></script>
-    <script src="js/p5.js"></script>
-    <script src="js/progressbar.min.js"></script>
+        <script src="js/sketch.js"></script>
+        <script src="js/p5.js"></script>
+        <script src="js/progressbar.min.js"></script>
 
-    <link rel="stylesheet" href="css/style_index.css">
-    <link rel="stylesheet" href="css/loading.css">
-    <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/style_index.css">
+        <link rel="stylesheet" href="css/loading.css">
+        <link rel="stylesheet" href="css/hamburger.css">
+        <link rel="stylesheet" href="css/footer.css">
 
-    <meta property="og:url" content="https://key-s-git.github.io/website/">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://key-s-git.github.io/website/OGP.jpg">
-    <meta property="og:title" content="Blog | Key-S">
-    <meta property="og:description" content="Key-Sの部屋">
-    <meta name="twitter:card" content="summary">
+        <meta property="og:url" content="https://key-s-git.github.io/website/">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="https://key-s-git.github.io/website/OGP.jpg">
+        <meta property="og:title" content="Blog | Key-S">
+        <meta property="og:description" content="Key-Sの部屋">
+        <meta name="twitter:card" content="summary">
 
-    <meta name="google-site-verification" content="sb-aTfXt_-YUYfOs33GV9nmWm9vmt4q4xDmnGjK-lYw" />
-</head>
+        <meta name="google-site-verification" content="sb-aTfXt_-YUYfOs33GV9nmWm9vmt4q4xDmnGjK-lYw" />
+    </head>
 
     <body>
 
@@ -43,46 +44,24 @@
         </div>
 
 
-        <header>
-            <!-- ヘッダー左側、アイコン＆名前 -->
+        <header id="header">
             <a href="#" class="header-icon-wrapper">
                 <img src="media/Key-S.png">
                 <div class="header-title">Key-S</div>
             </a>
-            
-            <label for="menu-check" class="test">
-                <img id="menu-button" src="./media/menu_icon.png" alt="menu-button" />
-            </label>
-            <input type="checkbox" id="menu-check">
 
-            <!-- ヘッダー右側、ナビゲーションリンク集 -->
-            <nav id="page-nav">
-                <ul id="header-ul" class="page-nav-ul">
-                    <li class="header-li">
-                        <a href="#about" class="page-nav-link">
-                            <h2>About</h2>
-                        </a>
-                    </li>
-                    <li class="header-li">
-                        <a href="#gunpla" class="page-nav-link">
-                            <h2>Gunpla</h2>
-                        </a>
-                    </li>
-                    <li class="header-li">
-                        <a href="#travelogues" class="page-nav-link">
-                            <h2>Travelogues</h2>
-                        </a>
-                    </li>
-                    <li class="header-li">
-                        <a href="#recipes" class="page-nav-link">
-                            <h2>Recipes</h2>
-                        </a>
-                    </li>
-                    <li class="header-li">
-                        <a href="#account" class="page-nav-link">
-                            <h2>Account</h2>
-                        </a>
-                    </li>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="nav">
+                <ul>
+                <li><a href="#about"><h2>About</h2></a></li>
+                <li><a href="#gunpla"><h2>Gunpla</h2></a></li>
+                <li><a href="#travelogues"><h2>Travelogues</h2></a></li>
+                <li><a href="#recipes"><h2>Recipes</h2></a></li>
+                <li><a href="#account"><h2>Account</h2></a></li>
                 </ul>
             </nav>
         </header>
