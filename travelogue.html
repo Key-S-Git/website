@@ -1,70 +1,67 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head prefix="og: http://ogp.me/ns#">
+  <head prefix="og: http://ogp.me/ns#">
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog | Key-S</title>
-  <link rel="stylesheet" href="css/style_travelogue.css">
-  <link rel="stylesheet" href="css/loading.css">
-  <link rel="stylesheet" href="css/footer.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Key-S</title>
+    <link rel="stylesheet" href="css/style_travelogue.css">
+    <link rel="stylesheet" href="css/loading.css">
+    <link rel="stylesheet" href="css/footer.css">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
-  <link rel="icon" href="media/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="media/favicon.ico">
 
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
-  <script src="js/progressbar.min.js"></script>
+    <script src="js/progressbar.min.js"></script>
 
-</head>
-<body>
+  </head>
+  <body>
 
-<!-- ローディング画面 -->
-  <div id="loading">
-    <div class="bar-container">
-        <img src="media/Key-S.png" class="loading-image">
-        <div class="bar-wrapper"></div>
-    </div>
-  </div>
-
-<!-- コンテンツ画面 -->
-  <header class="header">
-    <h1 id="title"></h1>
-  </header>
-
-  <main>
-    <section class="date" id="date">
-      <h2>DATE</h2>
-      <p id="date"></p> <!-- IDを追加 -->
-    </section>
-
-    <section class="mainevent" id="mainevent">
-      <h2>MAIN EVENT</h2>
-      <ul id="event-list"></ul> <!-- IDを追加 -->
-    </section>
-
-    <section class="album" id="album">
-      <h2>ALBUM</h2>
-      <div class="album_flex" id="album-container">
-        <!-- ここにJavaScriptで画像が挿入されます -->
+    <!-- ローディング画面 -->
+    <div id="loading">
+      <div class="bar-container">
+          <img src="media/Key-S.png" class="loading-image">
+          <div class="bar-wrapper"></div>
       </div>
-    </section>
-  </main>
+    </div>
 
-  <footer></footer>
+    <!-- コンテンツ画面 -->
+    <header class="header">
+      <h1 id="title"></h1>
+    </header>
 
+    <main>
+      <section class="date" id="date">
+        <h2>DATE</h2>
+        <p id="date"></p>
+      </section>
 
-  <script src="js/loading.js"></script>
-  <script src="js/createTravelogue.js"></script>
-  <script src="js/footer.js"></script>
+      <section class="mainevent" id="mainevent">
+        <h2>MAIN EVENT</h2>
+        <ul id="event-list"></ul>
+      </section>
 
-</body>
+      <section class="album" id="album">
+        <h2>ALBUM</h2>
+        <div class="album-flex" id="album-container"></div>
+      </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/loading.js"></script>
+    <script src="js/createTravelogue.js"></script>
+    <script src="js/footer.js"></script>
+
+  </body>
 </html>
