@@ -85,28 +85,13 @@ h2 {
 }
 
 
-
-
-
-ul {
-  margin-inline: auto;
-  list-style-type: none;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 60px;
-  margin-right: auto;
-}
-
-
-
 @media screen and (max-width:750px) {
     html {
         scroll-padding-top: 58px
     }
     
     header {
-        height: 52px
+        height: 60px
     }
 
     body{
@@ -127,39 +112,7 @@ ul {
         margin: 48px 0
     }
 
-    nav {
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        background-color: rgba(29, 29, 31, .8); /* 背景を少し濃くすると文字が見やすいです */
-        opacity: 0;
-        
-        /* 1. 位置とサイズを画面全体に固定 */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh; /* 画面いっぱいの高さ */
-        
-        /* 2. 中身(ul)を上下左右中央に配置 */
-        display: flex;
-        align-items: center;
-        justify-content: center;
 
-        transform: translateY(-100%);
-        transition: all .5s ease;
-        z-index: 3; /* ヘッダーボタンより下、コンテンツより上 */
-    }
-
-    ul {
-        /* 既存の direction: column 等は維持しつつ余計な margin を消す */
-        margin: 0; 
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 30px; /* メニュー項目間の隙間 */
-        width: 100%;
-        text-align: center;
-    }
 
 
 }
@@ -223,6 +176,7 @@ ul {
     font-size: 26px;
     color:white;
     font-weight:bold;
+    text-wrap: nowrap;
 }
 
 #header-ul {
@@ -236,10 +190,7 @@ ul {
     padding: 32px
 }
 
-#menu-button,
-#menu-check {
-    display: none
-}
+
 
 .page-nav-ul{
     padding-right: 40px;
