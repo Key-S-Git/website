@@ -8,7 +8,7 @@ fetch('json/travelogue.json')
     const data = allData[travelId]; // travelogue.jsonより、指定されたIDのデータだけ取り出す
 
     if (!data) {
-      document.body.innerHTML = "旅行記が見つかりませんでした。";
+      document.body.innerHTML = "データが見つかりませんでした。";
       return;
     }
 
@@ -23,6 +23,7 @@ fetch('json/travelogue.json')
     data.mainEvents.forEach(event => {
       const li = document.createElement('li');
       li.textContent = event;
+      // eventListの子要素に、メインイベントを記述した<li>タグを挿入
       eventList.appendChild(li);
     });
 
@@ -38,7 +39,7 @@ fetch('json/travelogue.json')
     
     albumContainer.innerHTML = albumHtml;
 
-    // 4. Fancyboxの再初期化（動的追加の場合に必要）
+    // Fancyboxの再初期化（動的追加の場合に必要）
     // すでに読み込まれているFancyboxを適用させる
     $('[data-fancybox="gallery"]').fancybox({
       // オプションが必要ならここに記述
