@@ -31,7 +31,7 @@ fetch('json/travelogue.json')
     const albumContainer = document.getElementById('album-container');
     const albumHtml = data.album.map(item => `
       <div class="box">
-        <a data-fancybox="gallery" href="${item.src}" class="album_item">
+        <a data-fancybox="gallery" href="${item.src}" class="album-item">
           <img src="${item.src}" loading="lazy">
         </a>
       </div>
