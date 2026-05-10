@@ -1,13 +1,3 @@
-window.onload = () => {
-    const menuList = document.getElementById("header-ul");
-    const menuCheckbox = document.getElementById("menu-check");
-
-    document.addEventListener("click", (event) => {
-        if (event.target !== menuList && event.target !== menuCheckbox) {
-            menuCheckbox.checked = false;
-        }
-    });
-};
 
 window.addEventListener('scroll', function() {
     const header = document.querySelector('header');
@@ -48,9 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Aboutセクションより上ならナビを隠す（既存のロジック）
-        const firstSectionTop = firstSection.getBoundingClientRect().top;
-        pageNav.classList.toggle('is-hidden', firstSectionTop > 240);
+
     };
 
     // スクロール時に実行（リクエストアニメーションで最適化）
@@ -123,6 +111,21 @@ window.addEventListener('load', function() {
 
     var css = document.createElement("style");
     document.body.appendChild(css);
-  }, 1000); // 10000ミリ秒 = 10秒の遅延
+  }, 1000); // 1000ミリ秒 = 10秒の遅延
 
 });
+
+$(function () {
+// ハンバーガーメニューのボタンがクリックされたときの処理
+ $('.hamburger').click(function () {
+    $(this).toggleClass('active');
+    $('#header .nav').toggleClass('active');
+});
+
+//メニュー内のリンクがクリックされた時
+  $('.nav a').click(function () {
+    $('.hamburger').removeClass('active');
+    $('#header .nav').removeClass('active');
+  });
+});
+
