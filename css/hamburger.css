@@ -4,7 +4,6 @@
     aspect-ratio: 1/1;
     height: 40px;
     box-sizing: border-box;
-    outline: 2px solid #00face;
     border-radius: 10%;
     /* マウスポインターを指に変更 */
     cursor: pointer;
@@ -19,7 +18,7 @@
     /* ボタン横線の長さと高さを設定 */
     width: 30px;
     height: 3px;
-    background-color: #00face;
+    background-color: #fff;
     /* 絶対位置指定（親は.hamburger） */
     position: absolute;
     left: 5px;
@@ -78,11 +77,21 @@
   }
 
 nav ul li a{
-  color:#fff;
   text-decoration: none;
 }
-nav ul li a:hover{
-  color:#00face;
+
+nav ul li a h2{
+  color:#fff;
+  padding: 0 10px;
+  background-image: linear-gradient(90deg, #00face, #00face); /* マーカーの色を指定 */
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 0 100%;
+  transition: all 0.3s ease;
+}
+nav ul li a h2:hover{
+  color:#000;
+  background-size: 100% 100%;
 }
 
 /* ボタンを押した際の動作を作成 */
