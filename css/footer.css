@@ -20,6 +20,10 @@ footer {
     padding-bottom: 20px;
 }
 
+.footer-item{
+    transition: all 0.3s;
+}
+
 .footer-item>img{
     width: 70px;
 }
