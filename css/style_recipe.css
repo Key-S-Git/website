@@ -117,27 +117,27 @@ ul{
 
 .album_item:hover{
   opacity:0.5;
-	transition:0.3s;
+  transition:0.3s;
 }
 
-.box26 {
-    position: relative;
-    margin: 2em 0;
-    padding: 1.5em 1em;
-    border: solid 3px #1d1d1f;
-    border-radius: 8px;
+.box-outline {
+  position: relative;
+  margin: 2em 0;
+  padding: 1.5em 1em;
+  border: solid 3px #1d1d1f;
+  border-radius: 8px;
 }
-.box26 .box-title {
-    position: absolute;
-    display: inline-block;
-    top: -13px;
-    left: 10px;
-    padding: 0 9px;
-    line-height: 1;
-    font-size: clamp(1.25rem, 1.182rem + 0.34vw, 1.438rem);
-    background: #FFF;
-    color: #1d1d1f;
-    font-weight: bold;
+.box-outline .box-title {
+  position: absolute;
+  display: inline-block;
+  top: -13px;
+  left: 10px;
+  padding: 0 9px;
+  line-height: 1;
+  font-size: clamp(1.25rem, 1.182rem + 0.34vw, 1.438rem);
+  background: #FFF;
+  color: #1d1d1f;
+  font-weight: bold;
 }
 
 ol{
