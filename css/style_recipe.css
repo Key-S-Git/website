@@ -8,21 +8,23 @@ html {
     font-family: "Noto Sans JP", sans-serif;
 }
 body{
-  background-color: #ffffff;
-  background-image: url(../media/pattern_background.png);
+  background-color: #fff;
   margin: 0%;
   padding: 0%;
-  font-size: 15px;
+  font-size: clamp(1rem, 0.977rem + 0.11vw, 1.063rem);
 }
-header h1, section h1 {
-  font-size: 50px;
+
+.header h1{
+  font-size: clamp(1.5rem, 1.136rem + 1.82vw, 2.5rem);
 }
-header h2, section h2 {
-  font-size: 38px;
+
+h2{
+  padding: 0;
+  margin: 0;
 }
 
 section {
-  margin: 192px 0
+  margin: 46px 0
 }
 
 .header{
@@ -32,28 +34,35 @@ section {
 }
 
 main{
-  margin: 0 40px;
+  margin: 0 4vw;
 }
 
 ul, ol {
   padding: 0;
 }
 
-ul li {
+ul{
+  display: flex;
+  flex-wrap: wrap;
+  gap:10%;
+}
+
+.ingredient {
   position: relative;
   list-style-type: none!important;/*ポチ消す*/
-  width: 100%;
-  max-width: 500px;
+  width: 45%;
+  box-sizing: border-box;
   padding: 10px;
   margin-bottom: 5px;
   line-height: 1.5;
-  background: #00face;
+  background: #1d1d1f;
+  background-image: url("https://www.transparenttextures.com/patterns/black-paper.png");
   vertical-align: middle;
-  color: #000;
+  color: #fff;
   border-radius: 15px 0px 0px 15px;/*左側の角丸く*/
 }
 
-ul li:before{ 
+.ingredient:before{ 
   display:inline-block; 
   vertical-align: middle;
   /*以下白丸つくる*/
@@ -63,15 +72,24 @@ ul li:before{
   background: #fff;
   border-radius: 50%;
   margin-right: 8px;
+  top: calc(1.5em / 2);
+  transform: translateY(-50%) translateY(6px);
+}
+
+.amount{
+  position:absolute;
+  right: 0;
+  top:50%;
+  transform: translateY(-50%);
+  padding-right:20px;
 }
 
 .instruct{
-  font-size:20px;
+  font-size:clamp(1.25rem, 1.182rem + 0.34vw, 1.438rem);
   font-weight: bold;
 }
 .explain{
   padding-top:20px;
-  font-size:15px;
 }
 .instruct-wrapper{
   padding-bottom:30px;
@@ -102,7 +120,62 @@ ul li:before{
 	transition:0.3s;
 }
 
+.box26 {
+    position: relative;
+    margin: 2em 0;
+    padding: 1.5em 1em;
+    border: solid 3px #1d1d1f;
+    border-radius: 8px;
+}
+.box26 .box-title {
+    position: absolute;
+    display: inline-block;
+    top: -13px;
+    left: 10px;
+    padding: 0 9px;
+    line-height: 1;
+    font-size: clamp(1.25rem, 1.182rem + 0.34vw, 1.438rem);
+    background: #FFF;
+    color: #1d1d1f;
+    font-weight: bold;
+}
+
+ol{
+  counter-reset: instruct-counter;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.instruct {
+  line-height: 1.5;
+  padding-left: 35px;
+  position: relative;
+}
+.instruct:before {
+  content: counter(instruct-counter);
+  counter-increment: instruct-counter;
+  background-color: #333;
+  border: 1px solid;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  color: #ffffff;
+  font-size: 85%;
+  line-height: 1;
+  position: absolute;
+  top: calc(1.5em / 2);
+  transform: translateY(-50%) translateY(3px);
+  left: 0px;
+}
+
 @media screen and (max-width:750px) {
+    .ingredient{
+      width:100%;
+    }
     .box {
         position: relative;
         width: 31%; /* 画像のサイズに合わせて調整 */
