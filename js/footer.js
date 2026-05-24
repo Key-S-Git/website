@@ -2,9 +2,24 @@
  * ロードされたらfooter.htmlを探し、footerタグに挿入
  */
 window.addEventListener('DOMContentLoaded', () => {
-    fetch('footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.querySelector('footer').innerHTML = data;
-        });
+    const footerContent = `
+        <div id="footer-contact-div">
+            <div class="footer-sns">
+                <a href="https://x.com/GN_006_Soldat" target="_blank" rel="noopener noreferrer" class="footer-item">
+                    <img src="media/footer_twitter.png" alt="Twitterボタン">
+                </a>
+                <a href="https://www.instagram.com/gn_006_soldat/" target="_blank" rel="noopener noreferrer" class="footer-item">
+                    <img src="media/footer_instagram.png" alt="Instagramボタン">
+                </a>
+                <a href="https://youtube.com/@user_key-s?si=Ot1kdMDNPbePLxkD" target="_blank" rel="noopener noreferrer" class="footer-item">
+                    <img src="media/footer_youtube.png" alt="YouTubeボタン">
+                </a>
+            </div>
+            <div>Key-S &copy; 2026</div>
+        </div>
+    `;
+
+    const footer = document.querySelector('footer');
+
+    footer.insertAdjacentHTML('beforeend', footerContent);
 });
