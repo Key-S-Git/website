@@ -5,7 +5,7 @@ const gunplaId = urlParams.get('id');
 fetch('json/gunpla.json')
   .then(res => res.json())
   .then(allData => {
-    const data = allData[gunplaId]; // travelogue.jsonより、指定されたIDのデータだけ取り出す
+    const data = allData[gunplaId]; // gunpla.jsonより、指定されたIDのデータだけ取り出す
 
     if (!data) {
       document.body.innerHTML = "データが見つかりませんでした。";
@@ -23,6 +23,7 @@ fetch('json/gunpla.json')
 
     // 3. ハッシュタグの生成
     const tagContainer = document.getElementById('hashtag-container');
+
     data.hashtags.forEach(tag => {
         const div = document.createElement('div');
         div.className = "hashtag-wrapper"
@@ -38,6 +39,7 @@ fetch('json/gunpla.json')
 
     // 4. 武装リストの生成
     const weaponList = document.getElementById('weapon-list');
+
     data.weapons.forEach(weapon => {
         const li = document.createElement('li');
         li.textContent = weapon;
@@ -46,6 +48,7 @@ fetch('json/gunpla.json')
 
     // 5. アルバム（Fancybox対応）の生成
     const albumContainer = document.getElementById('album-container');
+    
     data.album.forEach(imgPath => {
         const box = document.createElement('div');
         box.className = 'box';
