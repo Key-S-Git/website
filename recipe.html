@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head prefix="og: http://ogp.me/ns#">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Key-S</title>
+    <link rel="stylesheet" href="css/style_recipe.css">
+    <link rel="stylesheet" href="css/loading.css">
+    <link rel="stylesheet" href="css/footer.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="media/favicon.ico">
+
+      <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+    <script src="js/progressbar.min.js"></script>
+
+  </head>
+  <body>
+
+  <!-- ローディング画面 -->
+    <div id="loading">
+      <div class="bar-container">
+          <img src="media/Key-S.png" class="loading-image">
+          <div class="bar-wrapper"></div>
+      </div>
+    </div>
+
+  <!-- コンテンツ画面 -->
+    <header class="header">
+      <h1 id="recipe-title"></h1>
+    </header>
+
+    <main>
+      <section class="ingredients" id="ingredients">
+        <div class="box-outline">
+          <h2 class="box-title">INGREDIENTS</h2>
+          <ul id="ingredients-list"></ul>
+        </div>
+      </section>
+
+      <section class="instructions" id="instructions">
+        <div class="box-outline">
+          <h2 class="box-title">INSTRUCTIONS</h2>
+          <ol id="instructions-list"></ol>
+        </div>
+      </section>
+
+      <section class="album" id="album">
+        <h2>ALBUM</h2>
+        <div class="album_flex">
+          <div class="box">
+            <a data-fancybox="gallery" href="media/album/recipe1/1.jpg" class="album_item"><img src="media/album/recipe1/1.jpg"></a>
+          </div>
+      </section>
+
+      
+    </main>
+    <footer></footer>
+
+    <script src="js/loading.js"></script>
+    <script src="js/createRecipe.js"></script>
+    <script src="js/footer.js"></script>
+
+  </body>
+</html>
