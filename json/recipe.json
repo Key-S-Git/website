@@ -21,5 +21,21 @@
     "album": [
       "media/album/recipe1/1.jpg"
     ]
+  },
+  "2": {
+    "title": "ホットチョコレート",
+    "ingredients": [
+      { "name": "板チョコ", "amount": "100g" },
+      { "name": "牛乳", "amount": "320cc" }
+    ],
+    "instructions": [
+      { "text": "チョコを細かく刻む", "explain": "" },
+      { "text": "牛乳を泡立て器で混ぜつつ沸騰させる", "explain": "" },
+      { "text": "火を止めて、刻んだチョコを牛乳と混ぜる", "explain": "ここでチョコをしっかりと溶かす" },
+      { "text": "再び火にかけて温める", "explain": "" }
+    ],
+    "album": [
+      "media/album/recipe2/1.jpg"
+    ]
   }
 }
