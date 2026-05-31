@@ -1,6 +1,7 @@
 {
   "1": {
     "title": "牛モモ肉ステーキ",
+    "thumbnail": "media/album/recipe1/1.jpg",
     "ingredients": [
       { "name": "牛モモ肉", "amount": "200g" },
       { "name": "塩", "amount": "少々" },
@@ -24,6 +25,7 @@
   },
   "2": {
     "title": "ホットチョコレート",
+    "thumbnail": "media/album/recipe2/1.jpg",
     "ingredients": [
       { "name": "板チョコ", "amount": "100g" },
       { "name": "牛乳", "amount": "320cc" }
