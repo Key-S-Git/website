@@ -16,12 +16,12 @@ fetch('json/gunpla.json')
     document.getElementById('name').textContent = data.name;
     document.getElementById('number').textContent = data.number;
 
-    // 2. メイン画像の挿入
+    // メイン画像
     const mainImg = document.createElement('img');
-    mainImg.src = data.mainImage;
+    mainImg.src = data.thumbnail;
     document.getElementById('main-image-container').appendChild(mainImg);
 
-    // 3. ハッシュタグの生成
+    // ハッシュタグ
     const tagContainer = document.getElementById('hashtag-container');
 
     data.hashtags.forEach(tag => {
@@ -37,7 +37,7 @@ fetch('json/gunpla.json')
         tagContainer.appendChild(div);
     });
 
-    // 4. 武装リストの生成
+    // 武装リスト
     const weaponList = document.getElementById('weapon-list');
 
     data.weapons.forEach(weapon => {
@@ -46,7 +46,7 @@ fetch('json/gunpla.json')
         weaponList.appendChild(li);
     });
 
-    // 5. アルバム（Fancybox対応）の生成
+    // アルバム（Fancybox対応）の生成
     const albumContainer = document.getElementById('album-container');
     
     data.album.forEach(imgPath => {
