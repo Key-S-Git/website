@@ -8,7 +8,7 @@ fetch('json/gunpla.json')
     Object.keys(allData).forEach(id => {
       const data = allData[id];
       // サムネイル表示用に名前を改行させる
-      const displayName = data.name.join('<br>');
+      const displayName = data.name.replace(' ', '<br>');
 
       const item = `
       <div class="container">
