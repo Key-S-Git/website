@@ -372,6 +372,34 @@ h2 {
     transform: translateY(3px); /* 下に移動させて沈み込みを表現 */
 }
 
+.mail-button{
+    font-size:20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:50px;
+    background-color: #1d1d1f;
+    color:#00a587;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    width: 100%;
+    aspect-ratio: 10/1;
+    min-height: 50px;
+    box-shadow: 0px 10px #000;
+    transition: all 0.3s;
+}
+
+.mail-button:hover{
+    color:#00face;
+}
+
+.mail-button:active{
+    transform: translateY(10px);
+    color:#00face;
+    box-shadow: none;
+}
 
 
 
