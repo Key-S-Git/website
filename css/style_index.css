@@ -338,71 +338,52 @@ h2 {
 
 }
 
-.image-button {
-    border: none; /* デフォルトのボーダーをなくす */
-    background: none; /* デフォルトの背景をなくす */
-    cursor: pointer;
-    padding: 0; /* img要素にpaddingが影響しないように0にする */
-    position: relative; /* 沈み込み時に位置を調整するため */
-    width:20%;
-}
-
-.image-button>img {
-    display: block; /* img要素がinline要素のため、余分なスペースをなくす */
-    width: 100%; /* 画像の幅を調整 */
-    height: auto; /* 高さは自動調整 */
-    border-radius: 20%; /* 角丸にする */
-    /* 立体感を出すためのシャドウ */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), /* 下方向への影 */
-                0 2px 5px rgba(0, 0, 0, 0.2);  /* 軽い影で立体感を強調 */
-    transition: all 0.1s ease-out; /* ホバー時、クリック時のアニメーションをスムーズに */
-}
-
-/* ホバー時のスタイル（少し浮き上がるような効果） */
-.image-button:hover img {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4),
-                0 3px 8px rgba(0, 0, 0, 0.25);
-    transform: translateY(-2px); /* 少し上に移動させる */
-}
-
-/* クリック時のスタイル（沈み込み） */
-.image-button:active img {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), /* 影を小さくして沈んだように見せる */
-                0 1px 2px rgba(0, 0, 0, 0.1);
-    transform: translateY(3px); /* 下に移動させて沈み込みを表現 */
-}
-
 .mail-button{
     font-size:clamp(1.25rem, 1.159rem + 0.45vw, 1.5rem);
-    font-weight: bold;
+}
+
+i{
+    box-sizing: border-box;
+    font-size:50cqw;
+    display: flex;
+    align-items: center;      /* アイコンを縦方向の真ん中へ */
+    justify-content: center;   /* アイコンを横方向の真ん中へ */
+}
+
+.button{
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top:50px;
     background-color: #1d1d1f;
     color:#00a587;
+    font-weight: bold;
     text-decoration: none;
     text-align: center;
     border-radius: 10px;
     width: 100%;
-    aspect-ratio: 10/1;
     min-height: 50px;
     box-shadow: 0px 10px #000;
     transition: all 0.3s;
 }
 
-.mail-button:hover{
+.button:hover{
     color:#00face;
 }
 
-.mail-button:active{
+.button:active{
     transform: translateY(10px);
-    color:#00face;
     box-shadow: none;
 }
 
+.long-button {
+    aspect-ratio: 10/1;
+}
 
-
+.square-button {
+    aspect-ratio: 1/1;
+    container-type: inline-size;
+}
 
 
 @media screen and (max-width:750px) {
