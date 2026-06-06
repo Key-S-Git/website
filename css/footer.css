@@ -1,5 +1,5 @@
 footer {
-    background-color: rgb(29,29,31);
+    background-color: var(--key-gray);
     color: #fff;
     height: 300px;
     text-align: center;
