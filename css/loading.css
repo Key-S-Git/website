@@ -3,7 +3,7 @@
   width: 100vw;
   height: 100vh;
   transition: all 1s;
-  background-color: rgb(29,29,31);
+  background-color: var(--key-gray);
   position: fixed;
   top: 0;
   left: 0;
@@ -37,7 +37,7 @@
 /* プログレスバーのラッパー要素 */
 .bar-wrapper {
     padding: 0px; 
-    border: 2px solid #00face;
+    border: 2px solid var(--key-green-active);
     box-sizing: border-box; 
     width: 100%; /* 親要素の幅いっぱいに広げる */
     height: 24px;
