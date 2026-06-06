@@ -1,15 +1,12 @@
 /* ハンバーガーアイコンの外側 */
 #header .hamburger {
-    /* ボタン全体サイズを50pxの正方形に設定 */
     aspect-ratio: 1/1;
     height: 40px;
     box-sizing: border-box;
     border-radius: 10%;
-    /* マウスポインターを指に変更 */
     cursor: pointer;
     position: fixed;
     right: 10px;
-    /* 優先度を変更 */
     z-index: 30;
   }
 
@@ -83,7 +80,7 @@ nav ul li a{
 nav ul li a h2{
   color:#fff;
   padding: 0 10px;
-  background-image: linear-gradient(90deg, #00face, #00face); /* マーカーの色を指定 */
+  background-image: linear-gradient(90deg, var(--key-green-active), var(--key-green-active));
   background-repeat: no-repeat;
   background-position: left bottom;
   background-size: 0 100%;
