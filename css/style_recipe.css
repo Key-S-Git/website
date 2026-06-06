@@ -115,9 +115,12 @@ ul{
   object-fit: cover; /* 画像をボックスに合わせて切り抜く */
 }
 
+.album-item {
+  transition: all 0.3s;
+}
+
 .album-item:hover{
   opacity:0.5;
-  transition:0.3s;
 }
 
 .box-outline {
