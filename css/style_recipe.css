@@ -55,7 +55,7 @@ ul{
   padding: 10px;
   margin-bottom: 5px;
   line-height: 1.5;
-  background: #1d1d1f;
+  background: var(--key-gray);
   background-image: url(../media/pattern_list.png);
   vertical-align: middle;
   color: #fff;
@@ -124,7 +124,7 @@ ul{
   position: relative;
   margin: 2em 0;
   padding: 1.5em 1em;
-  border: solid 3px #1d1d1f;
+  border: solid 3px var(--key-gray);
   border-radius: 8px;
 }
 .box-outline .box-title {
@@ -135,8 +135,8 @@ ul{
   padding: 0 9px;
   line-height: 1;
   font-size: clamp(1.25rem, 1.182rem + 0.34vw, 1.438rem);
-  background: #FFF;
-  color: #1d1d1f;
+  background: #fff;
+  color: var(--key-gray);
   font-weight: bold;
 }
 
@@ -154,7 +154,7 @@ ol{
 .instruct:before {
   content: counter(instruct-counter);
   counter-increment: instruct-counter;
-  background-color: #1d1d1f;
+  background-color: var(--key-gray);
   border: 1px solid;
   border-radius: 50%;
   box-sizing: border-box;
@@ -163,7 +163,7 @@ ol{
   align-items: center;
   height: 30px;
   width: 30px;
-  color: #00face;
+  color: var(--key-gray);
   font-size: 85%;
   position: absolute;
   top: 0;
