@@ -31,14 +31,12 @@ header {
     position: fixed;
     width: 100%;
     z-index: 2;
-    background-color: transparent; /* 本体は常に透明 */
+    background-color: transparent;
     display:flex;
     justify-content: space-between;
     align-items: center;
 }
 
-
-/* 背景画像専用のレイヤー（常にここに画像を持たせる） */
 header::before {
     content: "";
     position: absolute;
@@ -46,7 +44,7 @@ header::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgb(29,29,31);
+    background-color: var(--key-gray);
     background-size: cover;
     background-position: center;
     
@@ -66,8 +64,6 @@ main {
     background-color: #ffffff;
     background-image: url(../media/pattern_background.png);
 }
-
-
 
 section {
     margin: 192px 0
@@ -97,38 +93,38 @@ h2 {
     body{
         font-size: 11px;
     }
+
     h1{
         font-size: 27px;
     }
+
     h2{
         font-size: 20px;
         font-weight: bold;
     }
+
     h3{
         font-size: 12px;
         font-weight: bold;
     }
+
     section {
         margin: 48px 0
     }
-
-
-
-
 }
 
 .header-container{
     color: #fff;
-    position: absolute; /* 親要素（または初期コンテナブロック）を基準に配置する */
-     top: 50%;           /* h1の上端をビューポートの垂直方向の中央に移動 */
-    left: 50%;          /* h1の左端をビューポートの水平方向の中央に移動 */
-    transform: translate(-50%, -50%); /* 要素自身の幅と高さの半分だけ位置を調整して真に中央揃えにする */
-    text-align: center; /* h1内のテキストを中央揃えにする */
-    /* h1自身のマージン・パディングをリセット（重要！） */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
     margin: 0; 
-    padding: 0; /* h1に余計な余白がないか確認 */
-    line-height: 1.2; /* テキストの見た目に合わせて調整 */
+    padding: 0;
+    line-height: 1.2;
 }
+
 .header-text{
     font-size: 10vw;
     text-align: center;
@@ -190,8 +186,6 @@ h2 {
     padding: 32px
 }
 
-
-
 .page-nav-ul{
     padding-right: 40px;
 }
@@ -201,19 +195,19 @@ h2 {
 }
 
 .page-nav-link {
-  color: #fff;
-  text-decoration: none;
+    color: #fff;
+    text-decoration: none;
 }
 .page-nav-link:hover{
-  color:#aaa;
+    color:#aaa;
 }
 .is-current:hover{
-  color: #00face;
+    color: var(--key-green-active);
 }
 
 /* ナビゲーションの現在のセクションを強調 */
 .page-nav-link.is-current h2 {
-    color: #00face !important; /* 目立つ色に変更 */
+    color: var(--key-green-active) !important; /* 目立つ色に変更 */
     transition: color 0.3s ease;
 }
 
@@ -298,13 +292,18 @@ h2 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6); /* 背景を少し暗くする */
+  background: rgba(0, 0, 0, 0.6);
   color: white;
-  
-  /* 最初は隠しておく */
+
+  /* ホバーされていない場合は非表示 */
   opacity: 0;
-  transition: opacity 0.3s ease; /* 0.3秒かけて変化 */
+  transition: opacity 0.3s ease;
   display: block;
+}
+
+/* ホバー時の設定 */
+.container:hover .overlay {
+  opacity: 1;
 }
 
 .title{
@@ -312,7 +311,7 @@ h2 {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* 真ん中にずらす */
+  transform: translate(-50%, -50%);
   width: 100%;
   text-align: center;
   font-weight: bold;
@@ -320,14 +319,9 @@ h2 {
 }
 .sub{
     position: absolute;
-    bottom: 10px; /* 下からの余白 */
-    right: 10px;  /* 右からの余白 */
-    font-size: clamp(0.5rem, 0.409rem + 0.45vw, 0.75rem); /* 少し小さくするとそれっぽくなります */
-}
-
-/* マウスが乗った（hover）時の設定 */
-.container:hover .overlay {
-  opacity: 1;
+    bottom: 10px;
+    right: 10px;
+    font-size: clamp(0.5rem, 0.409rem + 0.45vw, 0.75rem);
 }
 
 .contact-flex{
@@ -346,8 +340,8 @@ i{
     box-sizing: border-box;
     font-size:50cqw;
     display: flex;
-    align-items: center;      /* アイコンを縦方向の真ん中へ */
-    justify-content: center;   /* アイコンを横方向の真ん中へ */
+    align-items: center;
+    justify-content: center;
 }
 
 .button{
@@ -355,8 +349,8 @@ i{
     align-items: center;
     justify-content: center;
     margin-top:50px;
-    background-color: #1d1d1f;
-    color:#00a587;
+    background-color: var(--key-gray);
+    color: var(--key-green-deactive);
     font-weight: bold;
     text-decoration: none;
     text-align: center;
@@ -368,7 +362,7 @@ i{
 }
 
 .button:hover{
-    color:#00face;
+    color: var(--key-green-active);
 }
 
 .button:active{
@@ -438,8 +432,8 @@ i{
 
     .container {
         position: relative;
-        width: 31%; /* 画像のサイズに合わせて調整 */
-        margin: 1%; /* 画像間の余白 */
+        width: 31%;
+        margin: 1%;
     }
 
 }
