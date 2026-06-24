@@ -10,9 +10,11 @@ class Particle {
   }
 
   // 粒子を作成
-  createParticle() {
+  createParticle(accentColor) {
     noStroke();
-    fill('rgba(0,250,206,0.5)');
+    let particleColor = color(accentColor)
+    particleColor.setAlpha(128);
+    fill(particleColor);
     circle(this.x, this.y, this.r);
   }
 
@@ -28,11 +30,13 @@ class Particle {
   }
 
   // 一定の距離を下回った粒子同士を線で繋ぐ
-  joinParticles(particles) {
+  joinParticles(particles, accentColor) {
     particles.forEach(element =>{
       let dis = dist(this.x,this.y,element.x,element.y);
       if (dis < 85) {
-        stroke('rgba(50,255,255,0.06)');
+        let lineColor = color(accentColor);
+        lineColor.setAlpha(15);
+        stroke(lineColor);
         line(this.x,this.y,element.x,element.y);
       }
     });
@@ -66,11 +70,15 @@ function windowResized() {
 }
 
 function draw() {
-  background('rgb(29,29,31)');
+  // theme.cssの色を取得
+  const keyGray = getComputedStyle(document.documentElement).getPropertyValue('--key-gray').trim(); // 背景色
+  const keyAccent = getComputedStyle(document.documentElement).getPropertyValue('--key-accent').trim(); // アクセントカラー
+
+  background(keyGray);
   // 生成された粒子の数だけ繰り返し
   for (let i = 0; i < particles.length; i++) {
-    particles[i].createParticle();
+    particles[i].createParticle(keyAccent);
     particles[i].moveParticle();
-    particles[i].joinParticles(particles.slice(i));
+    particles[i].joinParticles(particles.slice(i), keyAccent);
   }
 }
