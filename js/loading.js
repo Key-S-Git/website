@@ -2,14 +2,14 @@ var bar = new ProgressBar.Line('.bar-wrapper', {
   strokeWidth: 5,
   easing: 'easeInOut',
   duration: 1400,
-  color: 'var(--key-green-active)',
+  color: 'var(--key-accent)',
   trailColor: 'var(--key-gray)',
   trailWidth: 1,
   svgStyle: {width: '100%', height: '100%'},
   text: {
     style: {
       // テキストカラー等
-      color: 'var(--key-green-active)',
+      color: 'var(--key-accent)',
       position: 'absolute',
       left: '50%', // 中央配置の修正
 
