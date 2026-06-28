@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 現在開いているURLを取得
+    const baseUrl = window.location.origin + window.location.pathname;
+
     // スタイルの挿入
     const style = document.createElement('style');
     style.textContent = `
@@ -12,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const consoleEl = document.createElement('div');
     consoleEl.id = 'cmd-console';
     consoleEl.innerHTML = `
-        <div>$ css_editor.sh</div>
+        <div>Access to > ${baseUrl}</div>
         <input type="text" id="cmd-input" placeholder="--var value" autocomplete="off">
         <div id="cmd-message">Ctrl+K to toggle</div>
     `;
