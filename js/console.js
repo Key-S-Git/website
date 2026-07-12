@@ -63,6 +63,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Enter') {
             // 入力値から前後の空白を除去
             const command = inputEl.value.trim();
+
+            // コマンドに「reset」と入力された場合
+            if (command === 'reset') {
+                managedVars.forEach(varName => {
+                    localStorage.removeItem(varName);
+                    document.documentElement.style.removeProperty(varName);
+                });
+                msgEl.textContent = "All variables have been reset.";
+                inputEl.value = '';
+                return; // 以降の処理をスキップ
+            }
+
+            // コマンドに「list」と入力された場合
+            if (command === 'list') {
+                const currentVars = managedVars.map(v => `${v}: ${getComputedStyle(document.documentElement).getPropertyValue(v).trim()}`).join(', ');
+                msgEl.textContent = currentVars;
+                inputEl.value = '';
+                return;
+            }
+
             // 入力値を変数名と値に分けて保存
             const [prop, value] = command.split(' ');
 
