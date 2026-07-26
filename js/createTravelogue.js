@@ -22,6 +22,7 @@ fetch('json/travelogue.json')
     const eventList = document.getElementById('event-list');
     data.mainEvents.forEach(event => {
       const li = document.createElement('li');
+      li.className = 'event';
       li.textContent = event;
       // eventListの子要素に、メインイベントを記述した<li>タグを挿入
       eventList.appendChild(li);
