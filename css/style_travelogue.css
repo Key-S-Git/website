@@ -1,48 +1,65 @@
 /* コンテンツ画面 */
 html {
-  scroll-behavior: smooth;
-  font-size: calc(100vw / 144);
-  font-family: "Noto Sans JP", sans-serif;
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Noto Sans JP", sans-serif;
 }
+
 body{
-  background-color: #ffffff;
-  background-image: url(../media/pattern_background.png);
+  background-color: #fff;
   margin: 0%;
   padding: 0%;
-  font-size: clamp(2.5rem, calc(2.3rem + 0.625vw), 3.0rem);
+  font-size: clamp(1rem, 0.977rem + 0.11vw, 1.063rem);
+  line-height: 1.5;
 }
-header h1, section h1 {
-  font-size: clamp(8.0rem, calc(7.8rem + 0.625vw), 8.5rem);
+
+.header h1{
+  font-size: clamp(1.5rem, 1.136rem + 1.82vw, 2.5rem);
 }
-header h2, section h2 {
-  font-size: clamp(5.5rem, calc(5.3rem + 0.625vw), 6rem);
+
+h2{
+  padding: 0;
+  margin: 0;
 }
+
 section {
-  margin: clamp(9.5rem, calc(9.3rem + 0.625vw), 10rem);
+  margin: 46px 0
 }
-.header{
-  margin: clamp(9.5rem, calc(9.3rem + 0.625vw), 10rem);
-  padding: 0%;
-  text-align: left;
+
+main{
+  margin: 0 4vw;
+  padding-top: 100px;
 }
 
 ul, ol {
   padding: 0;
 }
 
-ul li {
+ul{
+  display: flex;
+  flex-wrap: wrap;
+  gap:10%;
+}
+
+.event {
   position: relative;
   list-style-type: none!important;/*ポチ消す*/
-  padding: 0.5em 0.5em 0.5em 0.5em;
+  width: 45%;
+  box-sizing: border-box;
+  padding: 10px;
   margin-bottom: 5px;
   line-height: 1.5;
-  background: #00face;
+  background: var(--key-gray);
+  background-image: url(../media/pattern_list.png);
   vertical-align: middle;
-  color: #000;
+  color: #fff;
   border-radius: 15px 0px 0px 15px;/*左側の角丸く*/
 }
 
-ul li:before{ 
+.event:before{ 
   display:inline-block; 
   vertical-align: middle;
   /*以下白丸つくる*/
@@ -52,7 +69,10 @@ ul li:before{
   background: #fff;
   border-radius: 50%;
   margin-right: 8px;
+  top: calc(1.5em / 2);
+  transform: translateY(-50%) translateY(6px);
 }
+
 
 .album-flex {
   display: flex;
@@ -79,4 +99,68 @@ ul li:before{
 
 .album-item:hover{
   opacity:0.5;
+}
+
+.box-outline {
+  position: relative;
+  margin: 2em 0;
+  padding: 1.5em 1em;
+  border: solid 3px var(--key-gray);
+  border-radius: 8px;
+}
+.box-outline .box-title {
+  position: absolute;
+  display: inline-block;
+  top: -13px;
+  left: 10px;
+  padding: 0 9px;
+  line-height: 1;
+  font-size: clamp(1.25rem, 1.182rem + 0.34vw, 1.438rem);
+  background: #fff;
+  color: var(--key-gray);
+  font-weight: bold;
+}
+
+ol{
+  counter-reset: instruct-counter;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.instruct {
+  line-height: 1.5;
+  padding-left: 35px;
+  position: relative;
+}
+.instruct:before {
+  content: counter(instruct-counter);
+  counter-increment: instruct-counter;
+  background-color: var(--key-gray);
+  border: 1px solid;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  color: var(--key-accent);
+  font-size: 85%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto 0;
+}
+
+@media screen and (max-width:750px) {
+    .ingredient{
+      width:100%;
+    }
+    .box {
+        position: relative;
+        width: 31%; /* 画像のサイズに合わせて調整 */
+        margin: 1%; /* 画像間の余白 */
+    }
+
 }
