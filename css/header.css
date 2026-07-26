@@ -1,0 +1,223 @@
+header {
+    height: 80px;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    background-color: transparent;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--key-gray);
+    background-size: cover;
+    background-position: center;
+    
+    /* 出現・消失の両方に効くアニメーション設定 */
+    opacity: 0.8;
+    transition: opacity 0.5s ease-in-out;
+    z-index: -1; 
+}
+
+.header-icon-wrapper{
+    height:100%;
+    width:25%;
+    display:flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.header-icon-wrapper img{
+    height:60%;
+    margin-left:10px;
+}
+
+.header-title{
+    margin-left:5px;
+    font-size: 26px;
+    color:white;
+    font-weight:bold;
+    text-wrap: nowrap;
+}
+
+#header-ul {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    margin: auto;
+}
+
+.header-nav-img {
+    padding: 32px
+}
+
+.page-nav-ul{
+    padding-right: 40px;
+}
+
+.nav--text{
+    font-size: 20px;
+}
+
+.page-nav-link {
+    color: #fff;
+    text-decoration: none;
+}
+.page-nav-link:hover{
+    color:#aaa;
+}
+.is-current:hover{
+    color: var(--key-accent);
+}
+
+/* ナビゲーションの現在のセクションを強調 */
+.page-nav-link.is-current h2 {
+    color: var(--key-accent) !important; /* 目立つ色に変更 */
+    transition: color 0.3s ease;
+}
+
+#top-image{
+    height: 100%;
+}
+
+/* ハンバーガーアイコンの外側 */
+#header .hamburger {
+    aspect-ratio: 1/1;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 10%;
+    cursor: pointer;
+    position: fixed;
+    right: 10px;
+    z-index: 30;
+  }
+
+/* ハンバーガーアイコンの内側の線 */
+#header .hamburger span {
+    /* ボタン横線の長さと高さを設定 */
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    /* 絶対位置指定（親は.hamburger） */
+    position: absolute;
+    left: 5px;
+    /* ボタンが押されてXに切り替わるときの動作設定 */
+    transition: all 0.4s;
+  }
+
+/* ハンバーガーメニュー3本の線の縦の位置を設定 */
+#header .hamburger span:nth-of-type(1) {
+    top: 10px;
+  }
+#header .hamburger span:nth-of-type(2) {
+    top: 20px;
+  }
+#header .hamburger span:nth-of-type(3) {
+    top: 30px;
+  }
+
+/* メニューの外側を設定 */
+#header .nav {
+  background-color: color-mix(in srgb, var(--key-gray), transparent 20%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+    /* メニュー開いた時の幅を設定 */
+    width: 100%;
+    /* メニュー開いた時の高さを設定（画面いっぱいに広げる） */
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    z-index: 20;
+    /* スライド表示する際の速度を設定 */
+    transition: all 0.6s;
+  }
+
+/* メニュー内の設定 */
+#header .nav ul {
+    width: 100%;
+    height: 80%;
+    /* メニューを縦並びにオーバーライド */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; /* 上下端に寄せて間を均等にする */
+    /* 上下の高さを設定 */
+    padding: 60px 0;
+    overflow: auto;
+    /* 要素同士の余白をオーバーライド */
+    text-align: center;
+  }
+
+  .nav ul li{
+    width:auto;
+    list-style: none;
+  }
+
+  .nav ul li a{
+    text-decoration: none;
+    height: 30px;
+  }
+
+.nav ul li a h2{
+  color:#fff;
+  padding: 0 10px;
+  background-image: linear-gradient(90deg, var(--key-accent), var(--key-accent));
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 0 100%;
+  transition: all 0.3s ease;
+}
+.nav ul li a h2:hover{
+  color:#000;
+  background-size: 100% 100%;
+}
+
+/* ボタンを押した際の動作を作成 */
+#header .nav.active {
+    right: 0;
+}
+
+/* ボタンをXにするCSS */
+#header .hamburger.active span:nth-of-type(1) {
+    top: 20px;
+    transform: rotate(-45deg);
+}
+#header .hamburger.active span:nth-of-type(2) {
+    opacity: 0;
+}
+#header .hamburger.active span:nth-of-type(3) {
+    top: 20px;
+    transform: rotate(45deg);
+}
+
+@media screen and (max-width:750px) {
+    header {
+        height: 60px
+    }
+    
+    h2{
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .header-title{
+        font-size: 16px;
+    }
+    #header-ul {
+        flex-direction: column;
+        height: auto;
+        text-align: center;
+    }
+
+    .header-nav-img {
+        padding: 12px
+    }
+
+}
