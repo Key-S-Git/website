@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 現在開いているURLを取得
     const baseUrl = window.location.origin + window.location.pathname;
 
     // スタイルの挿入
@@ -27,112 +26,159 @@ document.addEventListener('DOMContentLoaded', () => {
     // 操作可能にしたいCSS変数を定義
     const managedVars = ['--key-accent'];
 
-    // 操作可能な各CSS変数に対して、ローカルストレージ内に前回の入力値の情報がないか確認。前回の情報があれば、それを適用
+    // 初期化：ローカルストレージの値の適用
     managedVars.forEach(varName => {
-        // 保存されている入力値を確認
         const savedValue = localStorage.getItem(varName);
-        // 前回の値が存在する場合
         if (savedValue) {
-            // 前回の値を適用する
             document.documentElement.style.setProperty(varName, savedValue);
         }
     });
 
-    // キー操作を監視
+    // キー操作（Ctrl+K でコンソール開閉）
     document.addEventListener('keydown', (e) => {
-        // Ctrl と K が同時押しされた場合
         if (e.ctrlKey && e.key === 'k') {
             e.preventDefault();
-            // 入力欄を空にする
             inputEl.value = '';
-            // 現在コンソールのUIに適用されているスタイルを取得
-            const style = window.getComputedStyle(consoleEl);
-            // 取得したスタイルから、コンソールが非表示かどうかを識別
-            const isHidden = style.display === 'none';
-            // 非表示だった場合は表示、表示中だった場合は非表示
+            const isHidden = window.getComputedStyle(consoleEl).display === 'none';
             consoleEl.style.display = isHidden ? 'block' : 'none';
-            // 元々非表示だった (=キー操作で表示された) 場合
-            if (isHidden) {
-                // コンソール内の入力欄にフォーカス
-                inputEl.focus();
-            }
+            if (isHidden) inputEl.focus();
         }
     });
 
-    // 入力欄のキー操作を監視
-    inputEl.addEventListener('keydown', (e) => {
-        // Enterキーが押された場合
-        if (e.key === 'Enter') {
-            // 入力値から前後の空白を除去
-            const command = inputEl.value.trim();
+    // 履歴管理
+    const history = [];
+    let historyIdx = -1;
+    const MAX_HISTORY = 5;
 
-            // コマンドに「exit」または「quit」または「\q」と入力された場合
-            if (command === 'exit' || command === 'quit' || command ==='\\q') {
-                inputEl.value = '';
-                msgEl.textContent = 'Bye!'; // メッセージを変更
+    // 履歴にコマンドを保存する関数
+    function saveHistory(command) {
+        const existingIndex = history.indexOf(command);
+        if (existingIndex !== -1) {
+            history.splice(existingIndex, 1);
+        }
+        history.unshift(command);
+        if (history.length > MAX_HISTORY) {
+            history.pop();
+        }
+        historyIdx = -1;
+    }
 
-                // 1000ミリ秒（1秒）後にコンソールを非表示にする
-                setTimeout(() => {
-                    consoleEl.style.display = 'none';
-                    msgEl.textContent = 'Ctrl+K to toggle'; // 次回表示時のためにメッセージを元に戻す
-                }, 1000);
-                return; // 以降の処理をスキップ
-            }
-
-            // コマンドに「reset」と入力された場合
-            if (command === 'reset') {
+    // コマンド定義（実行後に true を返すと成功扱い）
+    const commands = {
+        'exit': {
+            description: 'Close console',
+            action: () => handleExit()
+        },
+        'quit': {
+            description: 'Close console',
+            action: () => handleExit()
+        },
+        '\\q': {
+            description: 'Close console',
+            action: () => handleExit()
+        },
+        'reset': {
+            description: 'Reset managed CSS variables',
+            action: () => {
                 managedVars.forEach(varName => {
                     localStorage.removeItem(varName);
                     document.documentElement.style.removeProperty(varName);
                 });
                 msgEl.textContent = "All variables have been reset.";
+                return true;
+            }
+        },
+        'list': {
+            description: 'Show current managed CSS variable values',
+            action: () => {
+                const currentVars = managedVars
+                    .map(v => `${v}: ${getComputedStyle(document.documentElement).getPropertyValue(v).trim()}`)
+                    .join(', ');
+                msgEl.textContent = currentVars || 'No variables defined.';
+                return true;
+            }
+        },
+        'help': {
+            description: 'Show available commands',
+            action: () => {
+                const list = Object.keys(commands).join(', ');
+                msgEl.textContent = `Available: ${list}`;
+                return true;
+            }
+        }
+    };
+
+    // 共通の終了処理関数
+    function handleExit() {
+        inputEl.value = '';
+        msgEl.textContent = 'Bye!';
+        setTimeout(() => {
+            consoleEl.style.display = 'none';
+            msgEl.textContent = 'Ctrl+K to toggle';
+        }, 1000);
+        // 実行成功として「true」を返し、履歴に保存させる
+        return true;
+    }
+
+    // 入力欄のキー監視
+    inputEl.addEventListener('keydown', (e) => {
+        // ↑矢印キー
+        if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (history.length > 0 && historyIdx < history.length - 1) {
+                historyIdx++;
+                inputEl.value = history[historyIdx];
+            }
+        }
+        // ↓矢印キー
+        else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (historyIdx > 0) {
+                historyIdx--;
+                inputEl.value = history[historyIdx];
+            } else if (historyIdx === 0) {
+                historyIdx = -1;
                 inputEl.value = '';
-                return; // 以降の処理をスキップ
             }
+        }
+        // Enterキー（コマンド実行）
+        else if (e.key === 'Enter') {
+            const command = inputEl.value.trim();
+            if (!command) return;
 
-            // コマンドに「list」と入力された場合
-            if (command === 'list') {
-                const currentVars = managedVars.map(v => `${v}: ${getComputedStyle(document.documentElement).getPropertyValue(v).trim()}`).join(', ');
-                msgEl.textContent = currentVars;
+            let isSuccess = false; // 成功フラグ
+
+            // 1. 完全一致する登録コマンド（help, list, exitなど）の判定
+            if (commands[command]) {
+                isSuccess = commands[command].action();
                 inputEl.value = '';
-                return;
-            }
+            } else {
+                // 2. 引数付きコマンド（CSS変数変更 "--var-name value"）の処理
+                const [prop, value] = command.split(' ');
 
-            // 入力値を変数名と値に分けて保存
-            const [prop, value] = command.split(' ');
+                if (!value) {
+                    msgEl.textContent = `Error: Unknown command or missing value. Type 'help' for commands.`;
+                } else if (!CSS.supports('color', value)) {
+                    msgEl.textContent = `Error: '${value}' is an invalid CSS color value.`;
+                } else if (prop && managedVars.includes(prop)) {
+                    document.documentElement.style.setProperty(prop, value);
+                    localStorage.setItem(prop, value);
+                    msgEl.textContent = `Applied & Saved: ${prop}`;
+                    isSuccess = true; // 適用・保存に成功した場合のみ true
+                } else if (prop && !managedVars.includes(prop)) {
+                    msgEl.textContent = `Error: '${prop}' is not a managed variable.`;
+                } else {
+                    msgEl.textContent = "Error: Use format '--var-name value' or type 'help'";
+                }
 
-            if (!value) {
-                return;
-            }
-
-            // 入力された値が、CSSが用意するcolorプロパティではなかった場合
-            if (!CSS.supports('color', value)) {
-                // メッセージ欄にエラーメッセージを表示
-                msgEl.textContent = `Error: '${value}' is invalid value.`;
-                // 入力欄を空にする
-                inputEl.value = '';
-                return;
-            }
-
-            // 変数名と値が存在し、変数名が操作可能な変数リストに含まれている場合
-            if (prop && managedVars.includes(prop) && value) {
-                // 入力値を適用
-                document.documentElement.style.setProperty(prop, value);
-                // ローカルストレージに保存
-                localStorage.setItem(prop, value);
-                // コンソール下のメッセージ欄にログを出す
-                msgEl.textContent = `Applied & Saved: ${prop}`;
-                // 入力欄を空にする
                 inputEl.value = '';
             }
-            // 変数名は存在するものだが、管理可能な変数リストに含まれていない場合
-            else if (prop && !managedVars.includes(prop)) {
-                // メッセージ欄にエラーメッセージを表示
-                msgEl.textContent = `Error: '${prop}' is not a managed variable.`;
-            }
-            else {
-                // メッセージ欄にエラーメッセージを表示
-                msgEl.textContent = "Error: Use format '--var-name value'";
+
+            // 実行に成功した場合のみ履歴を保存
+            if (isSuccess) {
+                saveHistory(command);
+            } else {
+                historyIdx = -1; // 失敗時はインデックスのみリセット
             }
         }
     });
