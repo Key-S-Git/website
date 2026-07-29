@@ -4,8 +4,62 @@ document.addEventListener('DOMContentLoaded', () => {
     // スタイルの挿入
     const style = document.createElement('style');
     style.textContent = `
-        #cmd-console { display: none; position: fixed; top: 20px; left: 20px; width: 350px; background: #1a1a1a; color: #0f0; padding: 15px; border: 1px solid #444; box-shadow: 0 5px 15px rgba(0,0,0,0.5); z-index: 99999; font-family: 'Courier New', monospace; font-size: 14px; border-radius: 4px; }
-        #cmd-input { width: 100%; background: transparent; border: none; color: #0f0; outline: none; margin-top: 10px; font-family: inherit; }
+        #cmd-console { 
+            display: none; 
+            position: fixed; 
+            top: 20px; 
+            left: 20px; 
+            width: 350px; 
+            background: #1a1a1a; 
+            color: #0f0; 
+            padding: 10px 15px 15px 15px; 
+            border: 1px solid #444; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5); 
+            z-index: 99999; 
+            font-family: 'Courier New', monospace; 
+            font-size: 14px; 
+            border-radius: 4px; 
+            user-select: none; /* ドラッグ中のテキスト選択を防止 */
+        }
+        #cmd-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 6px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #333;
+            color: #888;
+            font-size: 12px;
+        }
+        #cmd-close-btn {
+            background: transparent;
+            border: none;
+            color: #888;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 0 4px;
+            line-height: 1;
+            font-family: inherit;
+        }
+        #cmd-close-btn:hover {
+            color: #fff;
+        }
+        #cmd-body {
+            user-select: text; /* メイン領域はテキスト選択可能にする */
+        }
+        #cmd-path {
+            word-break: break-all;
+            margin-bottom: 5px;
+            color: #0f0;
+        }
+        #cmd-input { 
+            width: 100%; 
+            background: transparent; 
+            border: none; 
+            color: #0f0; 
+            outline: none; 
+            font-family: inherit; 
+        }
         #cmd-message { font-size: 11px; margin-top: 10px; color: #888; }
     `;
     document.head.appendChild(style);
@@ -14,14 +68,62 @@ document.addEventListener('DOMContentLoaded', () => {
     const consoleEl = document.createElement('div');
     consoleEl.id = 'cmd-console';
     consoleEl.innerHTML = `
-        <div>${baseUrl} > </div>
-        <input type="text" id="cmd-input" placeholder="--var value" autocomplete="off">
-        <div id="cmd-message">Ctrl+K to toggle</div>
+        <div id="cmd-header">
+            <span>CONSOLE</span>
+            <button id="cmd-close-btn" title="Close (exit)">✕</button>
+        </div>
+        <div id="cmd-body">
+            <div id="cmd-path">${baseUrl} > </div>
+            <input type="text" id="cmd-input" placeholder="--var value" autocomplete="off">
+            <div id="cmd-message">Ctrl+K to toggle</div>
+        </div>
     `;
     document.body.appendChild(consoleEl);
 
     const inputEl = document.getElementById('cmd-input');
     const msgEl = document.getElementById('cmd-message');
+    const headerEl = document.getElementById('cmd-header');
+    const closeBtnEl = document.getElementById('cmd-close-btn');
+
+    // 閉じるボタンのイベント
+    closeBtnEl.addEventListener('click', () => handleExit());
+
+    // --- ドラッグ＆ドロップ機能の実装 ---
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    headerEl.addEventListener('mousedown', (e) => {
+        // 閉じるボタンを押した時はドラッグを開始しない
+        if (e.target === closeBtnEl) return;
+
+        isDragging = true;
+        offsetX = e.clientX - consoleEl.offsetLeft;
+        offsetY = e.clientY - consoleEl.offsetTop;
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) {
+            return;
+        }
+
+        let newLeft = e.clientX - offsetX;
+        let newTop = e.clientY - offsetY;
+
+        const maxLeft = window.innerWidth - consoleEl.offsetWidth;
+        const maxTop = window.innerHeight - consoleEl.offsetHeight;
+
+        newLeft = Math.max(0, Math.min(newLeft, maxLeft));
+        newTop = Math.max(0, Math.min(newTop, maxTop));
+
+        consoleEl.style.left = `${newLeft}px`;
+        consoleEl.style.top = `${newTop}px`;
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+    // -------------------------------------
 
     // 操作可能にしたいCSS変数を定義
     const managedVars = ['--key-accent'];
@@ -116,7 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
             consoleEl.style.display = 'none';
             msgEl.textContent = 'Ctrl+K to toggle';
         }, 1000);
-        // 実行成功として「true」を返し、履歴に保存させる
         return true;
     }
 
@@ -146,14 +247,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const command = inputEl.value.trim();
             if (!command) return;
 
-            let isSuccess = false; // 成功フラグ
+            let isSuccess = false;
 
-            // 1. 完全一致する登録コマンド（help, list, exitなど）の判定
             if (commands[command]) {
                 isSuccess = commands[command].action();
                 inputEl.value = '';
             } else {
-                // 2. 引数付きコマンド（CSS変数変更 "--var-name value"）の処理
                 const [prop, value] = command.split(' ');
 
                 if (!value) {
@@ -164,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.documentElement.style.setProperty(prop, value);
                     localStorage.setItem(prop, value);
                     msgEl.textContent = `Applied & Saved: ${prop}`;
-                    isSuccess = true; // 適用・保存に成功した場合のみ true
+                    isSuccess = true;
                 } else if (prop && !managedVars.includes(prop)) {
                     msgEl.textContent = `Error: '${prop}' is not a managed variable.`;
                 } else {
@@ -174,11 +273,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 inputEl.value = '';
             }
 
-            // 実行に成功した場合のみ履歴を保存
             if (isSuccess) {
                 saveHistory(command);
             } else {
-                historyIdx = -1; // 失敗時はインデックスのみリセット
+                historyIdx = -1;
             }
         }
     });
