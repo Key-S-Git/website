@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const consoleEl = document.createElement('div');
     consoleEl.id = 'cmd-console';
     consoleEl.innerHTML = `
-        <div>Access to > ${baseUrl}</div>
+        <div>${baseUrl} > </div>
         <input type="text" id="cmd-input" placeholder="--var value" autocomplete="off">
         <div id="cmd-message">Ctrl+K to toggle</div>
     `;
@@ -85,6 +85,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 入力値を変数名と値に分けて保存
             const [prop, value] = command.split(' ');
+
+            if (!value) {
+                return;
+            }
+
+            // 入力された値が、CSSが用意するcolorプロパティではなかった場合
+            if (!CSS.supports('color', value)) {
+                // メッセージ欄にエラーメッセージを表示
+                msgEl.textContent = `Error: '${value}' is invalid value.`;
+                // 入力欄を空にする
+                inputEl.value = '';
+                return;
+            }
 
             // 変数名と値が存在し、変数名が操作可能な変数リストに含まれている場合
             if (prop && managedVars.includes(prop) && value) {
