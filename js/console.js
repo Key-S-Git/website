@@ -43,6 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Ctrl と K が同時押しされた場合
         if (e.ctrlKey && e.key === 'k') {
             e.preventDefault();
+            // 入力欄を空にする
+            inputEl.value = '';
             // 現在コンソールのUIに適用されているスタイルを取得
             const style = window.getComputedStyle(consoleEl);
             // 取得したスタイルから、コンソールが非表示かどうかを識別
@@ -63,6 +65,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Enter') {
             // 入力値から前後の空白を除去
             const command = inputEl.value.trim();
+
+            // コマンドに「exit」または「quit」または「\q」と入力された場合
+            if (command === 'exit' || command === 'quit' || command ==='\\q') {
+                inputEl.value = '';
+                msgEl.textContent = 'Bye!'; // メッセージを変更
+
+                // 1000ミリ秒（1秒）後にコンソールを非表示にする
+                setTimeout(() => {
+                    consoleEl.style.display = 'none';
+                    msgEl.textContent = 'Ctrl+K to toggle'; // 次回表示時のためにメッセージを元に戻す
+                }, 1000);
+                return; // 以降の処理をスキップ
+            }
 
             // コマンドに「reset」と入力された場合
             if (command === 'reset') {
