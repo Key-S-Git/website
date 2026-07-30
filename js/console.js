@@ -86,7 +86,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtnEl = document.getElementById('cmd-close-btn');
 
     // 閉じるボタンのイベント
-    closeBtnEl.addEventListener('click', () => handleExit());
+    closeBtnEl.addEventListener('click', () => {
+        inputEl.value = '';
+        consoleEl.style.display = 'none';
+        msgEl.textContent = 'Ctrl+K to toggle';
+    });
 
     // --- ドラッグ＆ドロップ機能の実装 ---
     let isDragging = false;
@@ -133,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const savedValue = localStorage.getItem(varName);
         if (savedValue) {
             document.documentElement.style.setProperty(varName, savedValue);
+            document.documentElement.style.setProperty('--hamburger-text-hover', getContrastTextColor(savedValue));
         }
     });
 
@@ -147,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 履歴管理
+    // コマンド履歴管理
     const history = [];
     let historyIdx = -1;
     const MAX_HISTORY = 5;
@@ -185,6 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 managedVars.forEach(varName => {
                     localStorage.removeItem(varName);
                     document.documentElement.style.removeProperty(varName);
+                    document.documentElement.style.setProperty('--hamburger-text-hover', getContrastTextColor('#00face'));
                 });
                 msgEl.textContent = "All variables have been reset.";
                 return true;
@@ -261,6 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     msgEl.textContent = `Error: '${value}' is an invalid CSS color value.`;
                 } else if (prop && managedVars.includes(prop)) {
                     document.documentElement.style.setProperty(prop, value);
+                    document.documentElement.style.setProperty('--hamburger-text-hover', getContrastTextColor(value));
                     localStorage.setItem(prop, value);
                     msgEl.textContent = `Applied & Saved: ${prop}`;
                     isSuccess = true;
@@ -281,3 +288,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+
+
+/**
+ * どんなCSSカラー表現からでもRGB値 [r, g, b] を取得する関数
+ * @param {string} color - "#fff", "rgb(255, 0, 0)", "red", "hsl(0, 100%, 50%)" など
+ * @return {number[]} [r, g, b] (0〜255の配列)
+ */
+function parseCssColor(color) {
+  // ブラウザの描画コンテキストを利用して色を解析
+  const ctx = document.createElement('canvas').getContext('2d');
+  ctx.fillStyle = color;
+  
+  // ctx.fillStyleにセットすると自動的に "#rrggbb" 形式に正規化される
+  const normalizedHex = ctx.fillStyle; 
+
+  // #rrggbb から [r, g, b] に変換
+  const r = parseInt(normalizedHex.substring(1, 3), 16);
+  const g = parseInt(normalizedHex.substring(3, 5), 16);
+  const b = parseInt(normalizedHex.substring(5, 7), 16);
+
+  return [r, g, b];
+}
+
+/**
+ * 背景色から最適なテキスト色（#000000 または #FFFFFF）を自動判別する関数
+ * @param {string} color - HEX, RGB, RGBA, Color Name, HSL など任意のカラー表現
+ * @return {string} "#000000" (黒) または "#FFFFFF" (白)
+ */
+function getContrastTextColor(color) {
+  // どんな形式でも [r, g, b] に変換
+  const [r, g, b] = parseCssColor(color);
+
+  // 各チャンネルの相対輝度補正（WCAG 2.0 規格）
+  const sRGB = [r, g, b].map(v => {
+    v /= 255;
+    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  });
+
+  // 相対輝度の計算
+  const luminance = 0.2126 * sRGB[0] + 0.7152 * sRGB[1] + 0.0722 * sRGB[2];
+
+  // 閾値（0.179）で判定
+  return luminance > 0.179 ? '#000000' : '#FFFFFF';
+}
