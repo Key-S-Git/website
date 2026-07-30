@@ -176,7 +176,7 @@ header::before {
   transition: all 0.3s ease;
 }
 .nav ul li a h2:hover{
-  color:#000;
+  color:var(--hamburger-text-hover);
   background-size: 100% 100%;
 }
 
