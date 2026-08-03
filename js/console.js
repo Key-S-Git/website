@@ -300,7 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } 
             // エラー処理
             else {
-                msgEl.textContent = `Error: Unknown command. Use 'color <value>' or type 'help'`;
+                msgEl.textContent = `Error: Unknown command. Type 'help' for available commands.`;
             }
 
             inputEl.value = '';
