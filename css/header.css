@@ -34,9 +34,10 @@ header::before {
     text-decoration: none;
 }
 
-.header-icon-wrapper img{
+.header-icon-wrapper svg {
     height:60%;
     margin-left:10px;
+    fill: var(--key-accent);
 }
 
 .header-title{
