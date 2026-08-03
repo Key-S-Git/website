@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <div id="cmd-body">
             <div id="cmd-path">${baseUrl} > </div>
-            <input type="text" id="cmd-input" placeholder="--var value" autocomplete="off">
+            <input type="text" id="cmd-input" placeholder="Enter commands" autocomplete="off">
             <div id="cmd-message">Ctrl+K to toggle</div>
         </div>
     `;
@@ -129,8 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     // -------------------------------------
 
-    // 操作可能にしたいCSS変数を定義
+    // 操作可能にしたいCSS変数を定義（単一対象として設定）
     const managedVars = ['--key-accent'];
+    const TARGET_VAR = '--key-accent';
 
     // 初期化：ローカルストレージの値の適用
     managedVars.forEach(varName => {
@@ -157,7 +158,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let historyIdx = -1;
     const MAX_HISTORY = 5;
 
-    // 履歴にコマンドを保存する関数
+    /**
+     * 履歴にコマンドを保存する関数
+     * @param {*} command 
+     */
     function saveHistory(command) {
         const existingIndex = history.indexOf(command);
         if (existingIndex !== -1) {
@@ -168,6 +172,24 @@ document.addEventListener('DOMContentLoaded', () => {
             history.pop();
         }
         historyIdx = -1;
+    }
+
+    // 色を変更する共通処理関数
+    function applyColor(value) {
+        if (!value) {
+            msgEl.textContent = "Error: Missing color value. Usage: 'color red' or 'color #ff0000'";
+            return false;
+        }
+        if (!CSS.supports('color', value)) {
+            msgEl.textContent = `Error: '${value}' is an invalid CSS color value.`;
+            return false;
+        }
+
+        document.documentElement.style.setProperty(TARGET_VAR, value);
+        document.documentElement.style.setProperty('--hamburger-text-hover', getContrastTextColor(value));
+        localStorage.setItem(TARGET_VAR, value);
+        msgEl.textContent = `Applied & Saved: ${value}`;
+        return true;
     }
 
     // コマンド定義（実行後に true を返すと成功扱い）
@@ -209,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'help': {
             description: 'Show available commands',
             action: () => {
-                const list = Object.keys(commands).join(', ');
+                const list = Object.keys(commands).concat(['color <value>']).join(', ');
                 msgEl.textContent = `Available: ${list}`;
                 return true;
             }
@@ -250,45 +272,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Enterキー（コマンド実行）
         else if (e.key === 'Enter') {
-            const command = inputEl.value.trim();
-            if (!command) return;
+            // 入力値を取得
+            const commandText = inputEl.value.trim();
 
-            let isSuccess = false;
-
-            if (commands[command]) {
-                isSuccess = commands[command].action();
-                inputEl.value = '';
-            } else {
-                const [prop, value] = command.split(' ');
-
-                if (!value) {
-                    msgEl.textContent = `Error: Unknown command or missing value. Type 'help' for commands.`;
-                } else if (!CSS.supports('color', value)) {
-                    msgEl.textContent = `Error: '${value}' is an invalid CSS color value.`;
-                } else if (prop && managedVars.includes(prop)) {
-                    document.documentElement.style.setProperty(prop, value);
-                    document.documentElement.style.setProperty('--hamburger-text-hover', getContrastTextColor(value));
-                    localStorage.setItem(prop, value);
-                    msgEl.textContent = `Applied & Saved: ${prop}`;
-                    isSuccess = true;
-                } else if (prop && !managedVars.includes(prop)) {
-                    msgEl.textContent = `Error: '${prop}' is not a managed variable.`;
-                } else {
-                    msgEl.textContent = "Error: Use format '--var-name value' or type 'help'";
-                }
-
-                inputEl.value = '';
+            // 入力値がなかった場合
+            if (!commandText) {
+                return;
             }
 
+            // 実行が成功したかを判定するフラグ
+            let isSuccess = false;
+
+            // 入力値を空白で区切って配列化
+            const parts = commandText.split(/\s+/);
+            // コマンド名を取得
+            const cmd = parts[0];
+            // パラメータを取得
+            const arg = parts.slice(1).join(' ');
+
+            // 完全一致する基本コマンド（exit, reset, help など）
+            if (commands[commandText]) {
+                isSuccess = commands[commandText].action();
+            } 
+            // 'color <色>' 形式のみ受け付ける
+            else if (cmd === 'color') {
+                isSuccess = applyColor(arg);
+            } 
+            // エラー処理
+            else {
+                msgEl.textContent = `Error: Unknown command. Use 'color <value>' or type 'help'`;
+            }
+
+            inputEl.value = '';
+
+            // 成功時はコマンドを記録する
             if (isSuccess) {
-                saveHistory(command);
+                saveHistory(commandText);
             } else {
                 historyIdx = -1;
             }
         }
     });
 });
-
 
 
 /**
