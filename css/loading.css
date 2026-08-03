@@ -27,6 +27,7 @@
   width: 40%;
   height: auto;
   margin-bottom: 30px;
+  fill: var(--key-accent);
 }
 
 .bar-wrapper {
