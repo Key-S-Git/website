@@ -1,0 +1,107 @@
+/* コンテンツ画面 */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+body{
+  background-color: #fff;
+  margin: 0%;
+  padding: 0%;
+  font-size: clamp(1rem, 0.977rem + 0.11vw, 1.063rem);
+  line-height: 1.5;
+}
+
+main{
+  margin: 0 20vw;
+  padding: 100px 0;
+}
+
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 40px;
+}
+
+.form-group { 
+  width:100%;
+  position: relative;
+}
+
+.error-message { 
+  color: red;
+  position: absolute;
+  top: 100%;
+}
+
+label { 
+  display: block; 
+  margin-bottom: 5px; 
+  font-weight: bold; 
+}
+
+.form-group input[type="text"], .form-group textarea { 
+  width: 100%; 
+  padding: 16px; 
+  box-sizing: border-box; 
+  border-radius: 10px;
+  border: none;
+  outline: 1px solid #555;
+}
+
+.form-group input[type="text"]:focus, .form-group textarea:focus { 
+  outline: 2px solid var(--key-accent);
+}
+
+textarea { 
+  height: 150px;
+  resize: none;
+}
+
+#contact-form button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:50px;
+    background-color: var(--key-gray);
+    color: var(--key-accent);
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    width: 100%;
+    aspect-ratio: 10/1;
+    min-height: 50px;
+    box-shadow: 0px 10px color-mix(in srgb, var(--key-gray), #000 60%);
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+#contact-form button > *{
+    filter: brightness(0.6);
+    transition: all 0.3s;
+}
+
+#contact-form button:hover > *{
+    filter: brightness(1.0);
+}
+
+#contact-form button:active{
+    transform: translateY(10px);
+    box-shadow: none;
+}
+
+.button-text {
+  font-size: clamp(1.25rem, 1.159rem + 0.45vw, 1.5rem);
+}
+
+#contact-form button.sending > * {
+  filter: brightness(1.0);
+}
