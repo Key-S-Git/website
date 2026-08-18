@@ -109,3 +109,9 @@ textarea {
 #contact-form button.sending > * {
   filter: brightness(1.0);
 }
+
+@media screen and (max-width:750px) {
+  main{
+    margin: 0 10vw;
+  }
+}
