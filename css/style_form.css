@@ -40,6 +40,10 @@ main{
   top: 100%;
 }
 
+.error-input {
+  outline: 2px solid red !important;
+}
+
 label { 
   display: block; 
   margin-bottom: 5px; 
