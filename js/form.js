@@ -99,6 +99,8 @@ function showError(target, message) {
   errorSpan.className = "error-message";
   // 作成したspanタグをtargetの要素の前に挿入
   target.parentNode.insertBefore(errorSpan, target);
+  // エラー時にinput要素の枠線を赤くする
+  target.classList.add('error-input');
 }
 
 /**
@@ -106,6 +108,10 @@ function showError(target, message) {
  * @param {*} target エラーメッセージを消したい入力欄の要素
  */
 function clearFieldError(target) {
+  // input要素の枠線を元に戻す
+  target.classList.remove('error-input');
+
+  // inputの直前にある要素を取得
   const prev = target.previousElementSibling;
   if (prev && prev.classList.contains('error-message')) {
     prev.remove();
@@ -118,11 +124,17 @@ function clearFieldError(target) {
 function clearError() {
   // 「error-message」クラスを全て取得
   const errors = document.querySelectorAll('.error-message');
-
   // 各エラー要素に対して
   errors.forEach(error => {
     // 削除を実行
     error.remove();
+  });
+
+  // 「error-input」クラスを全て取得
+  const errorInputs = document.querySelectorAll('.error-input');
+  // 各input要素から、「error-input」クラスを削除
+  errorInputs.forEach(errorInput => {
+    errorInput.classList.remove('error-input');
   });
 }
 
