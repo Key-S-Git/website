@@ -1,4 +1,3 @@
-// 手順2でコピーしたGASのウェブアプリURLをここに貼り付けます
 const GAS_URL = "https://script.google.com/macros/s/AKfycbwh-FYQMce-e73IucS4l4Vs8LtCdUJHv-8JuWCGWpOVODMTx6EzvuGy2j-_75KYNNkkuA/exec";
 
 
@@ -10,13 +9,22 @@ const buttonText = document.querySelector('.button-text');
 // (1文字以上の英数字、ドット、アンダースコア、プラス、マイナス) @ (1文字以上の英数字、ドット、ハイフン) . (2文字以上の英字)
 const EMAIL_PATTERN = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
+// フォームの中身
+const elements = {
+  name: document.getElementById('name'),
+  email: document.getElementById('email'),
+  message: document.getElementById('message')
+}
+
 let animation;
+
+// ---- blur時のバリデーション登録 ----
+elements.name.addEventListener('blur', validateName);
+elements.email.addEventListener('blur', validateEmail);
+elements.message.addEventListener('blur', validateMessage);
 
 contactForm.addEventListener('submit', function(e) {
     e.preventDefault(); // ページのデフォルトの送信を停止
-
-    // 既存のエラーを全て削除
-    clearError();
 
     // ボタンを無効化
     submitButton.disabled = true;
@@ -30,51 +38,25 @@ contactForm.addEventListener('submit', function(e) {
         count++;
     }, 200);
 
-    const elements = {
-      name: document.getElementById('name'),
-      email: document.getElementById('email'),
-      message: document.getElementById('message')
-    }
-
-    // フォームの入力データを取得
-    const formData = {
-        name: elements.name.value.trim(),
-        email: elements.email.value.trim(),
-        message: elements.message.value.trim()
-    };
-
-    // エラーの有無を判定するフラグ
-    let hasError = false
-
-    // 「氏名」欄が空の場合
-    if (!formData.name) {
-      showError(elements.name, "氏名を入力してください");
-      hasError = true;
-    }
-
-    // 「メールアドレス」欄が空の場合
-    if (!formData.email) {
-      showError(elements.email, "メールアドレスを入力してください");
-      hasError = true;
-    }
-    // 「メールアドレス」欄の入力値の形式が間違っている場合
-    else if (!EMAIL_PATTERN.test(formData.email)) {
-      showError(elements.email, "メールアドレスの形式が間違っています");
-      hasError = true;
-    }
-
-    // 問い合わせ内容が空の場合
-    if (!formData.message) {
-      showError(elements.message, "お問い合わせ内容を入力してください") 
-      hasError = true;
-    }
+    // 各項目のバリデーションを実行（全項目を必ず評価させる）
+    const isNameValid = validateName();
+    const isEmailValid = validateEmail();
+    const isMessageValid = validateMessage();
 
     // 1つでもエラーがあった場合
-    if (hasError === true) {
+    if (!isNameValid || !isEmailValid || !isMessageValid) {
       // ボタンの状態を元に戻す
       setDefault();
       return;
     }
+
+    // フォームの入力データを取得
+    // ※直前のvalidate関数実行時に各valueは既にtrim済み
+    const formData = {
+        name: elements.name.value,
+        email: elements.email.value,
+        message: elements.message.value
+    };
 
     // Fetch APIを使ってGASにデータ送信
     fetch(GAS_URL, {
@@ -107,6 +89,8 @@ contactForm.addEventListener('submit', function(e) {
  * @param {*} message エラーメッセージの文面
  */
 function showError(target, message) {
+  // 同じ項目に二重表示しないよう先に消す
+  clearFieldError(target);
   // ベースとなるspanタグを作成
   const errorSpan = document.createElement('span');
   // エラーメッセージの文字列を受け取る
@@ -115,6 +99,17 @@ function showError(target, message) {
   errorSpan.className = "error-message";
   // 作成したspanタグをtargetの要素の前に挿入
   target.parentNode.insertBefore(errorSpan, target);
+}
+
+/**
+ * 特定の1項目のエラーメッセージだけを消去する関数
+ * @param {*} target エラーメッセージを消したい入力欄の要素
+ */
+function clearFieldError(target) {
+  const prev = target.previousElementSibling;
+  if (prev && prev.classList.contains('error-message')) {
+    prev.remove();
+  }
 }
 
 /**
@@ -142,4 +137,61 @@ function setDefault() {
   buttonText.textContent = "送信";
   // ボタンを有効化
   submitButton.disabled = false;
+}
+
+/**
+ * 「氏名」欄のバリデーション関数
+ * 入力値をtrimしてelementに書き戻してから判定する
+ * @returns {boolean} 有効な場合true、無効な場合false
+ */
+function validateName() {
+  // trim結果をvalueに書き戻すことで、以降は毎回trim()を呼ばなくてよくなる
+  elements.name.value = elements.name.value.trim();
+
+  if (!elements.name.value) {
+    showError(elements.name, "氏名を入力してください");
+    return false;
+  }
+
+  clearFieldError(elements.name);
+  return true;
+}
+
+/**
+ * 「メールアドレス」欄のバリデーション関数
+ * 入力値をtrimしてelementに書き戻してから判定する
+ * @returns {boolean} 有効な場合true、無効な場合false
+ */
+function validateEmail() {
+  elements.email.value = elements.email.value.trim();
+
+  if (!elements.email.value) {
+    showError(elements.email, "メールアドレスを入力してください");
+    return false;
+  }
+
+  if (!EMAIL_PATTERN.test(elements.email.value)) {
+    showError(elements.email, "メールアドレスの形式が間違っています");
+    return false;
+  }
+
+  clearFieldError(elements.email);
+  return true;
+}
+
+/**
+ * 「お問い合わせ内容」欄のバリデーション関数
+ * 入力値をtrimしてelementに書き戻してから判定する
+ * @returns {boolean} 有効な場合true、無効な場合false
+ */
+function validateMessage() {
+  elements.message.value = elements.message.value.trim();
+
+  if (!elements.message.value) {
+    showError(elements.message, "お問い合わせ内容を入力してください");
+    return false;
+  }
+
+  clearFieldError(elements.message);
+  return true;
 }
