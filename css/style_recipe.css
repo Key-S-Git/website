@@ -122,12 +122,15 @@ ul{
   border: solid 3px var(--key-gray);
   border-radius: 8px;
 }
+
 .box-outline .box-title {
   position: absolute;
   display: inline-block;
-  top: -13px;
+  bottom: 100%;
   left: 10px;
+  transform: translateY(50%);
   padding: 0 9px;
+  margin: 0;
   line-height: 1;
   font-size: clamp(1.25rem, 1.182rem + 0.34vw, 1.438rem);
   background: #fff;
