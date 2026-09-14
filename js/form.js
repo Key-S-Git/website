@@ -166,7 +166,7 @@ function validateName() {
   elements.name.value = elements.name.value.trim();
 
   if (!elements.name.value) {
-    showError(elements.name, "氏名を入力してください");
+    showError(elements.name, "ニックネームを入力してください");
     return false;
   }
 
