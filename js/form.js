@@ -23,6 +23,11 @@ elements.name.addEventListener('blur', validateName);
 elements.email.addEventListener('blur', validateEmail);
 elements.message.addEventListener('blur', validateMessage);
 
+window.addEventListener('beforeunload', (event) => {
+  event.preventDefault();
+  event.returnValue = ''; // 古いブラウザの互換性のため
+});
+
 contactForm.addEventListener('submit', function(e) {
     e.preventDefault(); // ページのデフォルトの送信を停止
 
