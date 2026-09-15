@@ -1,7 +1,7 @@
 footer {
     background-color: var(--key-gray);
     color: #fff;
-    height: 300px;
+    height: 80px;
     text-align: center;
     width: 100%;
     z-index: 1;
@@ -9,7 +9,8 @@ footer {
     align-items: center;
     justify-content: center;
     background-image: url(../media/pattern_footer.png);
-    font-size:26px;
+    font-size:16px;
+    padding: 40px 0;
 }
 
 .footer-sns{
@@ -25,19 +26,9 @@ footer {
 }
 
 .footer-item>img{
-    width: 70px;
+    width: 50px;
 }
 
 .footer-item:hover{
     filter: brightness(50%)
-}
-
-@media screen and (max-width:750px) {
-    footer{
-        font-size:16px;
-        height: 200px;
-    }
-    .footer-item>img{
-        width: 40px;
-    }
 }
