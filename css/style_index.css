@@ -61,7 +61,6 @@ header.scrolled::before {
 main {
     display: flow-root;
     background-color: #ffffff;
-    background-image: url(../media/pattern_background.png);
 }
 
 section {
