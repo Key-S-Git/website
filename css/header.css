@@ -169,6 +169,7 @@ header::before {
 
 .nav ul li a h2{
   font-size: 20px;
+  line-height: 1.5;
   color:#fff;
   padding: 0 10px;
   background-image: linear-gradient(90deg, var(--key-accent), var(--key-accent));
