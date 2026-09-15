@@ -2,7 +2,7 @@
  * 404ページに遷移させる関数
  */
 export function redirectTo404() {
-  const baseUrl = window.location.origin + '/404.html';
+  const baseUrl = '404.html';
   window.location.href = baseUrl;
 }
 
