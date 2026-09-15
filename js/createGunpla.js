@@ -1,62 +1,55 @@
+import { fetchDataById } from './common.js';
+
 // URLの ?id=◯◯ の部分を取得
 const urlParams = new URLSearchParams(window.location.search);
 const gunplaId = urlParams.get('id');
 
-fetch('json/gunpla.json')
-  .then(res => res.json())
-  .then(allData => {
-    const data = allData[gunplaId]; // gunpla.jsonより、指定されたIDのデータだけ取り出す
+(async () => {
+  const data = await fetchDataById('json/gunpla.json', gunplaId);
+  if (!data) return;
 
-    if (!data) {
-      document.body.innerHTML = "データが見つかりませんでした。";
-      return;
-    }
+  // 1. テキスト情報の流し込み
+  document.getElementById('name').textContent = data.name;
+  document.getElementById('number').textContent = data.number;
 
-    // 1. テキスト情報の流し込み
-    document.getElementById('name').textContent = data.name;
-    document.getElementById('number').textContent = data.number;
+  // メイン画像
+  const mainImg = document.createElement('img');
+  mainImg.src = data.thumbnail;
+  document.getElementById('main-image-container').appendChild(mainImg);
 
-    // メイン画像
-    const mainImg = document.createElement('img');
-    mainImg.src = data.thumbnail;
-    document.getElementById('main-image-container').appendChild(mainImg);
+  // ハッシュタグ
+  const tagContainer = document.getElementById('hashtag-container');
+  data.hashtags.forEach(tag => {
+    const div = document.createElement('div');
+    div.className = 'hashtag-wrapper';
+    const a = document.createElement('a');
+    a.href = tag.link;
+    a.className = 'hashtag';
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.textContent = tag.text;
+    div.appendChild(a);
+    tagContainer.appendChild(div);
+  });
 
-    // ハッシュタグ
-    const tagContainer = document.getElementById('hashtag-container');
+  // 武装リスト
+  const weaponList = document.getElementById('weapon-list');
+  data.weapons.forEach(weapon => {
+    const li = document.createElement('li');
+    li.textContent = weapon;
+    weaponList.appendChild(li);
+  });
 
-    data.hashtags.forEach(tag => {
-        const div = document.createElement('div');
-        div.className = "hashtag-wrapper"
-        const a = document.createElement('a');
-        a.href = tag.link;
-        a.className = 'hashtag';
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-        a.textContent = tag.text;
-        div.appendChild(a);
-        tagContainer.appendChild(div);
-    });
-
-    // 武装リスト
-    const weaponList = document.getElementById('weapon-list');
-
-    data.weapons.forEach(weapon => {
-        const li = document.createElement('li');
-        li.textContent = weapon;
-        weaponList.appendChild(li);
-    });
-
-    // アルバム（Fancybox対応）の生成
-    const albumContainer = document.getElementById('album-container');
-    
-    data.album.forEach(imgPath => {
-        const box = document.createElement('div');
-        box.className = 'box';
-        box.innerHTML = `
-            <a data-fancybox="gallery" href="${imgPath}" class="album-item">
-                <img src="${imgPath}">
-            </a>
-        `;
-        albumContainer.appendChild(box);
-    });
-});
+  // アルバム（Fancybox対応）の生成
+  const albumContainer = document.getElementById('album-container');
+  data.album.forEach(imgPath => {
+    const box = document.createElement('div');
+    box.className = 'box';
+    box.innerHTML = `
+      <a data-fancybox="gallery" href="${imgPath}" class="album-item">
+        <img src="${imgPath}">
+      </a>
+    `;
+    albumContainer.appendChild(box);
+  });
+})();
