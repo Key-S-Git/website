@@ -76,7 +76,7 @@ contactForm.addEventListener('submit', function(e) {
         body: JSON.stringify(formData)
     })
     .then(() => {
-        alert('お問い合わせが送信されました。ありがとうございました！');
+        displayToast();
         contactForm.reset();
     })
     .catch(error => {
@@ -211,4 +211,12 @@ function validateMessage() {
 
   clearFieldError(elements.message);
   return true;
+}
+
+function displayToast() {
+  const toast = document.querySelector('.toast');
+  toast.classList.add('displaying');
+  setTimeout(() => {
+    toast.classList.remove('displaying');
+  }, 3000);
 }
