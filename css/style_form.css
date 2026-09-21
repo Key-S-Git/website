@@ -111,6 +111,37 @@ textarea {
   filter: brightness(1.0);
 }
 
+.toast {
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  text-wrap: nowrap;
+  padding: 20px;
+  background-color: var(--key-gray);
+  color: #fff;
+  text-align: center;
+  position: fixed;
+  bottom: 100px;
+  left:50%;
+  transform: translateX(-50%);
+  outline: 2px solid #555;
+  border-radius: 10px;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.checked {
+  color: #0f0;
+  padding-right: 10px;
+}
+
+.toast.displaying {
+  visibility: visible;
+  opacity: 1;
+}
+
 @media screen and (max-width:750px) {
   main{
     margin: 0 10vw;
