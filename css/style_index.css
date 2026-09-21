@@ -321,10 +321,8 @@ h2 {
 
 .contact-flex{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  column-gap: 60px;
-
 }
 
 .mail-button{
@@ -350,8 +348,8 @@ i{
     text-decoration: none;
     text-align: center;
     border-radius: 10px;
-    width: 100%;
-    min-height: 50px;
+    height:10vw;
+    min-height: var(--button-height);
     box-shadow: 0px 10px color-mix(in srgb, var(--key-gray), #000 60%);
     transition: all 0.3s;
 }
@@ -372,6 +370,7 @@ i{
 
 .long-button {
     aspect-ratio: 10/1;
+    max-width: 100%;
 }
 
 .square-button {
