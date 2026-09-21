@@ -12,7 +12,7 @@ body{
   background-color: #fff;
   margin: 0%;
   padding: 0%;
-  font-size: clamp(1rem, 0.977rem + 0.11vw, 1.063rem);
+  font-size: 16px;
   line-height: 1.5;
 }
 
@@ -38,6 +38,7 @@ main{
   color: red;
   position: absolute;
   top: 100%;
+  font-size: 16px;
 }
 
 .error-input {
@@ -81,7 +82,7 @@ textarea {
     border-radius: 10px;
     width: 100%;
     aspect-ratio: 10/1;
-    min-height: 50px;
+    min-height: var(--button-height);
     box-shadow: 0px 10px color-mix(in srgb, var(--key-gray), #000 60%);
     transition: all 0.3s;
     border: none;
