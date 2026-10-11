@@ -26,6 +26,10 @@ header::before {
     z-index: -1; 
 }
 
+header.not-scrolled::before {
+    opacity: 0;
+}
+
 .header-icon-wrapper{
     height:100%;
     width:25%;
@@ -82,10 +86,6 @@ header::before {
 .page-nav-link.is-current h2 {
     color: var(--key-accent) !important; /* 目立つ色に変更 */
     transition: color 0.3s ease;
-}
-
-#top-image{
-    height: 100%;
 }
 
 /* ハンバーガーアイコンの外側 */
