@@ -1,131 +1,52 @@
+// ===== 設定 =====
+const TYPING_TEXT = 'This is\nKey-S\nWebsite.';
+const TYPING_START_DELAY = 1000; // ms
+const HEADER_THRESHOLD = 50;     // px
 
-window.addEventListener('scroll', function() {
-    const header = document.querySelector('header');
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
+// ===== ヘッダー =====
+// 一定量スクロールしたらクラスを付与、戻ったら除去
+document.addEventListener('DOMContentLoaded', () => {
+  const header = document.querySelector('header');
+  if (!header) return;
+
+  let ticking = false;
+
+  const update = () => {
+    const scrolled = window.scrollY < HEADER_THRESHOLD;
+    header.classList.toggle('not-scrolled', scrolled);
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }, { passive: true });
+
+  update(); // 読み込み時にすでにスクロール済みの場合に対応
 });
 
-// ナビゲーションの連動処理
-document.addEventListener("DOMContentLoaded", () => {
-    const pageNav = document.getElementById('page-nav');
-    const firstSection = document.getElementById('about');
-    const navLinks = document.querySelectorAll(".page-nav-link");
-    
-    // リンク先のセクション要素を配列化しておく
-    const sections = Array.from(navLinks).map(link => {
-        return document.querySelector(link.getAttribute("href"));
-    });
+// ===== タイピング演出 =====
+function typeText(el, text) {
+  let i = 0;
 
-    if (!pageNav || !firstSection || navLinks.length === 0) return;
+  const step = () => {
+    i++;
+    const html = text.slice(0, i).replace(/\n/g, '<br>');
+    const done = i >= text.length;
 
-    // 現在のセクションを判定してクラスを付与する関数
-    const updateCurrentSection = () => {
-        const scrollY = window.scrollY;
-        const offset = 240; // 判定のしきい値
+    // 完了後は点滅用の id を付けて終了
+    el.innerHTML = `<span class="wrap"${done ? ' id="blink"' : ''}>${html}</span>`;
 
-        sections.forEach((section, index) => {
-            if (!section) return;
-            const sectionTop = section.offsetTop - offset;
-            const sectionBottom = sectionTop + section.offsetHeight;
+    if (!done) setTimeout(step, 150 - Math.random() * 100);
+  };
 
-            if (scrollY >= sectionTop && scrollY < sectionBottom) {
-                navLinks[index].classList.add("is-current");
-            } else {
-                navLinks[index].classList.remove("is-current");
-            }
-        });
+  step();
+}
 
-
-    };
-
-    // スクロール時に実行（リクエストアニメーションで最適化）
-    let isTicking = false;
-    window.addEventListener('scroll', () => {
-        if (!isTicking) {
-            window.requestAnimationFrame(() => {
-                updateCurrentSection();
-                isTicking = false;
-            });
-            isTicking = true;
-        }
-    });
-
-    // 初回実行
-    updateCurrentSection();
+window.addEventListener('load', () => {
+  const elements = document.querySelectorAll('.txt-rotate');
+  setTimeout(() => {
+    elements.forEach(el => typeText(el, TYPING_TEXT));
+  }, TYPING_START_DELAY);
 });
-
-
-
-var TxtRotate = function(el, period) {
-  this.el = el;
-  this.loopNum = 0;
-  this.period = parseInt(period, 10) || 2000;
-  this.txt = '';
-  this.tick();
-  this.isDeleting = false;
-};
-
-TxtRotate.prototype.tick = function() {
-  var fullTxt = "This is\nKey-S\nWebsite.";
-
-  if (!this.isDeleting) {
-    this.txt = fullTxt.substring(0, this.txt.length + 1);
-  }
-
-  this.el.innerHTML = '<span class="wrap">'+this.txt.replace(/\n/g, "<br>")+'</span>';
-
-  var that = this;
-
-  if (!this.isDeleting) {
-    var delta = 150 - Math.random() * 100;
-  }
-
-  if (!this.isDeleting && this.txt === fullTxt) {
-    delta = this.period;
-    this.isDeleting = true;
-    delta = 10000;
-  }
-  if(this.isDeleting){
-    delta = 10000;
-    this.el.innerHTML = '<span class="wrap" id="blink">'+this.txt.replace(/\n/g, "<br>")+'</span>';
-  }
-
-  setTimeout(function() {
-    that.tick();
-  }, delta);
-
-};
-
-window.addEventListener('load', function() {
-  var elements = document.getElementsByClassName('txt-rotate');
-
-  // 10秒後にテキスト回転を開始する
-  setTimeout(function() {
-    for (var i=0; i<elements.length; i++) {
-      var period = elements[i].getAttribute('data-period');
-      new TxtRotate(elements[i], period);
-    }
-
-    var css = document.createElement("style");
-    document.body.appendChild(css);
-  }, 1000); // 1000ミリ秒 = 10秒の遅延
-
-});
-
-$(function () {
-// ハンバーガーメニューのボタンがクリックされたときの処理
- $('.hamburger').click(function () {
-    $(this).toggleClass('active');
-    $('#header .nav').toggleClass('active');
-});
-
-//メニュー内のリンクがクリックされた時
-  $('.nav a').click(function () {
-    $('.hamburger').removeClass('active');
-    $('#header .nav').removeClass('active');
-  });
-});
-
