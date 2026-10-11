@@ -26,15 +26,13 @@ function loadAndRenderCategory(type, parseData) {
  */
 function renderItem(type, id, thumbnail, title, sub) {
   const item = `
-    <div class="container">
-        <a href="${type}.html?id=${id}" class="album-item">
-            <div class="box"><img src="${thumbnail}"></div>
-            <div class="overlay">
-                <div class="title">${title}</div>
-                <div class="sub">${sub}</div>
-            </div>
-        </a>
-    </div>
+      <a href="${type}.html?id=${id}" class="album-item">
+          <div class="box"><img src="${thumbnail}"></div>
+          <div class="overlay">
+              <div class="title">${title}</div>
+              <div class="sub">${sub}</div>
+          </div>
+      </a>
   `;
   const container = document.getElementById(`${type}-container`);
   container.insertAdjacentHTML('beforeend', item);
