@@ -11,121 +11,53 @@ html {
 body {
     background-color: #fff;
     color: rgb(0,0,0);
-    font-size: 26px;
+    font-size: 19px;
     font-weight: 300;
     letter-spacing: 1.4%;
     line-height: 1.5;
     margin: 0;
     padding: 0;
-    height: 100%;  /* 3. 画面外へのはみ出しを一切禁止にする */
+    height: 100%;
 }
 
-canvas {
-  display: block; /* キャンバス下の謎の隙間を消す */
-}
-
-/* headerの基本設定 */
-header {
-    height: 80px;
-    position: fixed;
+#top-image{
     width: 100%;
-    z-index: 2;
-    background-color: transparent;
-    display:flex;
-    justify-content: space-between;
+    height: 50vh;
+}
+
+.header-text {
+    font-size: min(60px, 10vw);
+}
+
+.header-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-header::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--key-gray);
-    background-size: cover;
-    background-position: center;
-    
-    /* 出現・消失の両方に効くアニメーション設定 */
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    z-index: -1; 
+canvas {
+  display: block;
+  position: absolute;
+  top:0;
 }
 
-/* スクロール時に JS で付与されるクラス */
-header.scrolled::before {
-    opacity: 0.8; /* ここでふわっと出現させる */
-}
-
-main {
-    display: flow-root;
-    background-color: #ffffff;
-}
-
-section {
-    margin: 192px 0
-}
-
-h1{
-    text-align: center;
-    font-size: 38px;
-}
-
-h2 {
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-}
-
-
-@media screen and (max-width:750px) {
-    html {
-        scroll-padding-top: 58px
-    }
-    
-    header {
-        height: 60px
-    }
-
-    body{
-        font-size: 11px;
-    }
-
-    h1{
-        font-size: 27px;
-    }
-
-    h2{
-        font-size: 20px;
-        font-weight: bold;
-    }
-
-    h3{
-        font-size: 12px;
-        font-weight: bold;
-    }
-
-    section {
-        margin: 48px 0
-    }
-}
-
-.header-container{
-    color: #fff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    margin: 0; 
+h1 {
+    margin: 0;
     padding: 0;
-    line-height: 1.2;
 }
 
-.header-text{
-    font-size: 10vw;
-    text-align: center;
+.section-title {
+    margin: 0;
+    padding: 0;
+    font-size: min(40px, 8cqw);
+}
+
+.header-text {
+    color: #fff;
+    margin: 0;
+    padding: 0;
 }
 
 .wrap{
@@ -140,6 +72,7 @@ h2 {
   animation-iteration-count: infinite;
 }
 
+
 @keyframes flashing {
   0% {
     border-right: 0.04em solid rgba(255,255,255,1);
@@ -152,290 +85,199 @@ h2 {
   }
 }
 
-.header-icon-wrapper{
-    height:100%;
-    width:25%;
-    display:flex;
-    align-items: center;
-    text-decoration: none;
-}
-
-.header-icon-wrapper svg {
-    height:60%;
-    margin-left:10px;
-    fill: var(--key-accent);
-}
-
-.header-title{
-    margin-left:5px;
-    font-size: 26px;
-    color:white;
-    font-weight:bold;
-    text-wrap: nowrap;
-}
-
-#header-ul {
-    align-items: center;
+.sns-links {
+    width:100%;
+    height: 70px;
     display: flex;
-    justify-content: flex-end;
-    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #555;
+    border-top: 3px solid #555;
+    border-bottom: 3px solid #555;
 }
 
-.header-nav-img {
-    padding: 32px
-}
-
-.page-nav-ul{
-    padding-right: 40px;
-}
-
-.nav--text{
-    font-size: 20px;
-}
-
-.page-nav-link {
-    color: #fff;
-    text-decoration: none;
-}
-.page-nav-link:hover{
-    color:#aaa;
-}
-.is-current:hover{
-    color: var(--key-accent);
-}
-
-/* ナビゲーションの現在のセクションを強調 */
-.page-nav-link.is-current h2 {
-    color: var(--key-accent) !important; /* 目立つ色に変更 */
-    transition: color 0.3s ease;
-}
-
-#top-image{
+.sns-link {
+    width: calc((100% - 6px) / 3);
     height: 100%;
-}
-
-.maincontents{
-    margin: 0 auto;
-    padding: 0 40px;
-    max-width: 800px;
-}
-
-.about-flex{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.about-item>img{
-  width: 40%;
-  height: auto;
-  margin-right: 30px;
-  border-radius: 100%;
-}
-.about-item{
-  width: 50%;
-}
-.about-imgpos{
-  text-align: end;
-}
-
-.name-text{
-  font-size: 30px;
-  font-weight: bold;
-  line-height: 2;
-}
-
-.album-flex {
-  display: flex;
-  flex-wrap: wrap; /* 画面幅に合わせて折り返す */
-  justify-content: flex-start; /* 左寄せで配置 */
-}
-
-.box {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden; /* 画像がボックスからはみ出さないようにする */
-}
-
-.album-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* 画像をボックスに合わせて切り抜く */
-}
-
-.wrapper{
-    min-height: 100vh;
-    position: relative;/*←相対位置*/
-    padding-bottom: 120px;/*←footerの高さ*/
-    box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
-}
-
-.container {
-  position: relative;
-  width: 23%; /* 画像のサイズに合わせて調整 */
-  margin: 1%; /* 画像間の余白 */
-}
-
-.container img {
-  width: 100%;
-  display: block;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-
-  /* ホバーされていない場合は非表示 */
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  display: block;
-}
-
-/* ホバー時の設定 */
-.container:hover .overlay {
-  opacity: 1;
-}
-
-.title{
-  font-size: clamp(0.625rem, 0.511rem + 0.57vw, 0.938rem);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  text-align: center;
-  font-weight: bold;
-  line-height: 1.5;
-}
-.sub{
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    font-size: clamp(0.5rem, 0.409rem + 0.45vw, 0.75rem);
-}
-
-.contact-flex{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.mail-button{
-    font-size:clamp(1.25rem, 1.159rem + 0.45vw, 1.5rem);
-}
-
-i{
-    box-sizing: border-box;
-    font-size:50cqw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top:50px;
     background-color: var(--key-gray);
     color: var(--key-accent);
-    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
-    text-align: center;
-    border-radius: 10px;
-    height:10vw;
-    min-height: var(--button-height);
-    box-shadow: 0px 10px color-mix(in srgb, var(--key-gray), #000 60%);
-    transition: all 0.3s;
+    font-size: 5cqh;
 }
 
-.button > *{
+.sns-link > *{
     filter: brightness(0.6);
     transition: all 0.3s;
 }
 
-.button:hover > *{
+.sns-link:hover > * {
     filter: brightness(1.0);
 }
 
-.button:active{
-    transform: translateY(10px);
-    box-shadow: none;
+main {
+    display: flex;
 }
 
-.long-button {
-    aspect-ratio: 10/1;
-    max-width: 100%;
+.contents-wrapper {
+    width: 70%;
+    padding: 30px 60px;
+    margin: 60px 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.square-button {
-    aspect-ratio: 1/1;
+.profile-wrapper {
+    width:30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 30px 60px;
+    margin: 60px 0;
+    box-sizing: border-box;
+
+    border-left: 3px solid #ddd;
+}
+
+.profile-image-wrapper {
+    width: 120px;
+    height: 120px;
+}
+
+.profile-image {
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+    border-radius: 100000px;
+}
+
+.name {
+    font-weight: bold;
+}
+
+section {
+    width: 100%;
     container-type: inline-size;
 }
 
-.material-symbols-outlined{
-    padding-right: 5px;
+.album-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
 }
 
-@media screen and (max-width:750px) {
+.album-item {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden; /* はみ出しを隠す */
+    container-type: inline-size;
+}
 
+.box {
+    width:100%;
+    height:fit-content;
+    aspect-ratio: 1 / 1;
+    overflow: hidden; /* はみ出しを隠す */
+}
 
-    .header-title{
-        font-size: 16px;
-    }
-    #header-ul {
+.box img {
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height:100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.album-item:hover .overlay {
+    opacity: 1;
+}
+
+.title, .sub {
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    opacity: 1;
+}
+
+.title {
+    font-size: min(18px, 10cqw);
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold
+}
+
+.sub {
+    font-size: min(15px, 8cqw);
+    text-align: right;
+    bottom: 5px;
+    right: 5px;
+}
+
+.link-button {
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: var(--key-gray);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    outline: 3px solid var(--key-gray);
+    transition: all 0.3s;
+}
+
+.link-button:hover {
+    background-color: var(--key-gray);
+    color: var(--key-accent);
+}
+
+.material-symbols-outlined {
+    vertical-align: -3px;
+}
+
+.link-button > * {
+    font-size: 22px !important;
+}
+
+@media screen and (max-width:900px) {
+    main {
         flex-direction: column;
-        height: auto;
-        text-align: center;
     }
 
-    .header-nav-img {
-        padding: 12px
+    .contents-wrapper, .profile-wrapper {
+        width: 100%;
+        padding: 0 5vw;
     }
 
-    #menu-check:checked+nav {
-        opacity: 1;
-        transform: translateY(0)
-    }
-
-    #menu-button {
-        display: block;
-        float: right;
-        padding: 14px;
-        z-index: 4;
-        width: 30px;
-    }
-    .page-nav-ul{
-        padding-right: 0px;
-    }
-    #header-space {
-        height: 52px
-    }
-
-
-    .maincontents{
-        padding: 0 20px;
-    }
-    .about-item>img{
-        width: 40%;
-        height: auto;
-        margin-right: 15px;
-        border-radius: 100%;
-    }
-    .name-text{
-        font-size: 15px;
-        font-weight: bold;
-    }
-
-    .container {
-        position: relative;
-        width: 31%;
-        margin: 1%;
+    .profile-wrapper {
+        width: calc(100% - 5vw * 2);
+        border-left: none;
+        border-top: 3px solid #ddd;
+        padding: 60px 0;
+        margin: 0 5vw;
+        box-sizing:border-box;
     }
 
 }
+
