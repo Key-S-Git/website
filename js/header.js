@@ -24,7 +24,7 @@ window.addEventListener('DOMContentLoaded', () => {
               <li><a href="#gunpla"><h2>Gunpla</h2></a></li>
               <li><a href="#travelogues"><h2>Travelogues</h2></a></li>
               <li><a href="#recipes"><h2>Recipes</h2></a></li>
-              <li><a href="#account"><h2>Account</h2></a></li>
+              <li><a href="form.html"><h2>Contact</h2></a></li>
           </ul>
         </nav>
     `;
