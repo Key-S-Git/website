@@ -132,9 +132,16 @@ textarea {
   transition: all 0.3s;
 }
 
-.checked {
-  color: #0f0;
+.toast-icon {
   padding-right: 10px;
+}
+
+.toast-icon.checked {
+  color: #0f0;
+}
+
+.toast-icon.error {
+  color: #f00;
 }
 
 .toast.displaying {
