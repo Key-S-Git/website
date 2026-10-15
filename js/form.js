@@ -1,7 +1,6 @@
 const GAS_URL = "https://script.google.com/macros/s/AKfycbwh-FYQMce-e73IucS4l4Vs8LtCdUJHv-8JuWCGWpOVODMTx6EzvuGy2j-_75KYNNkkuA/exec";
 
-
-const contactForm = document.getElementById('contact-form')
+const contactForm = document.getElementById('contact-form');
 const submitButton = document.getElementById('submit-button');
 const buttonText = document.querySelector('.button-text');
 
@@ -9,12 +8,19 @@ const buttonText = document.querySelector('.button-text');
 // (1文字以上の英数字、ドット、アンダースコア、プラス、マイナス) @ (1文字以上の英数字、ドット、ハイフン) . (2文字以上の英字)
 const EMAIL_PATTERN = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
+// 文字数の上限（GAS側と同じ値にすること）
+const LIMITS = {
+  name: 50,
+  email: 254,
+  message: 2000
+};
+
 // フォームの中身
 const elements = {
   name: document.getElementById('name'),
   email: document.getElementById('email'),
   message: document.getElementById('message')
-}
+};
 
 let animation;
 
@@ -64,24 +70,37 @@ contactForm.addEventListener('submit', function(e) {
     };
 
     // Fetch APIを使ってGASにデータ送信
+    // text/plain にするとプリフライトが発生せず、レスポンスの中身も読める
     fetch(GAS_URL, {
         method: 'POST',
-        // CORS制限を回避するため mode: 'no-cors' を使うか、標準のJSON送信を行う
-        // GASへのPOSTでは 'no-cors' を使うとレスポンスの中身が読めないため、リダイレクトを伴う通常送信かCORS対策をします
-        // 最も手軽なのは mode: 'no-cors' ですが、成否判定が必要な場合は下記のように対応します
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(formData)
     })
-    .then(() => {
-        displayToast();
-        contactForm.reset();
+    .then(res => {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+    })
+    .then(result => {
+        if (result.result === 'success') {
+            displayToast('送信ありがとうございます。', 'success');
+            contactForm.reset();
+        } else {
+            // GAS側のバリデーションエラー：該当項目にエラーを表示
+            if (result.errors) {
+                Object.keys(result.errors).forEach(key => {
+                    if (elements[key]) {
+                      showError(elements[key], result.errors[key]);
+                    }
+                });
+                displayToast('入力内容を確認してください。', 'error');
+            } else {
+                displayToast('送信に失敗しました。時間をおいて再度お試しください。', 'error');
+            }
+        }
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('送信に失敗しました。時間をおいて再度お試しください。');
+        displayToast('送信に失敗しました。時間をおいて再度お試しください。', 'error');
     })
     .finally(() => {
         setDefault();
@@ -170,6 +189,11 @@ function validateName() {
     return false;
   }
 
+  if (elements.name.value.length > LIMITS.name) {
+    showError(elements.name, `${LIMITS.name}文字以内で入力してください`);
+    return false;
+  }
+
   clearFieldError(elements.name);
   return true;
 }
@@ -184,6 +208,11 @@ function validateEmail() {
 
   if (!elements.email.value) {
     showError(elements.email, "メールアドレスを入力してください");
+    return false;
+  }
+
+  if (elements.email.value.length > LIMITS.email) {
+    showError(elements.email, `${LIMITS.email}文字以内で入力してください`);
     return false;
   }
 
@@ -209,14 +238,38 @@ function validateMessage() {
     return false;
   }
 
+  if (elements.message.value.length > LIMITS.message) {
+    showError(elements.message, `${LIMITS.message}文字以内で入力してください`);
+    return false;
+  }
+
   clearFieldError(elements.message);
   return true;
 }
 
-function displayToast() {
+let toastTimer;
+
+/**
+ * トーストを表示する関数
+ * @param {string} message 表示する文言
+ * @param {'success'|'error'} type 種類（デフォルトはsuccess）
+ */
+function displayToast(message = '送信ありがとうございます。', type = 'success') {
   const toast = document.querySelector('.toast');
+  const icon = toast.querySelector('.toast-icon');
+  const text = toast.querySelector('.toast-message');
+
+  // 文言を差し替え
+  text.textContent = message;
+
+  // アイコンと色を種類に応じて切り替え
+  icon.className = 'fa-solid toast-icon ' +
+    (type === 'error' ? 'fa-circle-exclamation error' : 'fa-circle-check checked');
+
+  // 表示中に再度呼ばれても、前のタイマーが早く消してしまわないようにする
+  clearTimeout(toastTimer);
   toast.classList.add('displaying');
-  setTimeout(() => {
+  toastTimer = setTimeout(() => {
     toast.classList.remove('displaying');
   }, 3000);
 }
