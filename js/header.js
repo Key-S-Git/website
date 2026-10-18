@@ -35,17 +35,33 @@ window.addEventListener('DOMContentLoaded', () => {
     // ヘッダーのHTMLを挿入
     header.insertAdjacentHTML('beforeend', headerContent);
 
-    $(function () {
-      // ハンバーガーメニューのボタンがクリックされたときの処理
-      $('.hamburger').click(function () {
-          $(this).toggleClass('active');
-          $('#header .nav').toggleClass('active');
-      });
+    const hamburger = header.querySelector('.hamburger');
+    const nav = header.querySelector('.nav');
 
-      //メニュー内のリンクがクリックされた時
-      $('.nav a').click(function () {
-        $('.hamburger').removeClass('active');
-        $('#header .nav').removeClass('active');
+    // ハンバーガーメニューのボタンがクリックされたときの処理
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      nav.classList.toggle('active');
+    });
+
+    // メニュー内のリンクがクリックされた時
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        // index.html と "/" を同じページとして扱う
+        const normalize = (path) => (path.endsWith('/') ? path + 'index.html' : path);
+
+        const url = new URL(link.href, location.href);
+        const isCurrentPage =
+          normalize(url.pathname) === normalize(location.pathname) && !url.hash;
+
+        // 現在のページへのリンクなら遷移しない
+        if (isCurrentPage) {
+          e.preventDefault();
+        }
+
+        // メニューは常に閉じる
+        hamburger.classList.remove('active');
+        nav.classList.remove('active');
       });
     });
 });
