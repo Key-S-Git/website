@@ -1,3 +1,5 @@
+import { displayToast } from "./toast.js";
+
 const GAS_URL = "https://script.google.com/macros/s/AKfycbwh-FYQMce-e73IucS4l4Vs8LtCdUJHv-8JuWCGWpOVODMTx6EzvuGy2j-_75KYNNkkuA/exec";
 
 const contactForm = document.getElementById('contact-form');
@@ -245,31 +247,4 @@ function validateMessage() {
 
   clearFieldError(elements.message);
   return true;
-}
-
-let toastTimer;
-
-/**
- * トーストを表示する関数
- * @param {string} message 表示する文言
- * @param {'success'|'error'} type 種類（デフォルトはsuccess）
- */
-function displayToast(message = '送信ありがとうございます。', type = 'success') {
-  const toast = document.querySelector('.toast');
-  const icon = toast.querySelector('.toast-icon');
-  const text = toast.querySelector('.toast-message');
-
-  // 文言を差し替え
-  text.textContent = message;
-
-  // アイコンと色を種類に応じて切り替え
-  icon.className = 'fa-solid toast-icon ' +
-    (type === 'error' ? 'fa-circle-exclamation error' : 'fa-circle-check checked');
-
-  // 表示中に再度呼ばれても、前のタイマーが早く消してしまわないようにする
-  clearTimeout(toastTimer);
-  toast.classList.add('displaying');
-  toastTimer = setTimeout(() => {
-    toast.classList.remove('displaying');
-  }, 3000);
 }
