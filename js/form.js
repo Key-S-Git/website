@@ -32,6 +32,12 @@ elements.email.addEventListener('blur', validateEmail);
 elements.message.addEventListener('blur', validateMessage);
 
 window.addEventListener('beforeunload', (event) => {
+  // どれか1つでも入力があれば離脱確認を出す(空白だけの場合は入力なし扱い)
+  const hasInput = Object.values(elements).some(el => el.value.trim() !== '');
+  if (!hasInput) {
+    return;
+  }
+
   event.preventDefault();
   event.returnValue = ''; // 古いブラウザの互換性のため
 });
