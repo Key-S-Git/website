@@ -5,59 +5,68 @@ const urlParams = new URLSearchParams(window.location.search);
 const recipeId = urlParams.get('id');
 
 (async () => {
-  const data = await fetchDataById('json/recipe.json', recipeId);
-  if (!data) return;
+  try {
+    const data = await fetchDataById('json/recipe.json', recipeId);
+    if (!data) return; // この場合も finally が実行される
 
-  // レシピタイトル
-  const recipeTitle = document.getElementById('recipe-title');
-  recipeTitle.textContent = data.title;
+    // レシピタイトル
+    const recipeTitle = document.getElementById('recipe-title');
+    recipeTitle.textContent = data.title;
 
-  // 材料リスト
-  const ingredientsList = document.getElementById('ingredients-list');
-  data.ingredients.forEach(item => {
-    const li = document.createElement('li');
-    li.className = 'ingredient';
-    li.textContent = item.name;
+    // 材料リスト
+    const ingredientsList = document.getElementById('ingredients-list');
+    data.ingredients.forEach(item => {
+      const li = document.createElement('li');
+      li.className = 'ingredient';
+      li.textContent = item.name;
 
-    if (item.amount) {
-      const amountDiv = document.createElement('div');
-      amountDiv.className = 'amount';
-      amountDiv.textContent = item.amount;
-      li.appendChild(amountDiv);
+      if (item.amount) {
+        const amountDiv = document.createElement('div');
+        amountDiv.className = 'amount';
+        amountDiv.textContent = item.amount;
+        li.appendChild(amountDiv);
+      }
+      ingredientsList.appendChild(li);
+    });
+
+    // 調理手順
+    const instructionsList = document.getElementById('instructions-list');
+    data.instructions.forEach(step => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'instruct-wrapper';
+
+      const li = document.createElement('li');
+      li.className = 'instruct';
+      li.textContent = step.text;
+      wrapper.appendChild(li);
+
+      if (step.explain) {
+        const explainDiv = document.createElement('div');
+        explainDiv.className = 'explain';
+        explainDiv.textContent = step.explain;
+        wrapper.appendChild(explainDiv);
+      }
+      instructionsList.appendChild(wrapper);
+    });
+
+    // アルバム（Fancybox対応）の生成
+    const albumContainer = document.getElementById('album-container');
+    data.album.forEach(imgPath => {
+      const box = document.createElement('div');
+      box.className = 'box';
+      box.innerHTML = `
+        <a data-fancybox="gallery" href="${imgPath}" class="album-item">
+          <img src="${imgPath}">
+        </a>
+      `;
+      albumContainer.appendChild(box);
+    });
+  } catch (err) {
+    console.error('レシピの読み込みに失敗しました:', err);
+  } finally {
+    // 成功・失敗・データなしのどの場合でもローディングを解除
+    if (typeof window.notifyDataLoaded === 'function') {
+      window.notifyDataLoaded();
     }
-    ingredientsList.appendChild(li);
-  });
-
-  // 調理手順
-  const instructionsList = document.getElementById('instructions-list');
-  data.instructions.forEach(step => {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'instruct-wrapper';
-
-    const li = document.createElement('li');
-    li.className = 'instruct';
-    li.textContent = step.text;
-    wrapper.appendChild(li);
-
-    if (step.explain) {
-      const explainDiv = document.createElement('div');
-      explainDiv.className = 'explain';
-      explainDiv.textContent = step.explain;
-      wrapper.appendChild(explainDiv);
-    }
-    instructionsList.appendChild(wrapper);
-  });
-
-  // アルバム（Fancybox対応）の生成
-  const albumContainer = document.getElementById('album-container');
-  data.album.forEach(imgPath => {
-    const box = document.createElement('div');
-    box.className = 'box';
-    box.innerHTML = `
-      <a data-fancybox="gallery" href="${imgPath}" class="album-item">
-        <img src="${imgPath}">
-      </a>
-    `;
-    albumContainer.appendChild(box);
-  });
+  }
 })();
