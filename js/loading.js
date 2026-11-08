@@ -55,6 +55,11 @@ window.notifyDataLoaded = function () {
     resolveDataLoaded();
 };
 
+// fetch を使わないページ(<html data-no-fetch>)は、待たずにすぐ解決する
+if (document.documentElement.hasAttribute('data-no-fetch')) {
+    resolveDataLoaded();
+}
+
 
 // ===== プログレスバーの制御 =====
 // 1. まずアニメーションで99%まで進める (ロード完了を待たずに即時実行)
