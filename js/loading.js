@@ -1,4 +1,4 @@
-var bar = new ProgressBar.Line('.bar-wrapper', {
+let bar = new ProgressBar.Line('.bar-wrapper', {
   strokeWidth: 5,
   easing: 'easeInOut',
   duration: 1400,
@@ -25,7 +25,7 @@ var bar = new ProgressBar.Line('.bar-wrapper', {
 });
 
 
-
+// ===== ローディングテキストのアニメーション =====
 const loadingTexts = [
     'Loading',
     'Loading.',
@@ -39,32 +39,48 @@ textIndex++; // 次のループのためにインデックスをインクリメ�
 
 // テキスト更新用のタイマーを設定し、変数に保持
 const loadingTextInterval = setInterval(function() {
-    // 配列からテキストを取得
     const currentText = loadingTexts[textIndex % loadingTexts.length];
-    
-    // progressbar.js の setText メソッドでテキストを更新
     bar.setText(currentText);
-    
-    // インデックスを進める
     textIndex++;
-
-}, 300); // 300ミリ秒ごとに更新 (ループの速度)
-
+}, 300); // 300ミリ秒ごとに更新
 
 
+// ===== fetch完了を待つための Promise を公開 =====
+// ※ このJSは fetch側のJSより先に読み込むこと
+let resolveDataLoaded;
+window.dataLoaded = new Promise(function (resolve) {
+    resolveDataLoaded = resolve;
+});
+window.notifyDataLoaded = function () {
+    resolveDataLoaded();
+};
+
+
+// ===== プログレスバーの制御 =====
 // 1. まずアニメーションで99%まで進める (ロード完了を待たずに即時実行)
 bar.animate(0.99, { duration: 3000 }); // 3秒かけて99%まで
 
-// 2. 実際のロード完了を待つ
-window.addEventListener('load', function () {
-    // 3. ロードが完了したら、残りの10%を一瞬で100%にする
+// 2. window.load の完了を待つ Promise
+//    (すでに load 済みでも確実に resolve されるようにする)
+const windowLoaded = new Promise(function (resolve) {
+    if (document.readyState === 'complete') {
+        resolve();
+    } else {
+        window.addEventListener('load', resolve);
+    }
+});
+
+// 3. window.load と fetch の両方が終わったら 100% にしてフェードアウト
+Promise.all([windowLoaded, window.dataLoaded]).then(function () {
+    clearInterval(loadingTextInterval); // テキスト更新タイマーを停止
+
     bar.animate(1.0, { duration: 300 }, function () {
         const spinner = document.getElementById("loading");
         spinner.classList.add("loaded"); // loaded クラス付与
-        
+
         // 1秒待機してからフェードアウト
         setTimeout(function() {
-          $(".wrap").fadeOut(800);
+            $(".wrap").fadeOut(800);
         }, 1000);
     });
 });
