@@ -39,5 +39,26 @@
     "album": [
       "media/album/recipe2/1.jpg"
     ]
+  },
+  "3": {
+    "title": "チョコタルト",
+    "thumbnail": "media/album/recipe3/1.jpg",
+    "ingredients": [
+      { "name": "タルト台(6号)", "amount": "1枚" },
+      { "name": "チョコレート", "amount": "150g" },
+      { "name": "生クリーム", "amount": "100ml" },
+      { "name": "ココアパウダー", "amount": "適量" }
+    ],
+    "instructions": [
+      { "text": "チョコレートを細かく刻む", "explain": " 刻み終わったらボウルに移す" },
+      { "text": "生クリームを混ぜつつ沸騰させる", "explain": "" },
+      { "text": "チョコと生クリームを混ぜ合わせる", "explain": "" },
+      { "text": "ガナッシュをタルト台に注ぎ、冷蔵庫で冷やす", "explain": " 3～4時間が目安" },
+      { "text": "ココアパウダーを振りかける", "explain": "" }
+    ],
+    "album": [
+      "media/album/recipe3/1.jpg",
+      "media/album/recipe3/2.jpg"
+    ]
   }
 }
