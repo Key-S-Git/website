@@ -5,51 +5,60 @@ const urlParams = new URLSearchParams(window.location.search);
 const gunplaId = urlParams.get('id');
 
 (async () => {
-  const data = await fetchDataById('json/gunpla.json', gunplaId);
-  if (!data) return;
+  try {
+    const data = await fetchDataById('json/gunpla.json', gunplaId);
+    if (!data) return; // この場合も finally が実行される
 
-  // 1. テキスト情報の流し込み
-  document.getElementById('name').textContent = data.name;
-  document.getElementById('number').textContent = data.number;
+    // 1. テキスト情報の流し込み
+    document.getElementById('name').textContent = data.name;
+    document.getElementById('number').textContent = data.number;
 
-  // メイン画像
-  const mainImg = document.createElement('img');
-  mainImg.src = data.thumbnail;
-  document.getElementById('main-image-container').appendChild(mainImg);
+    // メイン画像
+    const mainImg = document.createElement('img');
+    mainImg.src = data.thumbnail;
+    document.getElementById('main-image-container').appendChild(mainImg);
 
-  // ハッシュタグ
-  const tagContainer = document.getElementById('hashtag-container');
-  data.hashtags.forEach(tag => {
-    const div = document.createElement('div');
-    div.className = 'hashtag-wrapper';
-    const a = document.createElement('a');
-    a.href = tag.link;
-    a.className = 'hashtag';
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    a.textContent = tag.text;
-    div.appendChild(a);
-    tagContainer.appendChild(div);
-  });
+    // ハッシュタグ
+    const tagContainer = document.getElementById('hashtag-container');
+    data.hashtags.forEach(tag => {
+      const div = document.createElement('div');
+      div.className = 'hashtag-wrapper';
+      const a = document.createElement('a');
+      a.href = tag.link;
+      a.className = 'hashtag';
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.textContent = tag.text;
+      div.appendChild(a);
+      tagContainer.appendChild(div);
+    });
 
-  // 武装リスト
-  const weaponList = document.getElementById('weapon-list');
-  data.weapons.forEach(weapon => {
-    const li = document.createElement('li');
-    li.textContent = weapon;
-    weaponList.appendChild(li);
-  });
+    // 武装リスト
+    const weaponList = document.getElementById('weapon-list');
+    data.weapons.forEach(weapon => {
+      const li = document.createElement('li');
+      li.textContent = weapon;
+      weaponList.appendChild(li);
+    });
 
-  // アルバム（Fancybox対応）の生成
-  const albumContainer = document.getElementById('album-container');
-  data.album.forEach(imgPath => {
-    const box = document.createElement('div');
-    box.className = 'box';
-    box.innerHTML = `
-      <a data-fancybox="gallery" href="${imgPath}" class="album-item">
-        <img src="${imgPath}">
-      </a>
-    `;
-    albumContainer.appendChild(box);
-  });
+    // アルバム（Fancybox対応）の生成
+    const albumContainer = document.getElementById('album-container');
+    data.album.forEach(imgPath => {
+      const box = document.createElement('div');
+      box.className = 'box';
+      box.innerHTML = `
+        <a data-fancybox="gallery" href="${imgPath}" class="album-item">
+          <img src="${imgPath}">
+        </a>
+      `;
+      albumContainer.appendChild(box);
+    });
+  } catch (err) {
+    console.error('ガンプラ情報の読み込みに失敗しました:', err);
+  } finally {
+    // 成功・失敗・データなしのどの場合でもローディングを解除
+    if (typeof window.notifyDataLoaded === 'function') {
+      window.notifyDataLoaded();
+    }
+  }
 })();
